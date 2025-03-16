@@ -18,12 +18,12 @@ Ví điểm thưởng là cơ chế quản lý các lượng (đơn vị : đi�
 | K24DTCN661 | Thái Thị Thanh   | Hòa    | D24TXCN16-K  |
 | K24DTCN673 | Nguyễn Ngọc      | Trang  | D24TXCN16-K  |
 
-*Xem chi tiết công việc trong file [Phân công công việc](./Phan_cong_cong_viec.md).*
+*Xem chi tiết công việc trong file [Phân công công việc](./docs/Phan_cong_cong_viec.md).*
 
 ---
 
 ### Phân tích & đặc tả chức năng
-*Xem chi tiêt trong file [Phân tích chức năng](./Phan_tich_chuc_nang.md).*
+*Xem chi tiêt trong file [Phân tích chức năng](./docs/Phan_tich_chuc_nang.md).*
 
 ---
 
@@ -45,7 +45,7 @@ git clone https://github.com/ngoctrangnguyen1701/bai_tap_nhom_C_plus_plus_toi_th
 ---
 
 ### Thao tác chính trong chương trình
-*Xem chi tiết trong file [Hướng dẫn thao tác](./Huong_dan_thao_tac.md).*
+*Xem chi tiết trong file [Hướng dẫn thao tác](./docs/Huong_dan_thao_tac.md).*
 
 ---
 
