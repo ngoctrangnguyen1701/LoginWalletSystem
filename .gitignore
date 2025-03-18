@@ -1,0 +1,40 @@
+# Binary files
+*.exe
+*.out
+*.o
+*.a
+*.so
+*.dll
+*.dylib
+*.elf
+
+# Compiler & Build & temp files
+*.obj
+*.pch
+*.pdb
+*.ilk
+*.log
+*.dep
+*.d
+
+/build/
+/bin/
+/obj/
+/CMakeFiles/
+CMakeCache.txt
+Makefile
+Makefile.win
+cmake_install.cmake
+
+# IDE files
+*.layout
+*.sln
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.vs/
+.vscode/
+
+# OS system files
+.DS_Store
+Thumbs.db
