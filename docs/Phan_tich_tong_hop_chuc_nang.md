@@ -1,6 +1,5 @@
 #### A. Chức năng quản lý tài khoản người dùng
 1. **Tạo mới tài khoản khi đăng ký**
-Công việc cần làm:
   - Thiết kế lớp (class) User để lưu trữ thông tin người dùng (tên đăng nhập, mật khẩu, tên hiển thị...)
   - Xây dựng giao diện nhập liệu thông tin đăng ký
   - Xác thực dữ liệu người dùng nhập vào
@@ -8,7 +7,6 @@ Công việc cần làm:
   - Xử lý trường hợp nhân viên quản lý tạo tài khoản hộ người dùng
   
 2. **Lưu trữ dữ liệu**
-Công việc cần làm:
   - Cài đặt hàm băm (hash function) cho mật khẩu khi lưu tài khoản người dùng
   - Phương thức lưu trữ theo tập tin chung kiểu danh sách
   - Thiết kế cấu trúc dữ liệu tập tin theo danh sách chứa các phẩn tử là thông tin tài khoản người dùng
@@ -22,20 +20,17 @@ Công việc cần làm
   - Đánh dấu mật khẩu là "tự sinh" để yêu cầu đổi lần đầu
 
 3.2. **Thay đổi mật khẩu**
-Công việc cần làm:
   - Xây dựng giao diện đổi mật khẩu
   - Xác thực mật khẩu cũ
   - Cập nhật và lưu mật khẩu mới đã được băm
   - Xử lý trường hợp mật khẩu tự sinh, kiểm tra có phải là tự sinh và yêu cầu người dùng thay đổi ngay mật khẩu mới trong lần đăng nhập đầu tiên của mình.
 
 3.3. **OTP - One Time Password**
-Công việc cần làm:
   - Thiết kế tính năng sinh OTP và gửi OTP đến người dùng
   - Xác thực OTP nhập vào
   - Tích hợp OTP vào quy trình xác thực
 
 3.4. **Đăng nhập**
-Công việc cần làm:
   - Xây dựng giao diện đăng nhập
   - Tìm kiếm trong dữ liệu người dùng thông tin đăng nhập có tồn tại
   - Nếu tồn tại dữ liệu, cho đăng nhập vào hệ thống
@@ -43,13 +38,11 @@ Công việc cần làm:
 
 #### B. Phân quyền người dùng
 1. **Người dùng thông thường**
-Công việc cần làm:
   - Xây dựng giao diện xem/chỉnh sửa thông tin cá nhân, chỉ cho phép chỉnh sửa những trường dữ liệu được chỉnh sửa(như tên hiển thị, mật khẩu...)
   - Tích hợp OTP cho xác nhận thay đổi thông tin
   - Không thay đổi tên tài khoản đăng nhập
 
 2. **Người dùng quản lý**
-Công việc cần làm:
   - Phát triển giao diện quản lý danh sách người dùng
   - Xây dựng chức năng tạo tài khoản mới
   - Xây dựng chức năng điều chỉnh thông tin người dùng
@@ -58,19 +51,16 @@ Công việc cần làm:
 
 #### C. Quản lý ví điểm thưởng
 1. **Tạo và quản lý ví**
-Công việc cần làm:
   - Thiết kế lớp Wallet để lưu trữ thông tin ví
   - Tạo mã định danh duy nhất cho mỗi ví
   - Xây dựng giao diện quản lý ví
 
 2. **Giao dịch chuyển điểm**
-Công việc cần làm:
   - Xây dựng quy trình chuyển điểm giữa các ví
   - Xử lý hủy giao dịch các trường hợp ngoại lệ (không tìm thấy ví chủ, không tìm thấy ví đích, ví chủ không đủ số dư), trả lại số dư ban đầu
   - Tích hợp OTP xác nhận giao dịch
   - Lưu trữ lịch sử giao dịch
 
 3. **Báo cáo giao dịch**
-Công việc cần làm:
  - Thiết kế lớp Transaction để lưu trữ thông tin giao dịch
  - Xây dựng giao diện xem số dư, lịch sử giao dịch, trạng thái thực hiện giao dịch
