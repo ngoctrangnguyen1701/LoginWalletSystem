@@ -23,7 +23,7 @@ Ví điểm thưởng là cơ chế quản lý các lượng (đơn vị : đi�
 ---
 
 ### Phân tích & đặc tả chức năng
-*Xem chi tiêt trong file [Phân tích chức năng](./docs/Phan_tich_chuc_nang.md).*
+*Xem chi tiết trong file [Yêu cầu tính năng](./docs/Yeu_cau_chuc_nang.md) và file [Phân tích chức năng](./docs/Phan_tich_tong_hop_chuc_nang.md).*
 
 ---
 
