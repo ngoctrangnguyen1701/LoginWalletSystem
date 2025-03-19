@@ -27,6 +27,7 @@ Makefile.win
 cmake_install.cmake
 
 # IDE files
+*.dev
 *.layout
 *.sln
 *.vcxproj
