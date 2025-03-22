@@ -1,3 +1,4 @@
+```bash
 /login-wallet-console
 |
 |-- /src                      # Source code
@@ -57,3 +58,4 @@
 |   |-- test_transaction.cpp
 |
 |-- README.md                 # Documentation
+```
