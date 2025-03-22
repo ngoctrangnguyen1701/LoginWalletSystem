@@ -53,3 +53,12 @@ git clone https://github.com/ngoctrangnguyen1701/bai_tap_nhom_C_plus_plus_toi_th
 <!-- nội dung đang cập nhật -->
 - [Tên tài liệu 1](https://example.com)
 - [Tên tài liệu 2](https://example.com)
+
+---
+
+### Sơ đồ
+[Chi tiết](https://docs.google.com/spreadsheets/d/15pDtCsO1byHXWuiSaONQUGUSVJRMGmBcl1brPSEpmDE/edit?gid=1628233281#gid=1628233281)
+---
+
+### Cấu trúc thư mục
+[Chi tiết](./docs/Cau_truc_thu_muc.md)
