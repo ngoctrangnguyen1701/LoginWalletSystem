@@ -20,9 +20,9 @@ AdminMenu::AdminMenu() : Menu("Menu danh cho Admin") {
 //Methods
 void AdminMenu::display() {
   cout << endl;
-  cout << "╔════════════════════════════════╗" << endl;
+  cout << "+--------------------------------+" << endl;
   cout << "       " << title << endl;
-  cout << "╚════════════════════════════════╝" << endl;
+  cout << "+--------------------------------+" << endl;
   
   for (int i = 0; i < options.size(); i++) {
     cout << "   " << options[i] << endl;
@@ -59,7 +59,7 @@ void AdminMenu::handleInput() {
       break;
     case 7:
       app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
-      break;
+      return;
     default:
       cout << "Lua chon khong hop le! Vui long chon lai" << endl;
       break;

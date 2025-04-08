@@ -279,6 +279,7 @@ string UserManager::hashPassword(string plainPassword){
 }
 
 bool UserManager::createSampleData() {
+  cout << "createSampleData" << endl;
   vector<User> userList;  
   userList.push_back(User("admin", "123", "Administrator", "admin@gmail.com", true, false));
   userList.push_back(User("binhduong", "binhduong123", "Binh Duong 68", "binhduong123@example.com", false, false));
@@ -292,6 +293,7 @@ bool UserManager::createSampleData() {
   }
   int nextUserId = userList.size() + 1;
   FileUtils fileUtils(filename, filenameNextId);
+  cout << "2222" << endl;
   bool result = fileUtils.saveDataByList(*this, userList, nextUserId);
   return result;
 }

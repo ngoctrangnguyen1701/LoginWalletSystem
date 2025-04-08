@@ -16,9 +16,9 @@ LoginMenu::LoginMenu() : Menu("Man hinh dang nhap") {
 //Methods
 void LoginMenu::display() {
   cout << endl;
-  cout << "╔════════════════════════════════╗" << endl;
+  cout << "+--------------------------------+" << endl;
   cout << "       " << title << endl;
-  cout << "╚════════════════════════════════╝" << endl;
+  cout << "+--------------------------------+" << endl;
   
   for (int i = 0; i < options.size(); i++) {
     cout << "   " << options[i] << endl;
