@@ -2,11 +2,19 @@
 #define AdminMenu_H //Dinh nghia no
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
-class AdminMenu
+#include "Menu.h"
+class AdminMenu : public Menu
 {
 	private:		
 	protected:
-	public:		
+	public:
+		AdminMenu();
+		void display() override;
+		void handleInput() override;
+		void handleReadUserList();
+		void handleCreateUser();
+		void handleUpdateUser();
+		void handleDeleteUser();
 };
 
 #endif
