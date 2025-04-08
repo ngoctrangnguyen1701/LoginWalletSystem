@@ -1,6 +1,6 @@
 #include "Wallet.h"
 
 //Contructors
-Wallet::Wallet(){}
+//Wallet::Wallet(){}
 
 //Methods

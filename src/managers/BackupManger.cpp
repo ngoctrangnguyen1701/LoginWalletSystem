@@ -1,6 +1,6 @@
 #include "BackupManger.h"
 
 //Contructors
-BackupManger::BackupManger(){}
+//BackupManger::BackupManger(){}
 
 //Methods
