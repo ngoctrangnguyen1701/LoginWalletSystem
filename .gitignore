@@ -27,15 +27,19 @@ Makefile.win
 cmake_install.cmake
 
 # IDE files
-*.dev
+# *.dev
 *.layout
 *.sln
 *.vcxproj
 *.vcxproj.filters
 *.vcxproj.user
 *.vs/
-.vscode/
+# .vscode/
 
 # OS system files
 .DS_Store
 Thumbs.db
+
+# data files
+*.csv
+*.txt
