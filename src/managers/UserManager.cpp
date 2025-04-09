@@ -80,20 +80,23 @@ void UserManager::displayList() {
   const int usernameWidth = 15;
   const int fullNameWidth = 25;
   const int emailWidth = 30;
-  const int isAdminWidth = 10;
-  const int isAutoGenWidth = 20;
+  // const int isAdminWidth = 10;
+  // const int isAutoGenWidth = 20;
   
   // Print header with nice formatting
-  cout << "\n+------+---------------+-------------------------+------------------------------+----------+--------------------+\n";
-  cout << "|                                    DANH SACH NGUOI DUNG                                                       |\n";
-  cout << "+------+---------------+-------------------------+------------------------------+----------+--------------------+\n";
+  // cout << "+--------------------------------+" << endl;
+  cout << "\n+-------------------------------------------------------------------------------+\n";
+  cout << "|                           DANH SACH NGUOI DUNG                                |";
+  // cout << "+--------------------------------+" << endl;
+  cout << "\n+------+---------------+-------------------------+------------------------------+\n";
   cout << "| " << setw(idWidth-1) << left << "ID" << "|";
   cout << " " << setw(usernameWidth-1) << left << "Ten dang nhap" << "|";
   cout << " " << setw(fullNameWidth-1) << left << "Ho va ten" << "|";
   cout << " " << setw(emailWidth-1) << left << "Email" << "|";
-  cout << " " << setw(isAdminWidth-1) << left << "Admin" << "|";
-  cout << " " << setw(isAutoGenWidth-1) << left << "Mat khau tu dong" << "|";
-  cout << "\n+------+---------------+-------------------------+------------------------------+----------+--------------------+\n";
+  // cout << " " << setw(isAdminWidth-1) << left << "Admin" << "|";
+  // cout << " " << setw(isAutoGenWidth-1) << left << "Mat khau tu dong" << "|";
+  // cout << "\n+------+---------------+-------------------------+------------------------------+----------+--------------------+\n";
+  cout << "\n+------+---------------+-------------------------+------------------------------+\n";
   
   // Print each user
   for (int i = 0; i < userList.size(); i++) {
@@ -102,13 +105,14 @@ void UserManager::displayList() {
     cout << " " << setw(usernameWidth-1) << left << item.getUsername() << "|";
     cout << " " << setw(fullNameWidth-1) << left << item.getFullName() << "|";
     cout << " " << setw(emailWidth-1) << left << item.getEmail() << "|";
-    cout << " " << setw(isAdminWidth-1) << left << (item.getIsAdmin() ? "Co" : "Khong") << "|";
-    cout << " " << setw(isAutoGenWidth-1) << left << (item.getIsAutoGenPassword() ? "Co" : "Khong") << "|";
+    // cout << " " << setw(isAdminWidth-1) << left << (item.getIsAdmin() ? "Co" : "Khong") << "|";
+    // cout << " " << setw(isAutoGenWidth-1) << left << (item.getIsAutoGenPassword() ? "Co" : "Khong") << "|";
     cout << endl;
   }
   
   // Print footer
-  cout << "+------+---------------+-------------------------+------------------------------+----------+--------------------+\n";
+  // cout << "+------+---------------+-------------------------+------------------------------+----------+--------------------+\n";
+  cout << "+------+---------------+-------------------------+------------------------------+\n";
   cout << "Tong so nguoi dung: " << userList.size() << endl;
 }
 
@@ -293,7 +297,6 @@ bool UserManager::createSampleData() {
   }
   int nextUserId = userList.size() + 1;
   FileUtils fileUtils(filename, filenameNextId);
-  cout << "2222" << endl;
   bool result = fileUtils.saveDataByList(*this, userList, nextUserId);
   return result;
 }
@@ -316,10 +319,10 @@ User UserManager::readItemFromFile(stringstream& ss) {
   getline(ss, fullName, ',');
   getline(ss, email, ',');
   getline(ss, token, ',');
-  isAdmin = (token == "1");
+  isAdmin = (token == "1"); //cho nay se ra true or false
 
   getline(ss, token);
-  isAutoGenPassword = (token == "1");
+  isAutoGenPassword = (token == "1"); //cho nay se ra true or false
     
   //Tao user va set userId
   User user(username, password, fullName, email, isAdmin, isAutoGenPassword);
