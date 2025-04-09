@@ -49,24 +49,24 @@ bool FileUtils::isEmptyFile() {
 }
 
 bool FileUtils::createFile() {
-  try {
-    //Tao file data
-    ofstream file(fullPath);
-    file.exceptions(ios::failbit | ios::badbit);     
-    file.close();
-    cout << "Da tao file '" << fullPath << "'" << endl;
-
-    // Tao file nextId
-    ofstream nextIdFile(nextIdFilePath);
-    nextIdFile.exceptions(ios::failbit | ios::badbit);
-    nextIdFile.close();
-    cout << "Da tao file '" << nextIdFilePath << "'" << endl;
-    return true;    
-  } catch(const exception& e) {
-    cerr << "File processing error: " << e.what() << endl;
-    cerr << "System error info: " << strerror(errno) 
-         << " (Error code: " << errno << ")" << endl;
-    exit(1); //Thoat chuong trinh
+  //Tao file data
+  ofstream file(fullPath);
+  if (!file.is_open()) {
+    cerr << "Khong the tao file '" << fullPath << endl;           
+    exit(1);
     return false;
   }
+  file.close();
+  cout << "Da tao file '" << fullPath << "'" << endl;
+
+  // Tao file nextId
+  ofstream nextIdFile(nextIdFilePath);
+  if (!nextIdFile.is_open()) {
+    cerr << "Khong the tao file '" << nextIdFilePath << endl;
+    exit(1);
+    return false;
+  }
+  nextIdFile.close();
+  cout << "Da tao file '" << nextIdFilePath << "'" << endl;
+  return true;
 }
