@@ -1,6 +1,10 @@
+//include file .h tuong ung voi .cpp
+#include "User.h"
+
+//include thu vien
 #include <iostream>
 
-#include "User.h"
+//include file tu dinh nghia
 #include "../managers/UserManager.h"
 
 using namespace std;

@@ -1,10 +1,12 @@
+//include file .h tuong ung voi .cpp
+#include "UserManager.h"
+
 //include thu vien
 #include <iostream>
 #include <fstream>
 #include <iomanip> 
 
 //include file tu dinh nghia
-#include "UserManager.h"
 #include "../models/User.h"
 #include "../utils/FileUtils.h"
 
@@ -12,9 +14,6 @@ using namespace std;
 
 // Khai bao bien toan cuc tu file main.cpp
 extern string DATA_DIRECTORY;
-
-//Contructors
-// UserManager::UserManager(){}
 
 //Destructor
 UserManager::~UserManager(){
@@ -41,7 +40,8 @@ bool UserManager::createUser(User newUser){
   int userId = nextUserId;
   User* userExist = findUserById(userId); 
   if(userExist != NULL) {
-    cout << "Da ton tai userId '" << userId << "'" << endl;
+    string text = "Da ton tai userId '" + to_string(userId) + " '";
+    console.notify(text);
     return false;
   }
   newUser.setUserId(userId); //gan id cho user
@@ -50,10 +50,12 @@ bool UserManager::createUser(User newUser){
   FileUtils fileUtils(filename, filenameNextId); 
   bool resultSave = fileUtils.appendItem(*this, newUser, nextUserId); 
   if(resultSave == true) {
-    cout << "Luu thanh cong user_id '" << userId << "'" << endl;
+    string text = "Luu thanh cong user_id '" + to_string(userId) + "'";
+    console.notify(text);
     return true;
   } else {
-    cout << "Luu that bai user_id '" << userId << "'" << endl;
+    string text = "Luu that bai user_id '" + to_string(userId) + "'";
+    console.notify(text);
     return false; 
   }
 }
@@ -67,6 +69,7 @@ bool UserManager::getList(){
 void UserManager::displayList() {
   bool resultGetList = getList(); //Doc danh sach user tu file
   if(resultGetList == false) {
+    console.notify("Khong the doc danh sach nguoi dung");
     return;
   }
   // Check if list is empty
@@ -124,6 +127,8 @@ bool UserManager::updateUser(int userId, string fullName, string email){
   //kiem tra xem user_id co ton tai
   User* userExist = findUserById(userId);
   if(userExist == NULL) {
+    string text = "Khong ton tai userId '" + to_string(userId) + "'";
+    console.notify(text);
     return false;
   }
 
@@ -153,6 +158,8 @@ bool UserManager::deleteUser(int userId){
   //kiem tra xem user_id co ton tai
   User* userExist = findUserById(userId);
   if(userExist == NULL) {
+    string text = "Khong ton tai userId '" + to_string(userId) + "'";
+    console.notify(text);
     return false;
   }
 
@@ -199,12 +206,13 @@ User* UserManager::findUserFromFile(string username, string password){
     }
     file.close();
     if(isExist == false) {
-      cout << "Khong tim thay item trong file '" << fullPath << "'" << endl;
-      // return User(); //tra ve user rong
+      string text = "Khong tim thay item trong file '" + fullPath + "'";
+      console.log(text);
       return NULL;
     }
     else {
-      cout << "Da tim thay item trong file '" << fullPath << "'" << endl;
+      string text = "Da tim thay item trong file '" + fullPath + "'";
+      console.log(text);
       User* user = new User(result); //tra ve con tro den user tim thay
       return user;
     }    
@@ -219,14 +227,14 @@ User* UserManager::findUserById(int userId){
   //tim kiem user co id = userId khong  
   for (int i = 0; i < userList.size(); i++) {
     if (userList[i].getUserId() == userId) {
-      cout << "Tim thay userId '" << userId << "'" << endl;
-      // return &userList[i]; //tra ve con tro den user      
+      string text = "Tim thay userId '" + to_string(userId) + "'";
+      console.log(text);
       return &userList[i]; //tra ve con tro den user      
     }
   }
   //Neu khong tim thay user thi tra ve NULL
-  cout << "Khong tim thay userId '" << userId << "'" << endl;
-  // return User(); //tra ve user rong
+  string text = "Khong tim thay user_id '" + to_string(userId) + "'";
+  console.log(text);
   return NULL;
 }
 
@@ -238,7 +246,6 @@ User* UserManager::findUserByIdFromFile(int userId) {
     if (!file.is_open()) {
       cerr << "Khong the mo file '" << fullPath << "'" << endl;
       file.close();
-      // return User();
       return NULL;
     }  
     string line;
@@ -254,12 +261,14 @@ User* UserManager::findUserByIdFromFile(int userId) {
     }
     file.close();
     if(isExist == false) {
-      cout << "Khong tim thay item trong file '" << fullPath << "'" << endl;
+      string text = "Khong tim thay item trong file '" + fullPath + "'";
+      console.log(text);
       // return User(); //tra ve user rong
       return NULL;
     }
     else {
-      cout << "Da tim thay item trong file '" << fullPath << "'" << endl;
+      string text = "Da tim thay item trong file '" + fullPath + "'";
+      console.log(text);
       User* user = new User(result); //tra ve con tro den user tim thay
       return user;
     }    

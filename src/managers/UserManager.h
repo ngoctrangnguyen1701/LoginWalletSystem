@@ -8,6 +8,7 @@
 
 //include file tu dinh nghia
 #include "../models/User.h"
+#include "../utils/ConsoleUtils.h"
 
 using namespace std;
 
@@ -17,6 +18,7 @@ class UserManager
 		int nextUserId; //auto increase
 		string filename = "userData"; //ten file luu user
 		string filenameNextId = "nextUserId"; //ten file luu nextUserId
+		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
 	protected:
 	public:
 		//Destructor

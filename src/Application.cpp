@@ -1,30 +1,23 @@
+//include file .h tuong ung voi .cpp
+#include "Application.h"
+
+//include thu vien
 #include <iostream>
 #include <string>
 
 //include file tu dinh nghia
-#include "Application.h"
 #include "./models/User.h"
 #include "./views/LoginMenu.h"
 #include "./views/UserMenu.h"
 #include "./views/AdminMenu.h"
 #include "./utils/FileUtils.h"
 
-
 using namespace std;
 
-//Contructors
-// Application::Application(){
-//   cout << "Application::Application" << endl;  
-// }
-
-Application& Application::getInstance() {
-  static Application instance;
-  return instance;
-}
 
 //Destructor
 Application::~Application(){  
-  cout << "Application destructor" << endl;
+  console.notify("Application is stopping...");
   if(currentMenu != NULL) {
     delete currentMenu; // Giai phong bo nho sau khi xong
   }
@@ -44,6 +37,9 @@ Menu* Application::getCurrentMenu(){
 }
 UserManager Application::getUserMgr(){
   return userMgr;
+}
+ConsoleUtils Application::getConsole(){
+  return console;
 }
 
 //Setters
@@ -68,8 +64,13 @@ void Application::setCurrentMenu(string menuName) {
 }
 
 //Methods
+Application& Application::getInstance() {
+  static Application instance;
+  return instance;
+}
+
 void Application::initialize(){
-  cout << "Application is initializing..." << endl;
+  console.notify("Application is initializing...");
   
   FileUtils fileUtils(userMgr.filename, userMgr.filenameNextId);
   bool isEmpty = fileUtils.isEmptyFile(); 
@@ -80,24 +81,27 @@ void Application::initialize(){
 }
 
 void Application::login(){
+  cout << endl;
+  cout << "===== Thong tin dang nhap =====" << endl;
+
   string username, password;
-  cout << "Ten dang nhap: ";
+  cout << "> Ten dang nhap: ";
   getline(cin, username);  
-  cout << "Mat khau: ";
-  getline(cin, password);
+  cout << "> Mat khau: ";
+  getline(cin, password);  
   
   //authenticate user
   User user;
   User* result = user.authenticate(username, password);
   if(result != NULL) {
-    cout << "Dang nhap thanh cong" << endl;
+    console.notify("Dang nhap thanh cong!");
     delete currentUser; // Giai phong bo nho currentUser truoc khi gan lai
     currentUser = NULL;
     currentUser = new User(*result); // Gan user dang nhap thanh cong cho currentUser
   } else {
-    cout << "Dang nhap that bai" << endl;
+    console.notify("Dang nhap that bai!");
     currentUser = NULL;
-  }  
+  }
 }
 
 bool Application::signup(){
@@ -115,7 +119,7 @@ bool Application::logout(){
 }
 
 void Application::run(){  
-  cout << "Application is running..." << endl;
+  console.notify("Application is running...");
 
   currentMenu = new LoginMenu();  // Khoi tao menu dang nhap
   currentMenu->display();

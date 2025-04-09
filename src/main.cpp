@@ -35,6 +35,6 @@ int main() {
   app.initialize();
   app.run();
 
-  cin.get(); //ngung chuong trinh
+  // cin.get(); //ngung chuong trinh
   return 0;
 }
