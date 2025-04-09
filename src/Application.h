@@ -2,7 +2,7 @@
 #define Application_H //Dinh nghia no
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
-//include file tu dinh nghia
+//include file header noi bo khac
 #include "./views/Menu.h"
 #include "./managers/UserManager.h"
 // #include "WalletManger.h"

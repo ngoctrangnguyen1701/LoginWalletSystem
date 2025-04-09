@@ -4,7 +4,7 @@
 //include thu vien
 #include <string>
 
-//include file tu dinh nghia
+//include file header noi bo khac
 //...
 
 using namespace std;

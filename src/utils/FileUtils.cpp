@@ -8,7 +8,7 @@
 #include <cerrno>   // For errno
 #include <cstring>  // For strerror
 
-//include file tu dinh nghia
+//include file header noi bo khac
 //...
 
 using namespace std;

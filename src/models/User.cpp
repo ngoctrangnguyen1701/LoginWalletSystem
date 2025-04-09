@@ -4,7 +4,7 @@
 //include thu vien
 #include <iostream>
 
-//include file tu dinh nghia
+//include file header noi bo khac
 #include "../managers/UserManager.h"
 
 using namespace std;

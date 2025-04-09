@@ -4,7 +4,7 @@
 //include thu vien
 #include <iostream>
 
-//include file tu dinh nghia
+//include file header noi bo khac
 #include "../Application.h"
 
 using namespace std;

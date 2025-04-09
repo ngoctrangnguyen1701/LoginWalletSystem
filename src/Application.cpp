@@ -5,7 +5,7 @@
 #include <iostream>
 #include <string>
 
-//include file tu dinh nghia
+//include file header noi bo khac
 #include "./models/User.h"
 #include "./views/LoginMenu.h"
 #include "./views/UserMenu.h"

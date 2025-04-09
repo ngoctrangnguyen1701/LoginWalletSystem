@@ -6,7 +6,7 @@
 #include <fstream>
 #include <iomanip> 
 
-//include file tu dinh nghia
+//include file header noi bo khac
 #include "../models/User.h"
 #include "../utils/FileUtils.h"
 
