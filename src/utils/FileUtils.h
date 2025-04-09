@@ -1,10 +1,14 @@
-// FileUtils.h
 #pragma once
+
+//include thu vien
 #include <vector>
 #include <string>
 #include <cstdlib>
 #include <sstream>
 #include <fstream>
+
+//include file tu dinh nghia
+#include "../utils/ConsoleUtils.h"
 
 using namespace std;
 
@@ -17,6 +21,7 @@ class FileUtils {
     string fullPath;
     string nextIdFilePath;
     string tempFilePath;
+		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
   public:
     // Constructors
     FileUtils(const string& filename, const string& filenameNextId);

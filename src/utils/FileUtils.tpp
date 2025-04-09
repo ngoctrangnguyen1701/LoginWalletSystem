@@ -28,7 +28,8 @@ bool FileUtils::saveDataByList(M &classManager, vector<T> data, int nextId) {
   //Thay the file goc bang file tam
   remove(fullPath.c_str());
   rename(tempFilePath.c_str(), fullPath.c_str());
-  cout << "Da luu du lieu vao file '" << fullPath << "'" << endl;
+  string text = "Da luu du lieu vao file '" + fullPath + "'";
+  console.log(text);
 
   //Tao file luu tru cho nextUserId, dam bao file luu nextId xoa het du lieu cu
   ofstream fileNextId(nextIdFilePath, ios::trunc);
@@ -39,7 +40,8 @@ bool FileUtils::saveDataByList(M &classManager, vector<T> data, int nextId) {
   }
   fileNextId << nextId << endl;
   fileNextId.close();
-  cout << "Da luu du lieu nextId vao file'" << nextIdFilePath << "'" << endl;
+  text = "Da luu du lieu nextId vao file '" + nextIdFilePath + "'";
+  console.log(text);
   return true;
 }
 
@@ -65,7 +67,8 @@ bool FileUtils::loadFile(M &classManager, vector<T> &data, int &nextId) {
     }
   
     file.close();
-    cout << "Da doc du lieu danh sach tu file '" << fullPath << "'" << endl;
+    string text = "Da doc du lieu danh sach tu file '" + fullPath + "'";
+    console.log(text);
 
     //Doc nextId tu file *.txt
     ifstream fileNextId(nextIdFilePath);
@@ -76,7 +79,8 @@ bool FileUtils::loadFile(M &classManager, vector<T> &data, int &nextId) {
     }
     fileNextId >> nextId;
     fileNextId.close();
-    cout << "Da doc du lieu nextId tu file '" << nextIdFilePath << "'" << endl;
+    text = "Da doc du lieu nextId tu file '" + nextIdFilePath + "'";
+    console.log(text);
 
     return true;
   }
@@ -98,7 +102,8 @@ bool FileUtils::appendItem(M &classManager, const T& item, int nextId) {
     
     classManager.writeItemToFile(file, item);    
     file.close();
-    cout << "Da luu du lieu moi vao file '" << fullPath << "'" << endl;
+    string text = "Da luu du lieu moi vao file '" + fullPath + "'";
+    console.log(text);
 
     //Tao file luu tru cho nextUserId      
     ofstream fileNextId(nextIdFilePath);
@@ -109,7 +114,8 @@ bool FileUtils::appendItem(M &classManager, const T& item, int nextId) {
     }
     fileNextId << nextId << endl;
     fileNextId.close();
-    cout << "Da luu du lieu moi nextId vao file'" << nextIdFilePath << "'" << endl;
+    text = "Da luu du lieu moi nextId vao file '" + nextIdFilePath + "'";
+    console.log(text);
     return true;
     
   } catch (const exception& e) {

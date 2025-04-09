@@ -1,6 +1,13 @@
-#include <string>
-using namespace std;
+//include file .h tuong ung voi .cpp
 #include "Menu.h"
+
+//include thu vien
+#include <string>
+
+//include file tu dinh nghia
+//...
+
+using namespace std;
 
 //Contructors
 Menu::Menu(string _title){

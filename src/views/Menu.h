@@ -7,6 +7,7 @@
 using namespace std;
 
 #include "../models/User.h"
+#include "../utils/ConsoleUtils.h"
 
 class Menu
 {
@@ -16,6 +17,7 @@ class Menu
 		vector<string> options;
 		int selectedOption;
 		bool isRunning;
+		ConsoleUtils console;
 	public:
 		// Constructor
 		Menu(string title);

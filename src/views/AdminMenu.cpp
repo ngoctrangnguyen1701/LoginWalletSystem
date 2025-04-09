@@ -1,7 +1,12 @@
+//include file .h tuong ung voi .cpp
+#include "AdminMenu.h"
+
+//include thu vien
 #include <iostream>
 
-#include "AdminMenu.h"
+//include file tu dinh nghia
 #include "../Application.h"
+
 using namespace std;
 
 //Contructors
@@ -90,13 +95,11 @@ void AdminMenu::handleCreateUser() {
   bool isAutoGenPassword = true; //TODO: mat khau tu sinh
   cout << endl;
   cout << "===== Tao nguoi dung moi =====" << endl;
-  cout << "Ten dang nhap: ";
+  cout << "> Ten dang nhap: ";
   getline(cin, username);  
-  // cout << "Mat khau: ";
-  // getline(cin, password);
-  cout << "Ho va ten: ";
+  cout << "> Ho va ten: ";
   getline(cin, fullName);
-  cout << "Email: ";
+  cout << "> Email: ";
   getline(cin, email);
 
   User newUser(username, password, fullName, email, isAdmin, isAutoGenPassword);
@@ -104,9 +107,9 @@ void AdminMenu::handleCreateUser() {
   Application& app = Application::getInstance();
   bool resultCreate = app.getUserMgr().createUser(newUser);
   if(resultCreate == true) {
-    cout << "Tao user thanh cong!" << endl;
+    console.notify("Tao user thanh cong!");
   } else {
-    cout << "Tao user that bai!" << endl;
+    console.notify("Tao user that bai!");
   }
 }
 
@@ -131,6 +134,8 @@ void AdminMenu::handleUpdateUser() {
   cout << "> Nhap ID nguoi dung muon thay doi: ";
   cin >> userId;
   cin.ignore();
+  //TODO
+  //check userId co ton tai truoc khi lua chon thay doi thong tin
   
   cout << endl;
   int choice_2 = 0;
@@ -151,15 +156,15 @@ void AdminMenu::handleUpdateUser() {
 
   // cin.ignore(); // Bo qua ki tu xuong dong
   if(choice_2 == 1) {
-    cout << "Nhap ho va ten moi: ";
+    cout << "> Nhap ho va ten moi: ";
     getline(cin, fullName);
   } else if(choice_2 == 2) {
-    cout << "Nhap email moi: ";
+    cout << "> Nhap email moi: ";
     getline(cin, email);
   } else if(choice_2 == 3) {
-    cout << "Nhap ho va ten moi: ";
+    cout << "> Nhap ho va ten moi: ";
     getline(cin, fullName);
-    cout << "Nhap email moi: ";
+    cout << "> Nhap email moi: ";
     getline(cin, email);
   } else if(choice_2 == 4) {
     app.setCurrentMenu("AdminMenu"); // Chuyen sang menu admin
@@ -168,9 +173,9 @@ void AdminMenu::handleUpdateUser() {
 
   bool resultUpdate = app.getUserMgr().updateUser(userId, fullName, email);
   if(resultUpdate == true) {
-    cout << "Cap nhat user thanh cong!" << endl;
+    console.notify("Cap nhat user thanh cong!");
   } else {
-    cout << "Cap nhat user that bai!" << endl;
+    console.notify("Cap nhat user that bai!");
   }
 }
 
@@ -195,6 +200,9 @@ void AdminMenu::handleDeleteUser() {
   cout << "> Nhap ID nguoi dung muon xoa: ";
   cin >> userId;
   cin.ignore(); 
+
+  //TODO
+  //check userId co ton tai truoc khi xac nhan xoa
   
   cout << endl;
   int choice_2 = 0;
@@ -219,8 +227,8 @@ void AdminMenu::handleDeleteUser() {
   bool resultDelete = app.getUserMgr().deleteUser(userId);
   //TODO: Xoa vi cua user bi xoa, diem trong vi bi xoa se tra ve vi tong
   if(resultDelete == true) {
-    cout << "Xoa user thanh cong!" << endl;
+    console.notify("Xoa user thanh cong!");
   } else {
-    cout << "Xoa user that bai!" << endl;
+    console.notify("Xoa user that bai!");
   }
 }

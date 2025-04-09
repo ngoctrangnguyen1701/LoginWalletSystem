@@ -1,7 +1,12 @@
+//include file .h tuong ung voi .cpp
+#include "LoginMenu.h"
+
+//include thu vien
 #include <iostream>
 
-#include "LoginMenu.h"
+//include file tu dinh nghia
 #include "../Application.h"
+
 using namespace std;
 
 //Contructors
@@ -49,9 +54,7 @@ void LoginMenu::handleInput() {
   }
 }
 
-void LoginMenu::handleLogin() {
-  cout << endl;
-  cout << "===== Thong tin dang nhap =====" << endl;
+void LoginMenu::handleLogin() {  
   Application& app = Application::getInstance();
   app.login();
   if(app.getCurrentUser() != NULL) {

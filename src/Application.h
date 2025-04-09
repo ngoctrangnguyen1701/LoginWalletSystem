@@ -5,9 +5,9 @@
 //include file tu dinh nghia
 #include "./views/Menu.h"
 #include "./managers/UserManager.h"
-
 // #include "WalletManger.h"
 // #include "TransactionManger.h"
+#include "./utils/ConsoleUtils.h"
 
 class Application
 {
@@ -15,7 +15,7 @@ class Application
 		User* currentUser = NULL; // Con tro tro den nguoi dung hien tai (neu co)
 		Menu* currentMenu = NULL;  // Con tro tro den menu hien tai		
 		UserManager userMgr; // Khai bao doi tuong UserManager
-		
+		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
 	public:
 		//Destructor
 		~Application();
@@ -24,6 +24,7 @@ class Application
 		User* getCurrentUser();
 		Menu* getCurrentMenu();
 		UserManager getUserMgr();	
+		ConsoleUtils getConsole();	
 
 		//Setters
 		void setCurrentMenu(string menuName);

@@ -1,7 +1,12 @@
+//include file .h tuong ung voi .cpp
+#include "UserMenu.h"
+
+//include thu vien
 #include <iostream>
 
-#include "UserMenu.h"
+//include file tu dinh nghia
 #include "../Application.h"
+
 using namespace std;
 //Contructors
 //goi truc tiep contructor cua lop Menu
