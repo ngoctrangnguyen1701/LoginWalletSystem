@@ -1,11 +1,15 @@
+//include file .h tuong ung voi .cpp
+#include "FileUtils.h"
+
 //include thu vien
 #include <iostream>
+#include <string>
 #include <fstream>
 #include <cerrno>   // For errno
 #include <cstring>  // For strerror
 
 //include file tu dinh nghia
-#include "FileUtils.h"
+//...
 
 using namespace std;
 
@@ -22,7 +26,8 @@ bool FileUtils::isEmptyFile() {
   //Kiem tra file co ton tai
   ifstream file(fullPath);
   if (!file.is_open()) {
-    cerr << "Khong ton tai file '" << fullPath << "'" << endl;
+    string text = "Khong ton tai file '" + fullPath;
+    console.log(text);
     file.close();
     return FileUtils::createFile();
   }
@@ -32,14 +37,15 @@ bool FileUtils::isEmptyFile() {
   streampos fileSize = file.tellg();                
   //Truong hop file bi loi, khong doc duoc
   if (fileSize == -1 || file.fail()) {
-    cerr << "Khong the xac dinh kich thuoc file '" << fullPath << "'" << endl;
-    cerr << "Co the file bi loi" << endl;
+    string text = "Co the file bi loi, khong the xac dinh kich thuoc file '" + fullPath;
+    console.log(text);
     file.close();
     return FileUtils::createFile();
   }
   
   if (fileSize == 0) {
-    cerr << "Chua co du lieu trong file '" << fullPath << "'" << endl;
+    string text = "Chua co du lieu trong file '" + fullPath;
+    console.log(text);
     file.close();
     return FileUtils::createFile();
   }
@@ -57,7 +63,8 @@ bool FileUtils::createFile() {
     return false;
   }
   file.close();
-  cout << "Da tao file '" << fullPath << "'" << endl;
+  string text = "Da tao file '" + fullPath + "'";
+  console.log(text);
 
   // Tao file nextId
   ofstream nextIdFile(nextIdFilePath);
@@ -67,6 +74,7 @@ bool FileUtils::createFile() {
     return false;
   }
   nextIdFile.close();
-  cout << "Da tao file '" << nextIdFilePath << "'" << endl;
+  text = "Da tao file '" + nextIdFilePath + "'";
+  console.log(text);
   return true;
 }
