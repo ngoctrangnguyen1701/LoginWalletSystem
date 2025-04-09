@@ -84,10 +84,8 @@ void UserManager::displayList() {
   // const int isAutoGenWidth = 20;
   
   // Print header with nice formatting
-  // cout << "+--------------------------------+" << endl;
   cout << "\n+-------------------------------------------------------------------------------+\n";
   cout << "|                           DANH SACH NGUOI DUNG                                |";
-  // cout << "+--------------------------------+" << endl;
   cout << "\n+------+---------------+-------------------------+------------------------------+\n";
   cout << "| " << setw(idWidth-1) << left << "ID" << "|";
   cout << " " << setw(usernameWidth-1) << left << "Ten dang nhap" << "|";
