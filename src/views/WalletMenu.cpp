@@ -1,6 +1,6 @@
 #include "WalletMenu.h"
 
 //Contructors
-WalletMenu::WalletMenu(){}
+//WalletMenu::WalletMenu(){}
 
 //Methods

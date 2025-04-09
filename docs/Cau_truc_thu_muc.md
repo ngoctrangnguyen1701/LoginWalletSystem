@@ -10,16 +10,17 @@
 |   |   |-- Transaction.h
 |   |   |-- Transaction.cpp
 |   |
+|   |-- /managers
 |   |   |-- UserManager.h        # Business logic managers
 |   |   |-- UserManager.cpp
 |   |   |-- WalletManager.h
 |   |   |-- WalletManager.cpp
 |   |   |-- TransactionManager.h
 |   |   |-- TransactionManager.cpp
-|   |   |-- OTP.h
-|   |   |-- OTP.cpp
-|   |   |-- Backup.h
-|   |   |-- Backup.cpp
+|   |   |-- OTPManager.h
+|   |   |-- OTPManager.cpp
+|   |   |-- BackupMananger.h
+|   |   |-- BackupManager.cpp
 |   |
 |   |-- /utils                # Utility functions
 |   |   |-- HashUtils.h       # Password hashing
@@ -46,9 +47,9 @@
 |   |-- main.cpp              # Entry point
 |
 |-- /data                     # Data storage
-|   |-- userData.dat             # User data file
-|   |-- walletData.dat           # Wallet data
-|   |-- transactionData.dat      # Transaction history
+|   |-- userData.csv             # User data file
+|   |-- walletData.csv           # Wallet data
+|   |-- transactionData.csv      # Transaction history
 |   |-- /backup               # Backup directory
 |
 |-- /tests                    # Simple tests (optional)

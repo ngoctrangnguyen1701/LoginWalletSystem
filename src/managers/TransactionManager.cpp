@@ -1,6 +1,6 @@
 #include "TransactionManager.h"
 
 //Contructors
-TransactionManager::TransactionManager(){}
+//TransactionManager::TransactionManager(){}
 
 //Methods

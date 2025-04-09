@@ -1,6 +1,6 @@
 #include "WalletManger.h"
 
 //Contructors
-WalletManger::WalletManger(){}
+//WalletManger::WalletManger(){}
 
 //Methods

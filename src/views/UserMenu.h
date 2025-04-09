@@ -2,11 +2,15 @@
 #define UserMenu_H //Dinh nghia no
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
-class UserMenu
+#include "Menu.h"
+class UserMenu : public Menu
 {
 	private:		
 	protected:
-	public:		
+	public:
+		UserMenu();
+		void display() override;
+		void handleInput() override;		
 };
 
 #endif

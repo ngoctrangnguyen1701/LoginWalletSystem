@@ -1,6 +1,6 @@
 #include "Transaction.h"
 
 //Contructors
-Transaction::Transaction(){}
+//Transaction::Transaction(){}
 
 //Methods
