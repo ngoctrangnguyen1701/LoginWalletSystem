@@ -6,7 +6,7 @@
    - Cấu trúc dữ liệu quản lý tài khoản cần được phân tích và đề xuất.
 
 2. **Lưu trữ dữ liệu**
-   - Lưu dữ liệu tài khoản người dùng xuống tập tin (binary file .dat).
+   - Lưu dữ liệu tài khoản người dùng xuống tập tin văn bản (file .csv).
    - Cân nhắc việc lưu trữ dưới dạng tập tin riêng lẻ hoặc tập tin chung (Lý do chọn giải pháp?).
    - Mật khẩu phải được lưu trữ an toàn bằng cách sử dụng hàm băm (hash function).
    - Có cơ chế sao lưu (backup) và phục hồi dữ liệu. (Chưa rõ chức năng sao lưu sẽ theo hình thức nào? dữ liệu nào được sao lưu?)
