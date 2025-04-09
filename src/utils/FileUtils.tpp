@@ -1,3 +1,6 @@
+#include <iostream>
+using namespace std;
+
 template <typename T, typename M>
 bool FileUtils::saveDataByList(M &classManager, vector<T> data, int nextId) {
   //Mo file goc de doc, dam bao file goc ton tai
