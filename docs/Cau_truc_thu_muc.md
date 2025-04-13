@@ -7,6 +7,10 @@
 |   |   |-- User.cpp          # User class implementation
 |   |   |-- Wallet.h
 |   |   |-- Wallet.cpp
+|   |   |-- UserWallet.h
+|   |   |-- UserWallet.cpp
+|   |   |-- MasterWallet.h
+|   |   |-- MasterWallet.cpp
 |   |   |-- Transaction.h
 |   |   |-- Transaction.cpp
 |   |
@@ -50,7 +54,12 @@
 |   |-- userData.csv             # User data file
 |   |-- walletData.csv           # Wallet data
 |   |-- transactionData.csv      # Transaction history
-|   |-- /backup               # Backup directory
+|
+|-- /backup               # Backup directory
+|   |-- /20250101_12:00:00
+|   |   |-- userData.csv             # User data file
+|   |   |-- walletData.csv           # Wallet data
+|   |   |-- transactionData.csv      # Transaction history
 |
 |-- /tests                    # Simple tests (optional)
 |   |-- test_feature.cpp

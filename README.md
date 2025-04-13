@@ -30,17 +30,24 @@ Ví điểm thưởng là cơ chế quản lý các lượng (đơn vị : đi�
 ### 📥 Hướng dẫn tải & cài đặt
 **🔹 Yêu cầu hệ thống**
 - Hệ điều hành: Windows 10+, macOS, Linux
-- Công cụ hỗ trợ: DevC++, CSDL? (hiện chưa biết dùng cơ sở dữ liệu nào)
+- Công cụ hỗ trợ: DevC++, Visual Studio Code
 
 **🔹 Tải chương trình**
 ```sh
 git clone https://github.com/ngoctrangnguyen1701/bai_tap_nhom_C_plus_plus_toi_thu_nam.git
 ```
-
-**🔹 Biên dịch chương trình**
+```sh
+git checkout develop
+```
+<!-- TODO MacOS và Linux không có dev C++, nên viết hướng dẫn thêm ở 1 IDE khác -->
+**🔹 Biên dịch chương trình bằng DevC++**
 1. Mở **DevC++**
-2. Chọn **File** → **Open Project or File...** → Chọn file `<tên file bên dịch>.cpp` <!-- nội dung đang cập nhật -->
-3. Chọn **Execute** → **Compile & Run**
+2. Chọn **File** → **Open Project or File...** → Vào folder tải chương trình → Chọn folder "src" → Chọn file `LoginWalletSystem.dev`
+3. Chọn **Execute** → **Rebuild All** (hoặc nhấn phím tắt F12)
+3. Sau khi build thành công, Chọn **Execute** → **Run** (hoặc nhấn phím tắt F10)
+
+<!-- TODO -->
+<!-- **🔹 Biên dịch chương trình bằng Visual Studio Code** -->
 
 ---
 
