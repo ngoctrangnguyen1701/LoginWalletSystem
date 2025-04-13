@@ -15,7 +15,7 @@ class Menu
 	protected:
 		string title;
 		vector<string> options;
-		int selectedOption;
+		string selectedOption; //chon kieu string de tranh nguoi dung nhap hon 1 ky tu
 		bool isRunning;
 		ConsoleUtils console;
 	public:

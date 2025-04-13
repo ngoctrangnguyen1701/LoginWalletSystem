@@ -3,6 +3,7 @@
 
 //include thu vien
 #include <iostream>
+#include <string>
 
 //include file header noi bo khac
 #include "../Application.h"
@@ -36,23 +37,19 @@ void UserMenu::handleInput() {
   cin.ignore();
 
   Application& app = Application::getInstance();
-  switch (selectedOption) {
-    case 1:
-      cout << "Processing update info..." << endl;      
-      //TODO: logic update info
-      break;
-    case 2:
-      cout << "Processing display wallet menu..." << endl;
-      //TODO: logic display wallet menu      
-      break;
-    case 3:
-      app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
-      return;
-    default:
-      cout << "Lua chon khong hop le! Vui long chon lai" << endl;
-      break;
+  if (selectedOption == "1") {
+    cout << "Processing update info..." << endl;      
+    //TODO: logic update info
+  } else if (selectedOption == "2") {
+    cout << "Processing display wallet menu..." << endl;
+    //TODO: logic display wallet menu      
+  } else if (selectedOption == "3") {
+    app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
+    return;
+  } else {
+    cout << "Lua chon khong hop le! Vui long chon lai" << endl;
   }
-
+  
   // cout << endl;
   char choice;
   do

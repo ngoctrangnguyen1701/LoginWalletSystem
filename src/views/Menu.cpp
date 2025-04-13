@@ -12,7 +12,7 @@ using namespace std;
 //Contructors
 Menu::Menu(string _title){
   title = _title;
-  selectedOption = 0; //mac dinh bang 0 la khong chua chon thao tac nao
+  selectedOption = '0'; //mac dinh bang 0 la khong chua chon thao tac nao
   isRunning = true;
 }
 
