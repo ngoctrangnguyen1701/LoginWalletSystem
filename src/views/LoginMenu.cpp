@@ -3,6 +3,7 @@
 
 //include thu vien
 #include <iostream>
+#include <string>
 
 //include file header noi bo khac
 #include "../Application.h"
@@ -36,21 +37,16 @@ void LoginMenu::handleInput() {
   cin >> selectedOption;
   cin.ignore();
 
-  switch (selectedOption) {
-    case 1:
-      handleLogin();
-      break;
-    case 2:
-      cout << "Processing signup..." << endl;
-      //TODO
-      //logic signup...
-      break;
-    case 3:
-      isRunning = false;
-      break;
-    default:
-      cout << "Lua chon khong hop le! Vui long chon lai" << endl;
-      break;
+  if (selectedOption == "1") {
+    handleLogin();
+  } else if (selectedOption == "2") {
+    cout << "Processing signup..." << endl;
+    //TODO
+    //logic signup...
+  } else if (selectedOption == "3") {
+    isRunning = false;
+  } else {
+    cout << "Lua chon khong hop le! Vui long chon lai" << endl;
   }
 }
 

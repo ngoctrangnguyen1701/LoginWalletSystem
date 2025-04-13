@@ -3,6 +3,7 @@
 
 //include thu vien
 #include <iostream>
+#include <string>
 
 //include file header noi bo khac
 #include "../Application.h"
@@ -41,33 +42,25 @@ void AdminMenu::handleInput() {
   cin.ignore();
 
   Application& app = Application::getInstance();
-  switch (selectedOption) {
-    case 1:
-      handleReadUserList();
-      break;
-    case 2:
-      handleCreateUser();
-      break;
-    case 3:
-      handleUpdateUser();
-      break;
-    case 4:
-      handleDeleteUser();
-      break;
-    case 5:
-      cout << "Processing wallet summary..." << endl;
-      // TODO: logic for wallet summary
-      break;
-    case 6:
-      cout << "Processing backup and restore data..." << endl;
-      // TODO: logic for backup and restore data
-      break;
-    case 7:
-      app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
-      return;
-    default:
-      cout << "Lua chon khong hop le! Vui long chon lai" << endl;
-      break;
+  if (selectedOption == "1") {
+    handleReadUserList();
+  } else if (selectedOption == "2") {
+    handleCreateUser();
+  } else if (selectedOption == "3") {
+    handleUpdateUser();
+  } else if (selectedOption == "4") {
+    handleDeleteUser();
+  } else if (selectedOption == "5") {
+    cout << "Processing wallet summary..." << endl;
+    // TODO: logic for wallet summary
+  } else if (selectedOption == "6") {
+    cout << "Processing backup and restore data..." << endl;
+    // TODO: logic for backup and restore data
+  } else if (selectedOption == "7") {
+    app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
+    return;
+  } else {
+    cout << "Lua chon khong hop le! Vui long chon lai" << endl;
   }
   // cout << endl;
   char choice;

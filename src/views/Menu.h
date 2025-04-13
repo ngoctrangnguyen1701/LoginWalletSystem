@@ -15,7 +15,7 @@ class Menu
 	protected:
 		string title;
 		vector<string> options;
-		int selectedOption;
+		string selectedOption;
 		bool isRunning;
 		ConsoleUtils console;
 	public:
