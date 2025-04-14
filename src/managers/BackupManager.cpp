@@ -1,7 +1,7 @@
 //include file .h tuong ung voi .cpp
-#include "WalletManger.h"
+#include "BackupManager.h"
 
 //Contructors
-//WalletManger::WalletManger(){}
+//BackupManager::BackupManager(){}
 
 //Methods

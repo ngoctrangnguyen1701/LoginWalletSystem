@@ -51,7 +51,7 @@ AutoIncBuildNr=0
 SyncProduct=1
 
 [Unit1]
-FileName=managers\BackupManger.h
+FileName=managers\BackupManager.h
 CompileCpp=1
 Folder=managers
 Compile=1
@@ -91,7 +91,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit5]
-FileName=managers\WalletManger.h
+FileName=managers\WalletManager.h
 CompileCpp=1
 Folder=managers
 Compile=1
@@ -101,7 +101,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit6]
-FileName=managers\BackupManger.cpp
+FileName=managers\BackupManager.cpp
 CompileCpp=1
 Folder=managers
 Compile=1
@@ -141,7 +141,7 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit10]
-FileName=managers\WalletManger.cpp
+FileName=managers\WalletManager.cpp
 CompileCpp=1
 Folder=managers
 Compile=1

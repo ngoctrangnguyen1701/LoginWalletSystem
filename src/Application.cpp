@@ -6,7 +6,6 @@
 #include <string>
 
 //include file header noi bo khac
-#include "./models/User.h"
 #include "./views/LoginMenu.h"
 #include "./views/UserMenu.h"
 #include "./views/AdminMenu.h"
@@ -37,6 +36,9 @@ Menu* Application::getCurrentMenu(){
 }
 UserManager Application::getUserMgr(){
   return userMgr;
+}
+WalletManager Application::getWalletMgr(){
+  return walletMgr;
 }
 ConsoleUtils Application::getConsole(){
   return console;
@@ -72,11 +74,20 @@ Application& Application::getInstance() {
 void Application::initialize(){
   console.notify("Application is initializing...");
   
-  FileUtils fileUtils(userMgr.filename, userMgr.filenameNextId);
-  bool isEmpty = fileUtils.isEmptyFile(); 
-  if(isEmpty == true) {
-    //Tao file userData.csv voi danh sach user ban dau va file chua thong tin useerNextId
+  FileUtils userFile(userMgr.filename, userMgr.filenameNextId);
+  bool isEmptyUserFile = userFile.isEmptyFile(); 
+  //Kiem tra da co file du lieu nguoi dung
+  if(isEmptyUserFile == true) {
+    //Tao file userData.csv voi danh sach user ban dau va file chua thong tin userNextId
     userMgr.createSampleData();   
+  }
+
+  FileUtils walletFile(walletMgr.filename, walletMgr.filenameNextId);
+  bool isEmptyWalletFile = walletFile.isEmptyFile(); 
+  //Kiem tra da co file du lieu nguoi dung
+  if(isEmptyWalletFile == true) {
+    //Tao file walletData.csv voi danh sach wallet ban dau va file chua thong tin walletNextId
+    walletMgr.createSampleData();   
   }
 }
 

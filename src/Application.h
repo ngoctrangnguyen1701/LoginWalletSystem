@@ -3,10 +3,11 @@
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
 //include file header noi bo khac
+#include "./models/User.h"
 #include "./views/Menu.h"
 #include "./managers/UserManager.h"
-// #include "WalletManger.h"
-// #include "TransactionManger.h"
+#include "./managers/WalletManager.h"
+// #include "TransactionManager.h"
 #include "./utils/ConsoleUtils.h"
 
 class Application
@@ -15,6 +16,7 @@ class Application
 		User* currentUser = NULL; // Con tro tro den nguoi dung hien tai (neu co)
 		Menu* currentMenu = NULL;  // Con tro tro den menu hien tai		
 		UserManager userMgr; // Khai bao doi tuong UserManager
+		WalletManager walletMgr; // Khai bao doi tuong UserManager
 		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
 	public:
 		//Destructor
@@ -24,6 +26,7 @@ class Application
 		User* getCurrentUser();
 		Menu* getCurrentMenu();
 		UserManager getUserMgr();	
+		WalletManager getWalletMgr();	
 		ConsoleUtils getConsole();	
 
 		//Setters
