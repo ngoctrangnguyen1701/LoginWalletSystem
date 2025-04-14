@@ -15,6 +15,9 @@ class MasterWallet : public Wallet
 		bool const isMaster = true;
 
 	public:
+		//Contructors
+		MasterWallet(int userId, int balance);
+
 		//Methods
 		bool deposit(int amount);
 		bool withdraw(int amount);
