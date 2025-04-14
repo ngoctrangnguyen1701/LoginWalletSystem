@@ -8,7 +8,7 @@
 //...
 
 //Contructors
-UserWallet::UserWallet(int userId, int balance) : Wallet(userId, balance){}
+UserWallet::UserWallet(int userId, int balance) : Wallet(userId, balance, false){}
 
 //Methods
 bool UserWallet::deposit(int amount) {

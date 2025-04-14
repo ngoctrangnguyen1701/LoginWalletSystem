@@ -50,5 +50,5 @@ void WalletManager::writeItemToFile(fstream& file, Wallet& item) {
   file << item.getWalletId() << ","
        << item.getUserId() << ","
        << item.getBalance() << ","
-       << item.getIsMaster();      
+       << item.getIsMaster() << endl;      
 }

@@ -8,9 +8,10 @@
 //...
 
 //Contructors
-Wallet::Wallet(int userId, int balance){
+Wallet::Wallet(int userId, int balance, bool isMaster){
   this->userId = userId;
   this->balance = balance;
+  this->isMaster = isMaster;
 }
 
 //Setters

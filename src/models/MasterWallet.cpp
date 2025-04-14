@@ -9,7 +9,7 @@
 
 //Contructors
 //goi truc tiep contructor cua lop Wallet
-MasterWallet::MasterWallet(int userId, int balance) : Wallet(userId, balance) {}
+MasterWallet::MasterWallet(int userId, int balance) : Wallet(userId, balance, true){}
 
 //Methods
 bool MasterWallet::deposit(int amount) {
