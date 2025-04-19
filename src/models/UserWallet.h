@@ -8,13 +8,10 @@ class UserWallet : public Wallet
 {
 	private:		
 	protected:
-		int walletId; //auto increase
-		int userId; //link to user
-		// User* owner;
-		int balance;
-		bool const isMaster = false; 
-		
 	public:
+		//Contructors
+		UserWallet(int userId, int balance);
+
 		//Methods
 		bool deposit(int amount);
 		bool withdraw(int amount);

@@ -10,17 +10,22 @@ class Wallet
 		int userId; //link to user
 		// User* owner;
 		int balance;
-		bool isMaster; //if true, userId is null
+		bool isMaster;
 
 	public:
 		// Constructor
-		// Wallet();
+		Wallet(int userId, int balance, bool isMaster);
+
+		//Setters
+		void setWalletId(int walletId);
+
+		//Getters
+		int getWalletId();
+		int getUserId();
+		int getBalance();
+		bool getIsMaster();
 
 		//Methods
-		int getBalance();
-		//Lop thuan ao, bat buoc lop con phai co override		
-		virtual bool deposit(int amount) = 0;
-		virtual bool withdraw(int amount) = 0;
 		// Transaction* transfer(Wallet* destination, int amount);
 };
 

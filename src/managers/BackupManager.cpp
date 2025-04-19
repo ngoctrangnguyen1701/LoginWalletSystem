@@ -1,7 +1,7 @@
 //include file .h tuong ung voi .cpp
-#include "BackupManger.h"
+#include "BackupManager.h"
 
 //Contructors
-//BackupManger::BackupManger(){}
+//BackupManager::BackupManager(){}
 
 //Methods

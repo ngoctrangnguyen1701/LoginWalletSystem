@@ -8,10 +8,27 @@
 //...
 
 //Contructors
-// Wallet::Wallet(){}
+Wallet::Wallet(int userId, int balance, bool isMaster){
+  this->userId = userId;
+  this->balance = balance;
+  this->isMaster = isMaster;
+}
 
-//Methods
-int Wallet::getBalance(){
-  //TODO
-  return 0;
-};
+//Setters
+void Wallet::setWalletId(int walletId) {
+  this->walletId = walletId;
+}
+
+//Getters
+int Wallet::getWalletId() {
+  return walletId;
+}
+int Wallet::getUserId() {
+  return userId;
+}
+int Wallet::getBalance() {
+  return balance;
+}
+bool Wallet::getIsMaster() {
+  return isMaster;
+}
