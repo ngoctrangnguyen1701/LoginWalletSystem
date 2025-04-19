@@ -13,6 +13,7 @@
 #include "./views/UserMenu.h"
 #include "./views/AdminMenu.h"
 #include "./views/MasterWalletMenu.h"
+#include "./views/AdminTransactionMenu.h"
 #include "./managers/UserManager.h"
 #include "./managers/WalletManager.h"
 #include "./managers/TransactionManager.h"
@@ -37,7 +38,8 @@ class Application
 		User* getCurrentUser();
 		Menu* getCurrentMenu(); 
 		UserManager getUserMgr();	
-		WalletManager getWalletMgr();	
+		WalletManager getWalletMgr();
+		TransactionManager getTransactionMgr();
 		ConsoleUtils getConsole();	
 
 		//Setters

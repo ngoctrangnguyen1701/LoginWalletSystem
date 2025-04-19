@@ -49,6 +49,7 @@ void MasterWalletMenu::handleInput() {
     //TODO
   } else if (selectedOption == "4") {
     app.setCurrentMenu("AdminTransactionMenu"); // Chuyen sang menu lich su giao dich cua admin
+    return;
   } else if (selectedOption == "5") {
     app.setCurrentMenu("AdminMenu"); // Chuyen sang menu admin
     return;

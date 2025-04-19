@@ -15,7 +15,7 @@
   #include <unistd.h>
   #include <cstdlib>
   std::string getAbsolutePath(const std::string& relativePath) {
-    char absolutePath[PATH_MAX];
+  char absolutePath[PATH_MAX];
     realpath(relativePath.c_str(), absolutePath);
     return std::string(absolutePath);
   }

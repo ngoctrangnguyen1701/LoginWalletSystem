@@ -1,13 +1,6 @@
 //include file .h tuong ung voi .cpp
 #include "AdminTransactionMenu.h"
 
-//include thu vien
-// #include <iostream>
-// #include <string>
-
-//include file header noi bo khac
-// #include "../Application.h"
-
 //Contructors
 //goi truc tiep contructor cua lop Menu
 AdminTransactionMenu::AdminTransactionMenu() : Menu("Menu lich su giao dich cho admin") {
@@ -19,9 +12,9 @@ AdminTransactionMenu::AdminTransactionMenu() : Menu("Menu lich su giao dich cho 
 //Methods
 void AdminTransactionMenu::display() {
   cout << endl;
-  cout << "+--------------------------------+" << endl;
-  cout << "       " << title << endl;
-  cout << "+--------------------------------+" << endl;
+  cout << "+------------------------------------------+" << endl;
+  cout << "   " << title << endl;
+  cout << "+------------------------------------------+" << endl;
   
   for (int i = 0; i < options.size(); i++) {
     cout << "   " << options[i] << endl;
@@ -36,8 +29,7 @@ void AdminTransactionMenu::handleInput() {
 
   Application& app = Application::getInstance();
   if (selectedOption == "1") {
-    cout << "Processing deposit..." << endl;      
-    //TODO
+    handleReadTransactionList();
   } else if (selectedOption == "2") {
     app.setCurrentMenu("MasterWalletMenu"); // Chuyen sang menu cua vi tong
     return;
@@ -54,4 +46,9 @@ void AdminTransactionMenu::handleInput() {
     cin.ignore();
   } while (choice != 'y');    
   app.setCurrentMenu("MasterWalletMenu"); // Chuyen sang menu cua vi tong
+}
+
+void AdminTransactionMenu::handleReadTransactionList() {
+  Application& app = Application::getInstance();
+  app.getTransactionMgr().displayList();
 }

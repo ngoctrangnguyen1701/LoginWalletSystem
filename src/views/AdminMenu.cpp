@@ -5,16 +5,16 @@
 //Contructors
 //goi truc tiep contructor cua lop Menu
 AdminMenu::AdminMenu() : Menu("Menu danh cho Admin") {
-  options = vector<string>(7); //Tao vector co 7 phan tu
+  options = vector<string>(9); //Tao vector co 9 phan tu
   options[0] = "1. Doc danh sach nguoi dung";
   options[1] = "2. Tim kiem nguoi dung";
-  options[1] = "3. Them nguoi dung";
-  options[2] = "4. Thay doi thong tin nguoi dung";
-  options[3] = "5. Xoa nguoi dung";
-  options[3] = "6. Doc danh sach vi";
-  options[4] = "7. Vi tong";
-  options[5] = "8. Sao luu va khoi phuc du lieu";
-  options[6] = "9. Dang xuat";
+  options[2] = "3. Them nguoi dung";
+  options[3] = "4. Thay doi thong tin nguoi dung";
+  options[4] = "5. Xoa nguoi dung";
+  options[5] = "6. Doc danh sach vi";
+  options[6] = "7. Vi tong";
+  options[7] = "8. Sao luu va khoi phuc du lieu";
+  options[8] = "9. Dang xuat";
 }
 
 //Methods
@@ -52,6 +52,7 @@ void AdminMenu::handleInput() {
     handleReadWalletList();
   } else if (selectedOption == "7") {
     app.setCurrentMenu("MasterWalletMenu"); // Chuyen sang menu cua vi tong
+    return;
   } else if (selectedOption == "8") {
     cout << "Processing backup and restore data..." << endl;
     // TODO: logic for backup and restore data

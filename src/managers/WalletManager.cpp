@@ -114,7 +114,7 @@ Wallet WalletManager::readItemFromFile(stringstream& ss) {
   getline(ss, token, ',');
   isMaster = (token == "1");
    
-  //Tạo wallet và set walletId
+  //Tao wallet va set walletId
   Wallet wallet(userId, balance, isMaster);
   wallet.setWalletId(walletId);
   return wallet;

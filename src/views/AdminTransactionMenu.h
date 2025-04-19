@@ -17,6 +17,7 @@ class AdminTransactionMenu : public Menu
 		AdminTransactionMenu();
 		void display() override;
 		void handleInput() override;
+		void handleReadTransactionList();
 };
 
 #endif
