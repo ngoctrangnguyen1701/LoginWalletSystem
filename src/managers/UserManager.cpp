@@ -241,7 +241,7 @@ User* UserManager::findUserById(int userId){
 User* UserManager::findUserByIdFromFile(int userId) {
   try {   
     // Mo file de doc
-    string fullPath = DATA_DIRECTORY + filename; //lay duong dan file
+    string fullPath = DATA_DIRECTORY + filename + ".csv"; //lay duong dan file
     ifstream file(fullPath);
     if (!file.is_open()) {
       cerr << "Khong the mo file '" << fullPath << "'" << endl;

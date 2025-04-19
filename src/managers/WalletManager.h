@@ -5,9 +5,16 @@
 //include thu vien
 #include <vector>
 #include <string>
+#include <iostream>
+#include <fstream>
+#include <iomanip> 
 
 //include file header noi bo khac
 #include "../models/Wallet.h"
+#include "../models/MasterWallet.h"
+#include "../models/UserWallet.h"
+#include "../managers/UserManager.h"
+#include "../utils/FileUtils.h"
 #include "../utils/ConsoleUtils.h"
 
 using namespace std;
@@ -26,8 +33,8 @@ class WalletManager
 
 		//Methods
 		// bool createWallet(Wallet newWallet);
-		// bool getList();
-		// void displayList();
+		bool getList();
+		void displayList();
 		// bool updateWallet(int walletId, string fullName, string email);
 		// bool deleteWallet(int walletId); // -> then deleteTransaction;
 		// Wallet* findWalletFromFile(string walletname, string password);
@@ -35,7 +42,7 @@ class WalletManager
 		// Wallet* findWalletByIdFromFile(int walletId);
 		// bool saveWalletToFile(Wallet newWallet);		
 		bool createSampleData();
-		// Wallet readItemFromFile(stringstream& ss); //Doc wallet tu file
+		Wallet readItemFromFile(stringstream& ss); //Doc wallet tu file
 		void writeItemToFile(fstream& file, Wallet& item); //Ghi wallet vao file
 		// bool loadWalletsFromFile(string filename);
 		// bool backupWalletData();
