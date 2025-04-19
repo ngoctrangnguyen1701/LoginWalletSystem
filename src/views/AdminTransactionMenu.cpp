@@ -1,24 +1,23 @@
 //include file .h tuong ung voi .cpp
-#include "UserMenu.h"
+#include "AdminTransactionMenu.h"
 
 //include thu vien
-#include <iostream>
-#include <string>
+// #include <iostream>
+// #include <string>
 
 //include file header noi bo khac
-#include "../Application.h"
+// #include "../Application.h"
 
 //Contructors
 //goi truc tiep contructor cua lop Menu
-UserMenu::UserMenu() : Menu("Menu cho nguoi dung") {
-  options = vector<string>(3); //Tao vector co 3 phan tu
-  options[0] = "1. Thay doi thong tin";
-  options[1] = "2. Vi cua toi";
-  options[2] = "3. Dang xuat";
+AdminTransactionMenu::AdminTransactionMenu() : Menu("Menu lich su giao dich cho admin") {
+  options = vector<string>(2); // Tao vector co 2 phan tu
+  options[0] = "1. Doc danh sach tat ca giao dich"; 
+  options[1] = "2. Quay ve menu truoc";
 }
 
 //Methods
-void UserMenu::display() {
+void AdminTransactionMenu::display() {
   cout << endl;
   cout << "+--------------------------------+" << endl;
   cout << "       " << title << endl;
@@ -31,19 +30,16 @@ void UserMenu::display() {
   cout << "> Chon mot thao tac: ";
 }
 
-void UserMenu::handleInput() {
+void AdminTransactionMenu::handleInput() {
   cin >> selectedOption;
   cin.ignore();
 
   Application& app = Application::getInstance();
   if (selectedOption == "1") {
-    cout << "Processing update info..." << endl;      
-    //TODO: logic update info
+    cout << "Processing deposit..." << endl;      
+    //TODO
   } else if (selectedOption == "2") {
-    cout << "Processing display wallet menu..." << endl;
-    //TODO: logic display wallet menu      
-  } else if (selectedOption == "3") {
-    app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
+    app.setCurrentMenu("MasterWalletMenu"); // Chuyen sang menu cua vi tong
     return;
   } else {
     cout << "Lua chon khong hop le! Vui long chon lai" << endl;
@@ -57,5 +53,5 @@ void UserMenu::handleInput() {
     cin >> choice;
     cin.ignore();
   } while (choice != 'y');    
-  app.setCurrentMenu("UserMenu"); // Chuyen sang menu admin
+  app.setCurrentMenu("MasterWalletMenu"); // Chuyen sang menu cua vi tong
 }

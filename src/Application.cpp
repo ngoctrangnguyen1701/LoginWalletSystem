@@ -1,17 +1,17 @@
 //include file .h tuong ung voi .cpp
 #include "Application.h"
 
-//include thu vien
-#include <iostream>
-#include <string>
+// //include thu vien
+// #include <iostream>
+// #include <string>
 
 //include file header noi bo khac
-#include "./views/LoginMenu.h"
-#include "./views/UserMenu.h"
-#include "./views/AdminMenu.h"
-#include "./utils/FileUtils.h"
+// #include "./views/LoginMenu.h"
+// #include "./views/UserMenu.h"
+// #include "./views/AdminMenu.h"
+// #include "./utils/FileUtils.h"
 
-using namespace std;
+// using namespace std;
 
 
 //Destructor
@@ -62,6 +62,8 @@ void Application::setCurrentMenu(string menuName) {
     currentMenu = new AdminMenu(); // Khoi tao menu admin
   } else if(menuName == "UserMenu") {
     currentMenu = new UserMenu(); // Khoi tao menu user
+  } else if(menuName == "MasterWalletMenu") {
+    currentMenu = new MasterWalletMenu(); // Khoi tao menu wallet
   }
 }
 

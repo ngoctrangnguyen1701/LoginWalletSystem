@@ -1,5 +1,5 @@
-#ifndef WalletMenu_H //Neu chua duoc dinh nghia
-#define WalletMenu_H //Dinh nghia no
+#ifndef AdminTransactionMenu_H //Neu chua duoc dinh nghia
+#define AdminTransactionMenu_H //Dinh nghia no
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
 //include thu vien
@@ -9,12 +9,12 @@
 #include "Menu.h"
 #include "../Application.h"
 
-class WalletMenu : public Menu
+class AdminTransactionMenu : public Menu
 {
 	private:		
 	protected:
 	public:		
-		WalletMenu();
+		AdminTransactionMenu();
 		void display() override;
 		void handleInput() override;
 };

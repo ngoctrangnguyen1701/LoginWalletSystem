@@ -51,8 +51,7 @@ void AdminMenu::handleInput() {
   } else if (selectedOption == "6") {
     handleReadWalletList();
   } else if (selectedOption == "7") {
-      cout << "Processing wallet summary..." << endl;
-      // TODO: logic for wallet summary
+    app.setCurrentMenu("MasterWalletMenu"); // Chuyen sang menu cua vi tong
   } else if (selectedOption == "8") {
     cout << "Processing backup and restore data..." << endl;
     // TODO: logic for backup and restore data
