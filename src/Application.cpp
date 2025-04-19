@@ -16,7 +16,7 @@ using namespace std;
 
 //Destructor
 Application::~Application(){  
-  console.notify("Application is stopping...");
+  console.notify("Chuong trinh dang dung lai...");
   if(currentMenu != NULL) {
     delete currentMenu; // Giai phong bo nho sau khi xong
   }
@@ -72,7 +72,7 @@ Application& Application::getInstance() {
 }
 
 void Application::initialize(){
-  console.notify("Application is initializing...");
+  console.notify("Chuong trinh dang duoc khoi tao...");
   
   FileUtils userFile(userMgr.filename, userMgr.filenameNextId);
   bool isEmptyUserFile = userFile.isEmptyFile(); 
@@ -84,10 +84,18 @@ void Application::initialize(){
 
   FileUtils walletFile(walletMgr.filename, walletMgr.filenameNextId);
   bool isEmptyWalletFile = walletFile.isEmptyFile(); 
-  //Kiem tra da co file du lieu nguoi dung
+  //Kiem tra da co file du lieu cua vi
   if(isEmptyWalletFile == true) {
     //Tao file walletData.csv voi danh sach wallet ban dau va file chua thong tin walletNextId
     walletMgr.createSampleData();   
+  }
+
+  FileUtils transactionFile(transactionMgr.filename, transactionMgr.filenameNextId);
+  bool isEmptyTransactionFile = transactionFile.isEmptyFile(); 
+  //Kiem tra da co file du lieu cua giao dich
+  if(isEmptyTransactionFile == true) {
+    //Tao file transactiontData.csv voi danh sach transaction ban dau va file chua thong tin transactionNextId
+    transactionMgr.createSampleData();   
   }
 }
 
@@ -130,7 +138,7 @@ bool Application::logout(){
 }
 
 void Application::run(){  
-  console.notify("Application is running...");
+  console.notify("Chuong trinh dang chay...");
 
   currentMenu = new LoginMenu();  // Khoi tao menu dang nhap
   currentMenu->display();

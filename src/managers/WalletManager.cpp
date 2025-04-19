@@ -30,9 +30,9 @@ WalletManager::~WalletManager(){
 //Methods
 bool WalletManager::createSampleData() {
   vector<Wallet> walletList;  
-  walletList.push_back(MasterWallet(1, 100000));
+  walletList.push_back(MasterWallet(1, 97600));
   walletList.push_back(UserWallet(2, 1000));
-  walletList.push_back(UserWallet(3, 700));
+  walletList.push_back(UserWallet(3, 800));
   walletList.push_back(UserWallet(4, 500));
   walletList.push_back(UserWallet(5, 100));
   walletList.push_back(UserWallet(6, 0));

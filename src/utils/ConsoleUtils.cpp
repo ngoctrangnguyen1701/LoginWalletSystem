@@ -13,6 +13,6 @@ void ConsoleUtils::notify(string text){
 };
 void ConsoleUtils::log(string text) {
   if(isShowLog == true) {
-    cout << "#" << text << endl;
+    cout << "### " << text << " ###"<< endl;
   }
 };
