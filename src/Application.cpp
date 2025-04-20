@@ -1,19 +1,6 @@
 //include file .h tuong ung voi .cpp
 #include "Application.h"
 
-//include thu vien
-#include <iostream>
-#include <string>
-
-//include file header noi bo khac
-#include "./views/LoginMenu.h"
-#include "./views/UserMenu.h"
-#include "./views/AdminMenu.h"
-#include "./utils/FileUtils.h"
-
-using namespace std;
-
-
 //Destructor
 Application::~Application(){  
   console.notify("Chuong trinh dang dung lai...");
@@ -40,6 +27,9 @@ UserManager Application::getUserMgr(){
 WalletManager Application::getWalletMgr(){
   return walletMgr;
 }
+TransactionManager Application::getTransactionMgr(){
+  return transactionMgr;
+}
 ConsoleUtils Application::getConsole(){
   return console;
 }
@@ -62,6 +52,14 @@ void Application::setCurrentMenu(string menuName) {
     currentMenu = new AdminMenu(); // Khoi tao menu admin
   } else if(menuName == "UserMenu") {
     currentMenu = new UserMenu(); // Khoi tao menu user
+  } else if(menuName == "MasterWalletMenu") {
+    currentMenu = new MasterWalletMenu(); // Khoi tao menu master wallet
+  } else if(menuName == "UserWalletMenu") {
+    currentMenu = new UserWalletMenu(); // Khoi tao menu vi nguoi dung thong thuong
+  } else if(menuName == "CreateWalletMenu") {
+    currentMenu = new CreateWalletMenu(); // Khoi tao menu tao vi cho nguoi dung thong thuong
+  } else if(menuName == "AdminTransactionMenu") {
+    currentMenu = new AdminTransactionMenu(); // Khoi tao menu lich su giao dich cho admin
   }
 }
 

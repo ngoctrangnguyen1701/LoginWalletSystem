@@ -5,10 +5,13 @@
 //include thu vien
 #include <vector>
 #include <string>
+#include <iostream>
 #include <fstream>
+#include <iomanip>  
 
 //include file header noi bo khac
 #include "../models/Transaction.h"
+#include "../utils/FileUtils.h"
 #include "../utils/ConsoleUtils.h"
 
 using namespace std;
@@ -27,7 +30,10 @@ class TransactionManager
 		~TransactionManager();
 
 		//Methods
+		bool getList();
+		void displayList();
 		bool createSampleData();
+		Transaction readItemFromFile(stringstream& ss); //Doc wallet tu file
 		void writeItemToFile(fstream& file, Transaction& item); //Ghi ransaction vao file
 
 		friend class Application;

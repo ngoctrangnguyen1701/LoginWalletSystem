@@ -1,26 +1,20 @@
 //include file .h tuong ung voi .cpp
 #include "AdminMenu.h"
 
-//include thu vien
-#include <iostream>
-#include <string>
-
-//include file header noi bo khac
-#include "../Application.h"
-
-using namespace std;
 
 //Contructors
 //goi truc tiep contructor cua lop Menu
 AdminMenu::AdminMenu() : Menu("Menu danh cho Admin") {
-  options = vector<string>(7); //Tao vector co 7 phan tu
-  options[0] = "1. Doc danh sach user";
-  options[1] = "2. Them user";
-  options[2] = "3. Thay doi thong tin user";
-  options[3] = "4. Xoa user";
-  options[4] = "5. Vi tong";
-  options[5] = "6. Sao luu va khoi phuc du lieu";
-  options[6] = "7. Dang xuat";
+  options = vector<string>(9); //Tao vector co 9 phan tu
+  options[0] = "1. Doc danh sach nguoi dung";
+  options[1] = "2. Tim kiem nguoi dung";
+  options[2] = "3. Them nguoi dung";
+  options[3] = "4. Thay doi thong tin nguoi dung";
+  options[4] = "5. Xoa nguoi dung";
+  options[5] = "6. Doc danh sach vi";
+  options[6] = "7. Vi tong";
+  options[7] = "8. Sao luu va khoi phuc du lieu";
+  options[8] = "9. Dang xuat";
 }
 
 //Methods
@@ -45,18 +39,24 @@ void AdminMenu::handleInput() {
   if (selectedOption == "1") {
     handleReadUserList();
   } else if (selectedOption == "2") {
+    //TODO: logic for searching user
+    cout << "Processing searching user..." << endl;
+  }
+  else if (selectedOption == "3") {
     handleCreateUser();
-  } else if (selectedOption == "3") {
-    handleUpdateUser();
   } else if (selectedOption == "4") {
-    handleDeleteUser();
+    handleUpdateUser();
   } else if (selectedOption == "5") {
-    cout << "Processing wallet summary..." << endl;
-    // TODO: logic for wallet summary
+    handleDeleteUser();
   } else if (selectedOption == "6") {
+    handleReadWalletList();
+  } else if (selectedOption == "7") {
+    app.setCurrentMenu("MasterWalletMenu"); // Chuyen sang menu cua vi tong
+    return;
+  } else if (selectedOption == "8") {
     cout << "Processing backup and restore data..." << endl;
     // TODO: logic for backup and restore data
-  } else if (selectedOption == "7") {
+  } else if (selectedOption == "9") {
     app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
     return;
   } else {
@@ -224,4 +224,10 @@ void AdminMenu::handleDeleteUser() {
   } else {
     console.notify("Xoa user that bai!");
   }
+}
+
+
+void AdminMenu::handleReadWalletList() {
+  Application& app = Application::getInstance();
+  app.getWalletMgr().displayList();
 }
