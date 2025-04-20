@@ -39,9 +39,9 @@ void TransactionManager::displayList() {
   // const int isMasterWidth = 10;
   
   // Print header with nice formatting
-  cout << "\n+-------------------------------------------------------+\n";
+  cout << "\n+-----------------------------------------------------+\n";
   cout << "|             DANH SACH LICH SU GIAO DICH             |\n";
-  cout << "+-------------------------------------------------------+\n";
+  cout << "+-----------------------------------------------------+\n";
   
   // Print each transaction
   for (int i = 0; i < transactionList.size(); i++) {
