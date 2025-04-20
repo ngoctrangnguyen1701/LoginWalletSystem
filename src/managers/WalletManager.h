@@ -40,6 +40,7 @@ class WalletManager
 		// Wallet* findWalletFromFile(string walletname, string password);
 		// Wallet* findWalletById(int walletId);
 		// Wallet* findWalletByIdFromFile(int walletId);
+		Wallet* findWalletByUserIdFromFile(int userId);
 		// bool saveWalletToFile(Wallet newWallet);		
 		bool createSampleData();
 		Wallet readItemFromFile(stringstream& ss); //Doc wallet tu file

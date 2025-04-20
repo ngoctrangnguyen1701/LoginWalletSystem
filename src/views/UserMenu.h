@@ -10,7 +10,7 @@ class UserMenu : public Menu
 	public:
 		UserMenu();
 		void display() override;
-		void handleInput() override;		
+		void handleInput() override;
 };
 
 #endif

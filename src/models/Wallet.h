@@ -14,6 +14,7 @@ class Wallet
 
 	public:
 		// Constructor
+		Wallet() = default;
 		Wallet(int userId, int balance, bool isMaster);
 
 		//Setters

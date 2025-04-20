@@ -13,6 +13,8 @@
 #include "./views/UserMenu.h"
 #include "./views/AdminMenu.h"
 #include "./views/MasterWalletMenu.h"
+#include "./views/UserWalletMenu.h"
+#include "./views/CreateWalletMenu.h"
 #include "./views/AdminTransactionMenu.h"
 #include "./managers/UserManager.h"
 #include "./managers/WalletManager.h"

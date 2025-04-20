@@ -40,8 +40,17 @@ void UserMenu::handleInput() {
     cout << "Processing update info..." << endl;      
     //TODO: logic update info
   } else if (selectedOption == "2") {
-    cout << "Processing display wallet menu..." << endl;
-    //TODO: logic display wallet menu      
+    int userId = app.getCurrentUser()->getUserId(); //Lay userId cua nguoi dung hien tai
+    Wallet* wallet = app.getWalletMgr().findWalletByUserIdFromFile(userId);
+    if(wallet == NULL) {
+      // Chua co vi, chuyen sang menu tao vi
+      app.setCurrentMenu("CreateWalletMenu"); // Chuyen sang menu tao vi
+      return;
+    } else {
+      // Da co vi, chuyen sang menu vi nguoi dung
+      app.setCurrentMenu("UserWalletMenu"); // Chuyen sang menu vi nguoi dung
+      return;
+    }
   } else if (selectedOption == "3") {
     app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
     return;
@@ -59,3 +68,18 @@ void UserMenu::handleInput() {
   } while (choice != 'y');    
   app.setCurrentMenu("UserMenu"); // Chuyen sang menu admin
 }
+
+// void UserMenu::handleShowWalletMenu() {
+//   Application& app = Application::getInstance();
+//   int userId = app.getCurrentUser()->getUserId(); //Lay userId cua nguoi dung hien tai
+//   Wallet* wallet = app.getWalletMgr().findWalletByUserIdFromFile(userId);
+//   if(wallet == NULL) {
+//     // Chua co vi, chuyen sang menu tao vi
+//     app.setCurrentMenu("CreateWalletMenu"); // Chuyen sang menu tao vi
+//     return;
+//   } else {
+//     // Da co vi, chuyen sang menu vi nguoi dung
+//     app.setCurrentMenu("UserWalletMenu"); // Chuyen sang menu vi nguoi dung
+//     return;
+//   }
+// }

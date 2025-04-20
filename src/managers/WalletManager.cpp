@@ -1,6 +1,7 @@
 //include file .h tuong ung voi .cpp
 #include "WalletManager.h"
 
+
 //Contructors
 //WalletMenu::WalletMenu(){}
 
@@ -79,6 +80,47 @@ void WalletManager::displayList() {
   cout << "Tong so vi: " << walletList.size() << endl;
 }
 
+Wallet* WalletManager::findWalletByUserIdFromFile(int userId) {
+  try {   
+    // Mo file de doc
+    string fullPath = DATA_DIRECTORY + filename + ".csv"; //lay duong dan file
+    ifstream file(fullPath);
+    if (!file.is_open()) {
+      cerr << "Khong the mo file '" << fullPath << "'" << endl;
+      file.close();
+      return NULL;
+    }  
+    string line;
+    bool isExist = false;
+    Wallet result;
+    while (getline(file, line)) {
+      stringstream ss(line);          
+      result = readItemFromFile(ss);
+      if(result.getUserId() == userId) {
+        isExist = true;
+        break;
+      }
+    }
+    file.close();
+    if(isExist == false) {
+      string text = "Khong tim thay item trong file '" + fullPath + "'";
+      console.log(text);
+      // return Wallet(); //tra ve Wallet rong
+      return NULL;
+    }
+    else {
+      string text = "Da tim thay item trong file '" + fullPath + "'";
+      console.log(text);
+      Wallet* wallet = new Wallet(result); //tra ve con tro den Wallet tim thay
+      return wallet;
+    }    
+  }
+  catch (const exception &e) {
+    cerr << "Error: " << e.what() << endl;
+    return NULL;
+  }
+}
+
 bool WalletManager::createSampleData() {
   vector<Wallet> walletList;  
   walletList.push_back(MasterWallet(1, 97600));
@@ -86,7 +128,6 @@ bool WalletManager::createSampleData() {
   walletList.push_back(UserWallet(3, 800));
   walletList.push_back(UserWallet(4, 500));
   walletList.push_back(UserWallet(5, 100));
-  walletList.push_back(UserWallet(6, 0));
 
   for (int i = 0; i < walletList.size(); i++) {
     walletList[i].setWalletId(i + 1);

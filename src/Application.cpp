@@ -53,7 +53,11 @@ void Application::setCurrentMenu(string menuName) {
   } else if(menuName == "UserMenu") {
     currentMenu = new UserMenu(); // Khoi tao menu user
   } else if(menuName == "MasterWalletMenu") {
-    currentMenu = new MasterWalletMenu(); // Khoi tao menu wallet
+    currentMenu = new MasterWalletMenu(); // Khoi tao menu master wallet
+  } else if(menuName == "UserWalletMenu") {
+    currentMenu = new UserWalletMenu(); // Khoi tao menu vi nguoi dung thong thuong
+  } else if(menuName == "CreateWalletMenu") {
+    currentMenu = new CreateWalletMenu(); // Khoi tao menu tao vi cho nguoi dung thong thuong
   } else if(menuName == "AdminTransactionMenu") {
     currentMenu = new AdminTransactionMenu(); // Khoi tao menu lich su giao dich cho admin
   }

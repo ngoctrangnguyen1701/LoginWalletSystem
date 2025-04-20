@@ -13,7 +13,7 @@ AdminTransactionMenu::AdminTransactionMenu() : Menu("Menu lich su giao dich cho 
 void AdminTransactionMenu::display() {
   cout << endl;
   cout << "+------------------------------------------+" << endl;
-  cout << "   " << title << endl;
+  cout << "       " << title << endl;
   cout << "+------------------------------------------+" << endl;
   
   for (int i = 0; i < options.size(); i++) {
