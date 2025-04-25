@@ -1,0 +1,84 @@
+{
+  "tasks": [
+    {
+      "type": "cppbuild",
+      // "label": "C/C++: g++.exe build active file",
+      "label": "C/C++: g++ build project",
+      // "command": "C:/msys64/ucrt64/bin/g++.exe",
+      "command": "g++", 
+      "args": [
+        "-fdiagnostics-color=always",
+        "-g",        
+        "main.cpp",
+        "Application.cpp",
+        "models/User.cpp",
+        "models/Wallet.cpp",
+        "models/UserWallet.cpp",
+        "models/MasterWallet.cpp",
+        "models/Transaction.cpp",
+        "managers/UserManager.cpp",
+        "managers/WalletManager.cpp",
+        "managers/TransactionManager.cpp",
+        // "managers/OTPManager.cpp",
+        // "managers/BackupManager.cpp",
+        "utils/FileUtils.cpp",
+        "utils/ConsoleUtils.cpp",
+        // // // "utils/HashUtils.cpp",
+        "views/Menu.cpp",
+        "views/LoginMenu.cpp",
+        "views/UserMenu.cpp",
+        "views/AdminMenu.cpp",
+        // "views/WalletMenu.cpp",
+        "views/MasterWalletMenu.cpp",
+        "views/UserWalletMenu.cpp",
+        "views/CreateWalletMenu.cpp",
+        "views/AdminTransactionMenu.cpp",
+        "-o",
+        "LoginWalletSystem",
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}/src"  // Đường dẫn tương đối luôn trỏ đến thư mục src
+      },
+      "problemMatcher": [
+        "$gcc"
+      ],
+      "group": "build",
+      "detail": "Task for building project"
+    },
+    {
+      "label": "Run program",
+      "type": "shell",
+      "windows": {
+        "command": "${workspaceFolder}/src/LoginWalletSystem.exe"
+      },
+      "linux": {
+        "command": "${workspaceFolder}/src/LoginWalletSystem"
+      },
+      "osx": {
+        "command": "${workspaceFolder}/src/LoginWalletSystem"
+      },
+      "options": {
+        "cwd": "${workspaceFolder}/src"
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      },
+      "detail": "Run the compiled program"
+    },
+    {
+      "label": "Build and run the program LoginWalletSystem",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "C/C++: g++ build project",
+        "Run program"
+      ],
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      },
+      "detail": "Build and run the program LoginWalletSystem"
+    }
+  ],
+  "version": "2.0.0"
+}

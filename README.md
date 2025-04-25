@@ -33,21 +33,33 @@ Ví điểm thưởng là cơ chế quản lý các lượng (đơn vị : đi�
 - Công cụ hỗ trợ: DevC++, Visual Studio Code
 
 **🔹 Tải chương trình**
+1. Download git: https://git-scm.com/downloads
+2. Sử dụng giao diện terminal
 ```sh
-git clone https://github.com/ngoctrangnguyen1701/bai_tap_nhom_C_plus_plus_toi_thu_nam.git
+git clone https://github.com/ngoctrangnguyen1701/LoginWalletSystem.git
+```
+```sh
+cd LoginWalletSystem
 ```
 ```sh
 git checkout develop
 ```
 <!-- TODO MacOS và Linux không có dev C++, nên viết hướng dẫn thêm ở 1 IDE khác -->
 **🔹 Biên dịch chương trình bằng DevC++**
-1. Mở **DevC++**
-2. Chọn **File** → **Open Project or File...** → Vào folder tải chương trình → Chọn folder "src" → Chọn file `LoginWalletSystem.dev`
-3. Chọn **Execute** → **Rebuild All** (hoặc nhấn phím tắt F12)
-3. Sau khi build thành công, Chọn **Execute** → **Run** (hoặc nhấn phím tắt F10)
+1. Mở DevC++
+2. Chọn File → Open → Vào folder tải chương trình → Chọn folder `src` → Chọn file `LoginWalletSystem.dev`
+3. Chọn Execute → Rebuild All (hoặc nhấn phím tắt F12)
+4. Sau khi build thành công, chọn Execute → Run (hoặc nhấn phím tắt F10)
 
 <!-- TODO -->
-<!-- **🔹 Biên dịch chương trình bằng Visual Studio Code** -->
+**🔹 Biên dịch chương trình bằng Visual Studio Code**
+1. Mở Visual Studio Code
+2. Cài đặt C++ compiler (MinGW cho Windows, GCC cho Linux, hoặc Clang cho macOS)
+3. Cài đặt C/C++ extension trong VSCode
+*[Xem hướng dẫn chi tiết cho bước 2 và 3](https://code.visualstudio.com/docs/languages/cpp)*
+4. Trong Visual Studio Code, Chọn File -> Open Folder -> chọn folder nơi tải chương trình
+5. Trên thanh công cụ, chọn Terminal -> Run Build Task... (hoặc nhấn phím tắt Ctrl+Shift+B trên Windows/Linux, Cmd+Shift+B trên macOS)
+6. Chọn `Build and run the program LoginWalletSystem`
 
 ---
 
