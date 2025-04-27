@@ -15,6 +15,8 @@ class User
 		int userId; //(auto increase and unique)
 		string username; //(unique)
 		string password; //(hash) //(unique) //TODO
+		// string passwordHash; //ma bam cua mat khau (hash +)
+		// string passwordSalt; //muoi bam cua mat khau
 		string fullName;
 		string email;
 		bool isAdmin;

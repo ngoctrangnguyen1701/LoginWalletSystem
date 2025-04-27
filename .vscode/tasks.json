@@ -23,7 +23,7 @@
         // "managers/BackupManager.cpp",
         "utils/FileUtils.cpp",
         "utils/ConsoleUtils.cpp",
-        // // // "utils/HashUtils.cpp",
+        "utils/HashUtils.cpp",
         "views/Menu.cpp",
         "views/LoginMenu.cpp",
         "views/UserMenu.cpp",
