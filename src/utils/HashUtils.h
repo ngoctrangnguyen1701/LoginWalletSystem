@@ -16,7 +16,8 @@ using namespace std;
 
 class HashUtils {
   public:
-    static string generateHash(string str); //static de khong can khoi tao doi tuong khi su dung ham
+    //Methods
+    static string generateHash(string password, string salt); //Ham ma hoa bam
     static string generateSalt(); //Ham tao salt
 };
 

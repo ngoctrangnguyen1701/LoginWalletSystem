@@ -1,19 +1,6 @@
 //include file .h tuong ung voi .cpp
 #include "UserManager.h"
 
-//include thu vien
-#include <iostream>
-#include <fstream>
-#include <iomanip> 
-
-//include file header noi bo khac
-#include "../models/User.h"
-#include "../utils/FileUtils.h"
-
-using namespace std;
-
-// Khai bao bien toan cuc tu file main.cpp
-extern string DATA_DIRECTORY;
 
 //Destructor
 UserManager::~UserManager(){
@@ -199,7 +186,9 @@ User* UserManager::findUserFromFile(string username, string password){
     while (getline(file, line)) {
       stringstream ss(line);          
       result = readItemFromFile(ss);
-      if(result.getUsername() == username && result.getPassword() == password) {
+      //Ma hoa bam mat khau truyen vao va so sanh voi ma bam trong file du lieu
+      string passwordHash = HashUtils::generateHash(password, result.getPasswordSalt());
+      if(result.getUsername() == username && result.getPasswordHash() == passwordHash) {
         isExist = true;
         break;
       }
@@ -290,7 +279,7 @@ string UserManager::hashPassword(string plainPassword){
 }
 
 bool UserManager::createSampleData() {
-  vector<User> userList;  
+  vector<User> userList;
   userList.push_back(User("admin", "123", "Administrator", "admin@gmail.com", true, false));
   userList.push_back(User("binhduong", "binhduong123", "Binh Duong 68", "binhduong123@example.com", false, false));
   userList.push_back(User("tamgiac", "tamgiac123", "Tam giac mach", "tamgiac@example.com", false, false));
@@ -310,7 +299,9 @@ bool UserManager::createSampleData() {
 User UserManager::readItemFromFile(stringstream& ss) {
   int userId; 
   string username;
-  string password;
+  // string password;
+  string passwordHash;
+  string passwordSalt;
   string fullName;
   string email;
   bool isAdmin;
@@ -321,17 +312,19 @@ User UserManager::readItemFromFile(stringstream& ss) {
   getline(ss, token, ',');
   userId = stoi(token);
   getline(ss, username, ',');
-  getline(ss, password, ',');
+  // getline(ss, password, ',');
+  getline(ss, passwordHash, ',');
+  getline(ss, passwordSalt, ',');
   getline(ss, fullName, ',');
   getline(ss, email, ',');
   getline(ss, token, ',');
   isAdmin = (token == "1"); //cho nay se ra true or false
-
   getline(ss, token);
   isAutoGenPassword = (token == "1"); //cho nay se ra true or false
     
   //Tao user va set userId
-  User user(username, password, fullName, email, isAdmin, isAutoGenPassword);
+  // User user(username, password, fullName, email, isAdmin, isAutoGenPassword);
+  User user(username, passwordHash, passwordSalt, fullName, email, isAdmin, isAutoGenPassword);
   user.setUserId(userId);
   return user;
 };
@@ -339,7 +332,9 @@ User UserManager::readItemFromFile(stringstream& ss) {
 void UserManager::writeItemToFile(fstream& file, User item) {
   file << item.getUserId() << ","
       << item.getUsername() << ","
-      << item.getPassword() << ","
+      // << item.getPassword() << ","
+      << item.getPasswordHash() << ","
+      << item.getPasswordSalt() << ","
       << item.getFullName() << ","
       << item.getEmail() << ","
       << item.getIsAdmin() << ","
