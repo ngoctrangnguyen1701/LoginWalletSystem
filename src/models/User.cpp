@@ -19,8 +19,6 @@ User::User(string username, string password, string fullName, string email, bool
   //Hash password
   this->passwordSalt = HashUtils::generateSalt();
   this->passwordHash = HashUtils::generateHash(password, this->passwordSalt);
-  cout << "this->passwordSalt: " << this->passwordSalt << endl;
-  cout << "this->passwordHash: " << this->passwordHash << endl;
 }
 
 User::User(string username, string passwordHash, string passwordSalt, string fullName, string email, bool isAdmin, bool isAutoGenPassword){
