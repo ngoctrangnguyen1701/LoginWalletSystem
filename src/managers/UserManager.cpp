@@ -279,15 +279,15 @@ User* UserManager::findUserByIdFromFile(int userId) {
   }
 }
 
-string UserManager::generateRandomPassword(){
-  //TODO
-  return "";
-}
+// string UserManager::generateRandomPassword(){
+//   //TODO
+//   return "";
+// }
 
-string UserManager::hashPassword(string plainPassword){
-  //TODO
-  return "";
-}
+// string UserManager::hashPassword(string plainPassword){
+//   //TODO
+//   return "";
+// }
 
 bool UserManager::createSampleData() {
   vector<User> userList;  

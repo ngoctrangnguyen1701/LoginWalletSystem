@@ -2,7 +2,14 @@
 #define User_H //Dinh nghia no
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
+//include thu vien
 #include <string>
+#include <cstdlib>
+#include <ctime> 
+
+//include file header noi bo khac
+#include "../utils/ConsoleUtils.h"
+
 using namespace std;
 struct DateTime
 {
@@ -20,6 +27,7 @@ class User
 		bool isAdmin;
 		bool isAutoGenPassword;
 		// DateTime createdAt; //TODO
+		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
 	protected:
 	public:
 		// Constructor
@@ -51,7 +59,9 @@ class User
 		User* authenticate(string username, string password);
 		bool changePassword(string oldPassword, string newPassword);
 		// bool updateInfo(UserInfo newInfo); //TODO
-		bool requirePasswordChange(); //với mật khẩu tự sinh khi lần đầu tiên đăng nhập
+		bool requirePasswordChange(); // voi mat khau tu sinh khi lan dau tien dang nhap
+		string autoGeneratePassword(); //Ham tao mat khau tu sinh
+		bool checkIsValidPassword(string password); //Ham kiem tra mat khau co hop le hay khong
 };
 
 #endif

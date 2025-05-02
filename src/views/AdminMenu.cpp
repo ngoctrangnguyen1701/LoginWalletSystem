@@ -96,6 +96,9 @@ void AdminMenu::handleCreateUser() {
   getline(cin, email);
 
   User newUser(username, password, fullName, email, isAdmin, isAutoGenPassword);
+  string autoGenPassword = newUser.autoGeneratePassword();
+  console.log("Mat khau tu sinh: " + autoGenPassword);
+  newUser.setPassword(autoGenPassword); //Set mat khau tu sinh cho user moi tao
 
   Application& app = Application::getInstance();
   bool resultCreate = app.getUserMgr().createUser(newUser);

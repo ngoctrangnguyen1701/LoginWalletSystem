@@ -33,8 +33,8 @@ class UserManager
 		User* findUserFromFile(string username, string password);
 		User* findUserById(int userId);
 		User* findUserByIdFromFile(int userId);
-		string generateRandomPassword();
-		string hashPassword(string plainPassword);
+		// string generateRandomPassword();
+		// string hashPassword(string plainPassword);
 		// bool saveUserToFile(User newUser);		
 		bool createSampleData();
 		User readItemFromFile(stringstream& ss); //Doc user tu file
