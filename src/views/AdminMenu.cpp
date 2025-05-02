@@ -81,11 +81,10 @@ void AdminMenu::handleReadUserList() {
 void AdminMenu::handleCreateUser() {
   //Nhap thon tin user tu ban phim
   string username;
-  string password = "123"; //TODO: mat khau tu sinh
   string fullName;
   string email;
   bool isAdmin = false;
-  bool isAutoGenPassword = true; //TODO: mat khau tu sinh
+  bool isAutoGenPassword = true; //TODO: mat khau tu sinh, yeu cau doi mat khau khi dang nhap lan dau tien
   cout << endl;
   cout << "===== Tao nguoi dung moi =====" << endl;
   cout << "> Ten dang nhap: ";
@@ -95,10 +94,11 @@ void AdminMenu::handleCreateUser() {
   cout << "> Email: ";
   getline(cin, email);
 
-  User newUser(username, password, fullName, email, isAdmin, isAutoGenPassword);
-  string autoGenPassword = newUser.autoGeneratePassword();
+  User temp;
+  string autoGenPassword = temp.autoGeneratePassword();
   console.log("Mat khau tu sinh: " + autoGenPassword);
-  newUser.setPassword(autoGenPassword); //Set mat khau tu sinh cho user moi tao
+
+  User newUser(username, autoGenPassword, fullName, email, isAdmin, isAutoGenPassword);
 
   Application& app = Application::getInstance();
   bool resultCreate = app.getUserMgr().createUser(newUser);
