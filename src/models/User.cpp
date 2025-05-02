@@ -1,22 +1,36 @@
 //include file .h tuong ung voi .cpp
 #include "User.h"
 
-//include thu vien
-#include <iostream>
-
 //include file header noi bo khac
 #include "../managers/UserManager.h"
-
-using namespace std;
 
 //Contructors
 User::User(string username, string password, string fullName, string email, bool isAdmin, bool isAutoGenPassword){
   this->username = username;
-  this->password = password;
+  // this->password = password;
   this->fullName = fullName;
   this->email = email;
   this->isAdmin = isAdmin;
   this->isAutoGenPassword = isAutoGenPassword;
+  //TODO
+  // this->createdAt.date = "2023-10-01"; //mac dinh la ngay hien tai
+  // this->createdAt.time = "12:00:00"; //mac dinh la thoi gian hien tai
+
+  //Hash password
+  this->passwordSalt = HashUtils::generateSalt();
+  this->passwordHash = HashUtils::generateHash(password, this->passwordSalt);
+}
+
+User::User(string username, string passwordHash, string passwordSalt, string fullName, string email, bool isAdmin, bool isAutoGenPassword){
+  this->username = username;
+  // this->password = password;
+  this->passwordHash = passwordHash;
+  this->passwordSalt = passwordSalt;
+  this->fullName = fullName;
+  this->email = email;
+  this->isAdmin = isAdmin;
+  this->isAutoGenPassword = isAutoGenPassword;
+  
   //TODO
   // this->createdAt.date = "2023-10-01"; //mac dinh la ngay hien tai
   // this->createdAt.time = "12:00:00"; //mac dinh la thoi gian hien tai
@@ -38,9 +52,17 @@ string User::getUsername() {
   return username;
 }
 
-string User::getPassword() {
-  return password;
-}
+// string User::getPassword() {
+//   return password;
+// }
+
+string User::getPasswordHash(){
+  return passwordHash;
+};
+
+string User::getPasswordSalt(){
+  return passwordSalt;
+};
 
 string User::getFullName() {
   return fullName;
@@ -65,9 +87,15 @@ void User::setUserId(int userId) {
 void User::setUsername(string username) {
   this->username = username;
 }
-void User::setPassword(string password) {
-  this->password = password; 
-}
+// void User::setPassword(string password) {
+//   this->password = password; 
+// }
+void User::setPasswordHash(string passwordHash) {
+  this->passwordHash = passwordHash;
+};
+void User::setPasswordSalt(string passwordSalt) {
+  this->passwordSalt = passwordSalt;
+};
 void User::setFullName(string fullName) {
   this->fullName = fullName;
 }

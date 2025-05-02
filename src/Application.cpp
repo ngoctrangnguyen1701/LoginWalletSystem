@@ -70,6 +70,7 @@ Application& Application::getInstance() {
 }
 
 void Application::initialize(){
+  srand(time(NULL)); // Khoi tao bo sinh so ngau nhien
   console.notify("Chuong trinh dang duoc khoi tao...");
   
   FileUtils userFile(userMgr.filename, userMgr.filenameNextId);

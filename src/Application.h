@@ -5,6 +5,8 @@
 //include thu vien
 #include <iostream>
 #include <string>
+#include <cstdlib>
+#include <ctime> 
 
 //include file header noi bo khac
 #include "./models/User.h"

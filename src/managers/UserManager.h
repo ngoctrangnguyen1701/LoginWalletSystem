@@ -5,12 +5,20 @@
 //include thu vien
 #include <vector>
 #include <string>
+#include <iostream>
+#include <fstream>
+#include <iomanip> 
 
 //include file header noi bo khac
 #include "../models/User.h"
 #include "../utils/ConsoleUtils.h"
+#include "../utils/FileUtils.h"
+#include "../utils/HashUtils.h"
 
 using namespace std;
+
+// Khai bao bien toan cuc tu file main.cpp
+extern string DATA_DIRECTORY;
 
 class UserManager
 {

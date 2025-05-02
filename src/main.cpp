@@ -2,6 +2,7 @@
 #include <fstream>
 #include <string>
 
+//Duong dan thu muc du lieu theo he dieu hanh
 #ifdef _WIN32
   #include <windows.h>
   std::string getAbsolutePath(const std::string& relativePath) {
@@ -23,6 +24,10 @@
 
 using namespace std;
 
+#include "./utils/HashUtils.h"
+
+// #include "./libraries/picosha2.h"
+
 //bien toan cuc
 string DATA_DIRECTORY = getAbsolutePath("../data/");
 
@@ -36,5 +41,6 @@ int main() {
   app.run();
 
   // cin.get(); //ngung chuong trinh
+
   return 0;
 }

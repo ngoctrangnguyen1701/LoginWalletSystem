@@ -70,6 +70,7 @@ git checkout develop
 
 ### Tài liệu tham khảo
 <!-- nội dung đang cập nhật -->
+- [C++ SHA256 hash generator](https://github.com/okdshin/PicoSHA2)
 - [Tên tài liệu 1](https://example.com)
 - [Tên tài liệu 2](https://example.com)
 

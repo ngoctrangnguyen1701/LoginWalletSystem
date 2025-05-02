@@ -3,14 +3,17 @@
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
 //include thu vien
+#include <iostream>
 #include <string>
 #include <cstdlib>
 #include <ctime> 
 
 //include file header noi bo khac
+#include "../utils/HashUtils.h"
 #include "../utils/ConsoleUtils.h"
 
 using namespace std;
+
 struct DateTime
 {
 	string date; //format: YYYY-MM-DD
@@ -21,7 +24,9 @@ class User
 	private:
 		int userId; //(auto increase and unique)
 		string username; //(unique)
-		string password; //(hash) //(unique) //TODO
+		// string password; //(hash) //(unique) //TODO
+		string passwordHash; //ma bam cua mat khau (hash)
+		string passwordSalt; //muoi bam cua mat khau
 		string fullName;
 		string email;
 		bool isAdmin;
@@ -30,9 +35,10 @@ class User
 		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
 	protected:
 	public:
-		// Constructor
+		// Constructors
 		User() = default;
-		User(string username, string password, string fullName, string email, bool isAdmin = false, bool isAutoGenPassword = false); 
+		User(string username, string password, string fullName, string email, bool isAdmin = false, bool isAutoGenPassword = false); //Contructor voi mat khau chua duoc bam
+		User(string username, string passwordHash, string passwordSalt, string fullName, string email, bool isAdmin = false, bool isAutoGenPassword = false); //Contructor voi mat khau da duoc bam
 
 		//Destructor
 		~User(); 
@@ -40,7 +46,9 @@ class User
 		//Getters 
 		int getUserId();
 		string getUsername();
-		string getPassword();
+		// string getPassword();
+		string getPasswordHash();
+		string getPasswordSalt();
 		string getFullName();
 		string getEmail();
 		bool getIsAdmin();
@@ -49,7 +57,9 @@ class User
 		//Setters
 		void setUserId(int userId);
 		void setUsername(string username);
-		void setPassword(string password);
+		// void setPassword(string password);
+		void setPasswordHash(string passwordHash);
+		void setPasswordSalt(string passwordSalt);
 		void setFullName(string fullName);
 		void setEmail(string email);
 		void setIsAdmin(bool isAdmin);
