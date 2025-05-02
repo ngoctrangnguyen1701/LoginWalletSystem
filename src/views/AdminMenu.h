@@ -9,6 +9,7 @@
 //include file header noi bo khac
 #include "../Application.h"
 #include "Menu.h"
+#include "../models/User.h"
 
 using namespace std;
 

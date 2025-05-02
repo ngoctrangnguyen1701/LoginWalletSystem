@@ -109,3 +109,76 @@ bool User::requirePasswordChange(){
   bool reuslt = false;
   return reuslt;
 };
+
+string User::autoGeneratePassword() {
+  //Do dai toi thieu 7 ky tu
+  //Bao gom chu hoa, chu thuong, so va ky tu dac biet
+  //ex: A@a1234
+  srand(time(NULL)); // Khoi tao bo sinh so ngau nhien
+  string upperCharacterStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  string lowerCharacterStr = "abcdefghijklmnopqrstuvwxyz";
+  string numberStr = "0123456789";
+  string specialCharacterStr = "!@#$%^&*()-_+=[]{}\|;:,.<>?'\"";
+
+  string result = ""; // Chuoi ket qua
+  result += upperCharacterStr[rand() % upperCharacterStr.length()]; // Chon ngau nhien 1 ky tu hoa
+  result += lowerCharacterStr[rand() % lowerCharacterStr.length()]; // Chon ngau nhien 1 ky tu thuong
+  result += numberStr[rand() % numberStr.length()]; // Chon ngau nhien 1 ky tu so
+  result += numberStr[rand() % numberStr.length()]; // Chon ngau nhien 1 ky tu so
+  result += numberStr[rand() % numberStr.length()]; // Chon ngau nhien 1 ky tu so
+  result += numberStr[rand() % numberStr.length()]; // Chon ngau nhien 1 ky tu so
+  result += specialCharacterStr[rand() % specialCharacterStr.length()]; // Chon ngau nhien 1 ky tu dac biet
+  cout << "result: " << result << endl;
+}
+
+bool User::checkIsValidPassword(string password) {
+  //Mat khau hop le la mat khau co do dai toi thieu 7 ky tu,
+  //bao gom chu hoa, chu thuong, so va ky tu dac biet va khong duoc chua khoang trang
+  //ex: A@a1234
+  
+  if(password.length() < 7) {
+    // cout << "Mat khau phai co do dai toi thieu 7 ky tu" << endl;
+    console.notify("Mat khau phai co do dai toi thieu 7 ky tu");
+    return false;
+  }  
+
+  bool hasUpper = false;
+  bool hasLower = false;
+  bool hasNumber = false;
+  bool hasSpecialCharacter = false;
+  for(int i = 0; i < password.length(); i++) {
+    if(password[i] == ' ') {
+      // cout << "Mat khau khong duoc chua khoang trang" << endl;
+      console.notify("Mat khau khong duoc chua khoang trang");
+      return false;
+    }
+    if(password[i] >= 'A' && password[i] <= 'Z') {
+      hasUpper = true;
+    } else if(password[i] >= 'a' && password[i] <= 'z') {
+      hasLower = true;
+    } else if(password[i] >= '0' && password[i] <= '9') {
+      hasNumber = true;
+    } else {
+      hasSpecialCharacter = true;
+    }
+  }
+
+  if(hasUpper == false) {
+    console.notify("Mat khau phai co it nhat 1 ky tu hoa");
+    return false;
+  }
+  if(hasUpper == false) {
+    console.notify("Mat khau phai co it nhat 1 ky tu thuong");
+    return false;
+  }
+  if(hasNumber == false) {
+    console.notify("Mat khau phai co it nhat 1 ky tu so");
+    return false;
+  }
+  if(hasSpecialCharacter == false) {
+    console.notify("Mat khau phai co it nhat 1 ky tu dac biet");
+    return false;
+  }
+
+  return true;
+};
