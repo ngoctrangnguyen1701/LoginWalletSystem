@@ -4,7 +4,8 @@
 
 //include thu vien
 #include <string>
-#include <random>
+#include <cstdlib>
+#include <ctime> 
 
 //include file header noi bo khac
 #include "../utils/ConsoleUtils.h"
