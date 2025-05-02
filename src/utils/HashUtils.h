@@ -5,7 +5,6 @@
 //include thu vien
 #include <iostream>
 #include <string>
-#include <random>
 #include <sstream>
 #include <iomanip>
 

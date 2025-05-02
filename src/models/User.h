@@ -33,8 +33,8 @@ class User
 	public:
 		// Constructors
 		User() = default;
-		User(string username, string password, string fullName, string email, bool isAdmin = false, bool isAutoGenPassword = false);
-		User(string username, string passwordHash, string passwordSalt, string fullName, string email, bool isAdmin = false, bool isAutoGenPassword = false);
+		User(string username, string password, string fullName, string email, bool isAdmin = false, bool isAutoGenPassword = false); //Contructor voi mat khau chua duoc bam
+		User(string username, string passwordHash, string passwordSalt, string fullName, string email, bool isAdmin = false, bool isAutoGenPassword = false); //Contructor voi mat khau da duoc bam
 
 		//Destructor
 		~User(); 
