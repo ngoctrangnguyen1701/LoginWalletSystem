@@ -118,7 +118,7 @@ string User::autoGeneratePassword() {
   string upperCharacterStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
   string lowerCharacterStr = "abcdefghijklmnopqrstuvwxyz";
   string numberStr = "0123456789";
-  string specialCharacterStr = "!@#$%^&*()-_+=[]{}\|;:,.<>?'\"";
+  string specialCharacterStr = "!@#$%^&*()-_+=[]{}\\|;:,.<>?'\"";
 
   string result = ""; // Chuoi ket qua
   result += upperCharacterStr[rand() % upperCharacterStr.length()]; // Chon ngau nhien 1 ky tu hoa
@@ -128,7 +128,7 @@ string User::autoGeneratePassword() {
   result += numberStr[rand() % numberStr.length()]; // Chon ngau nhien 1 ky tu so
   result += numberStr[rand() % numberStr.length()]; // Chon ngau nhien 1 ky tu so
   result += specialCharacterStr[rand() % specialCharacterStr.length()]; // Chon ngau nhien 1 ky tu dac biet
-  cout << "result: " << result << endl;
+  return result;
 }
 
 bool User::checkIsValidPassword(string password) {
