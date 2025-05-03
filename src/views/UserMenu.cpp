@@ -56,6 +56,7 @@ void UserMenu::handleInput() {
     return;
   } else {
     cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    return;
   }
   
   // cout << endl;

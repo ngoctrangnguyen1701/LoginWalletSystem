@@ -60,6 +60,10 @@ void Application::setCurrentMenu(string menuName) {
     currentMenu = new CreateWalletMenu(); // Khoi tao menu tao vi cho nguoi dung thong thuong
   } else if(menuName == "AdminTransactionMenu") {
     currentMenu = new AdminTransactionMenu(); // Khoi tao menu lich su giao dich cho admin
+  } else if(menuName == "BackupRestoreMenu") {
+    currentMenu = new BackupRestoreMenu(); // Khoi tao menu sao luu va khoi phuc du lieu
+  } else if(menuName == "BackupMenu") {
+    currentMenu = new BackupMenu(); // Khoi tao menu sao luu du lieu
   }
 }
 

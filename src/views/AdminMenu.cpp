@@ -1,7 +1,6 @@
 //include file .h tuong ung voi .cpp
 #include "AdminMenu.h"
 
-
 //Contructors
 //goi truc tiep contructor cua lop Menu
 AdminMenu::AdminMenu() : Menu("Menu danh cho Admin") {
@@ -54,13 +53,14 @@ void AdminMenu::handleInput() {
     app.setCurrentMenu("MasterWalletMenu"); // Chuyen sang menu cua vi tong
     return;
   } else if (selectedOption == "8") {
-    cout << "Processing backup and restore data..." << endl;
-    // TODO: logic for backup and restore data
+    app.setCurrentMenu("BackupRestoreMenu"); // Chuyen sang menu sao luu va khoi phuc du lieu
+    return;
   } else if (selectedOption == "9") {
     app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
     return;
   } else {
     cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    return;
   }
   // cout << endl;
   char choice;

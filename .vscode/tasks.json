@@ -33,6 +33,8 @@
         "views/UserWalletMenu.cpp",
         "views/CreateWalletMenu.cpp",
         "views/AdminTransactionMenu.cpp",
+        "views/BackupRestoreMenu.cpp",
+        "views/BackupMenu.cpp",
         "-o",
         "LoginWalletSystem",
       ],
