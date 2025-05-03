@@ -28,7 +28,6 @@
         "views/LoginMenu.cpp",
         "views/UserMenu.cpp",
         "views/AdminMenu.cpp",
-        // "views/WalletMenu.cpp",
         "views/MasterWalletMenu.cpp",
         "views/UserWalletMenu.cpp",
         "views/CreateWalletMenu.cpp",
