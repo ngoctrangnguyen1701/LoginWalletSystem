@@ -10,6 +10,9 @@
 #include <sstream>
 
 //include file header noi bo khac
+#include "../managers/UserManager.h"
+#include "../managers/WalletManager.h"
+#include "../managers/TransactionManager.h"
 #include "../utils/ConsoleUtils.h"
 
 using namespace std;
@@ -30,13 +33,16 @@ class BackupManager
 {
 	private:
 		vector<string> fileList;
-		string directory;
+		string directory; //ten thu muc sao luu
 		string createdDate; //format theo yyyy/mm/dd hh:mm:ss
+		UserManager userMgr; // Khai bao doi tuong UserManager
+		WalletManager walletMgr; // Khai bao doi tuong WalletManager
+		TransactionManager transactionMgr; // Khai bao doi tuong TransactionManager
 		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
 	protected:
 	public:
 		string generateBackupFileName(); //Ham tao ten file sao luu
-		string generateBackupFolderName(); //Ham tao ten thu muc sao luu
+		void generateBackupFolderName(); //Ham tao ten thu muc sao luu
 		bool createBackupFolder(); //Ham tao thu muc sao luu
 		bool backupData(); //Ham sao luu tat ca cac file du lieu
 		bool restoreData(); //Ham khoi phuc tat ca du lieu trong cac file sao luu

@@ -18,9 +18,8 @@ string BackupManager::generateBackupFileName(){
   return "";
 }
 
-string BackupManager::generateBackupFolderName() {
+void BackupManager::generateBackupFolderName() {
   time_t now = time(NULL);
-  cout << "now: " << now << "\n";
   tm* local_time = localtime(&now);
   int year = 1900 + local_time->tm_year;
   int month = 1 + local_time->tm_mon;
@@ -37,13 +36,15 @@ string BackupManager::generateBackupFolderName() {
   ss << (hour < 10 ? "0" : "") << hour;
   ss << (minute < 10 ? "0" : "") << minute;
   ss << (second < 10 ? "0" : "") << second;
-  return ss.str(); //tra ve chuoi dang yyyyMMdd_HHmmss
+  directory = ss.str(); //luu ten thu muc voi dinh dang yyyyMMdd_HHmmss vao bien
 }
 
 bool BackupManager::createBackupFolder(){   
-  string directoryName = BACKUP_DIRECTORY + generateBackupFolderName();  
+  // string directoryName = BACKUP_DIRECTORY + generateBackupFolderName();  
+  string directoryName = BACKUP_DIRECTORY + directory;  
   int result = MKDIR(directoryName.c_str());
   
+  //result = 0 la tao thu muc thanh cong, result = -1 la xay ra loi
   if (result == 0) {
     console.log("Da tao thu muc '" + directoryName + "'");
   } else {
@@ -56,12 +57,53 @@ bool BackupManager::createBackupFolder(){
     #endif
   }
 
-  return false;
+  return result == 0 ? true : false;
 }
 
 bool BackupManager::backupData(){
   bool result = createBackupFolder();
-  return false;
+  if(result == false) {
+    return false;
+  }
+
+  console.notify("Dang thuc hien qua trinh sao luu...");
+
+  //Sao chep file du lieu nguoi dung  
+  FileUtils userFile(userMgr.filename, userMgr.filenameNextId);
+  userFile.setBackupPath(directory);
+  userFile.setBackupNextIdPath(directory);
+  bool resultUser = userFile.copyFile();
+  if(resultUser == false) {
+    console.notify("Sao luu that bai du lieu nguoi dung!");
+    return false;
+  }
+  console.notify("Sao luu thanh cong du lieu nguoi dung!");
+
+
+  //Sao chep file du lieu vi  
+  FileUtils walletFile(walletMgr.filename, walletMgr.filenameNextId);
+  walletFile.setBackupPath(directory);
+  walletFile.setBackupNextIdPath(directory);
+  bool resultWallet = walletFile.copyFile();
+  if(resultWallet == false) {
+    console.notify("Sao luu that bai du lieu vi!");
+    return false;
+  }
+  console.notify("Sao luu thanh cong du lieu vi!");
+
+
+  //Sao chep file du lieu nguoi dung  
+  FileUtils transactionFile(transactionMgr.filename, transactionMgr.filenameNextId);
+  transactionFile.setBackupPath(directory);
+  transactionFile.setBackupNextIdPath(directory);
+  bool resultTransaction = transactionFile.copyFile();
+  if(resultTransaction == false) {
+    console.notify("Sao luu that bai du lieu lich su giao dich!");
+    return false;
+  }
+  console.notify("Sao luu thanh cong du lieu lich su giao dich!");
+
+  console.notify("Hoan tat sao luu!");
 }
 
 bool BackupManager::restoreData(){

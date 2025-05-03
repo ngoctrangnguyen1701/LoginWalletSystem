@@ -16,21 +16,37 @@ using namespace std;
 
 // Khai bao bien toan cuc tu file main.cpp
 extern string DATA_DIRECTORY;
+extern string BACKUP_DIRECTORY;
 
 class FileUtils {
   private:
-    string filename;
-    string fullPath;
-    string nextIdFilePath;
+    string filename; // Ten file du lieu
+    string fullPath; // Duong dan den file du lieu
+    string nextIdFilePath; // Duong dan den file luu nextId
     string tempFilePath;
+    string backupPath; // Duong dan den file sao luu
+    string backupNextIdPath; // Duong dan den file sao luu nextId
 		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
   public:
     // Constructors
     FileUtils(const string& filename, const string& filenameNextId);
+
+    //Setters
+    void setBackupPath(string backupFolderName);
+    void setBackupNextIdPath(string backupFolderName);
+
+    //Getters
+    string getBackupPath();
+    string getBackupNextIdPath();
     
     // Methods
+    bool isExistFileWithPath(string path);
     bool isEmptyFile();
+    bool isEmptyFileWithPath(string path);
     bool createFile();
+    bool createFileWithPath(string path);
+    bool copyFile();
+    bool copyFileWithPath(string sourceFilePath, string destinationFilePath);
     
     // Template methods    
     template <typename T, typename M>
