@@ -24,12 +24,9 @@
 
 using namespace std;
 
-#include "./utils/HashUtils.h"
-
-// #include "./libraries/picosha2.h"
-
-//bien toan cuc
+//khai bao bien toan cuc
 string DATA_DIRECTORY = getAbsolutePath("../data/");
+string BACKUP_DIRECTORY = getAbsolutePath("../backup/");
 
 #include "Application.h"
 

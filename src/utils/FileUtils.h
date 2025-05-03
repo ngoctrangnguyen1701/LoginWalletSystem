@@ -1,4 +1,6 @@
-#pragma once
+#ifndef FileUtils_H //Neu chua duoc dinh nghia
+#define FileUtils_H //Dinh nghia no
+//tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
 //include thu vien
 #include <vector>
@@ -43,3 +45,5 @@ class FileUtils {
 
 // Include the implementation file at the end of the header
 #include "FileUtils.tpp"
+
+#endif

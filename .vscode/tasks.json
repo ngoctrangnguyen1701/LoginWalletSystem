@@ -20,7 +20,7 @@
         "managers/WalletManager.cpp",
         "managers/TransactionManager.cpp",
         // "managers/OTPManager.cpp",
-        // "managers/BackupManager.cpp",
+        "managers/BackupManager.cpp",
         "utils/FileUtils.cpp",
         "utils/ConsoleUtils.cpp",
         "utils/HashUtils.cpp",

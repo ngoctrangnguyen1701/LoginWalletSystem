@@ -31,8 +31,7 @@ void BackupMenu::handleInput() {
 
   Application& app = Application::getInstance();
   if (selectedOption == "1") {
-    cout << "Processing backup now..." << endl;
-    //TODO: logic sao luu du lieu
+    handleBackupNow();
   } else if (selectedOption == "2") {
     cout << "Processing backup when exit program..." << endl;
     //TODO: logic sao luu du lieu khi thoat chuong trinh
@@ -46,5 +45,25 @@ void BackupMenu::handleInput() {
   } else {
     cout << "Lua chon khong hop le! Vui long chon lai" << endl;
     return;
+  }
+
+  char choice;
+  do
+  {
+    cout << "> Quay tro ve menu? (y): ";
+    cin >> choice;
+    cin.ignore();
+  } while (choice != 'y');
+  app.setCurrentMenu("BackupMenu"); // Chuyen sang menu sao luu du lieu
+}
+
+void BackupMenu::handleBackupNow() {
+  BackupManager backupMgr;
+  bool result = backupMgr.backupData();
+  if(result == true) {
+    console.notify("Sao luu du lieu thanh cong!");
+  }
+  else {
+    console.notify("Sao luu du lieu that bai!");
   }
 }

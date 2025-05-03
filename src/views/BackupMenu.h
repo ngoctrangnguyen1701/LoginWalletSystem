@@ -5,6 +5,7 @@
 //include file header noi bo khac
 #include "../Application.h"
 #include "Menu.h"
+#include "../managers/BackupManager.h"
 
 class BackupMenu : public Menu
 {
@@ -14,6 +15,7 @@ class BackupMenu : public Menu
 		BackupMenu();
 		void display() override;
 		void handleInput() override;
+		void handleBackupNow(); //Ham xu ly sao luu du lieu ngay thoi diem hien tai
 };
 
 #endif
