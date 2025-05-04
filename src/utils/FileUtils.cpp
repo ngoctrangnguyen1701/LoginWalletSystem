@@ -16,6 +16,7 @@ using namespace std;
 // Constructors
 FileUtils::FileUtils(const string& filename, const string& filenameNextId) {
   this->filename = filename;
+  this->filenameNextId = filenameNextId;
   fullPath = DATA_DIRECTORY + filename + ".csv";
   nextIdFilePath = DATA_DIRECTORY + filenameNextId + ".txt";
   tempFilePath = DATA_DIRECTORY + "temp_" + filename + ".csv";
@@ -27,7 +28,7 @@ void FileUtils::setBackupPath(string backupFolderName){
 };
 
 void FileUtils::setBackupNextIdPath(string backupFolderName){
-  backupNextIdPath = BACKUP_DIRECTORY + backupFolderName + "/backup_" + nextIdFilePath + ".txt";
+  backupNextIdPath = BACKUP_DIRECTORY + backupFolderName + "/backup_" + filenameNextId + ".txt";
 };
 
 //Getters
@@ -150,23 +151,18 @@ bool FileUtils::createFileWithPath(string path) {
   return true;
 }
 
-// bool FileUtils::copyFile(string sourceFilePath, string destinationFilePath) {
 bool FileUtils::copyFile() {
   //Sao chep file du lieu
   bool result = copyFileWithPath(fullPath, backupPath);
   if(result == false) {
-    // console.notify("Sao luu that bai file '" + fullPath);
     return false;
   }
-  // console.notify("Sao luu thanh cong file '" + fullPath);
 
   //Sao chep file nextId
   result = copyFileWithPath(nextIdFilePath, backupNextIdPath);
   if(result == false) {
-    // console.notify("Sao luu that bai file '" + nextIdFilePath);
     return false;
   }
-  // console.notify("Sao luu thanh cong file '" + nextIdFilePath);
   return true;
 }
 
@@ -200,7 +196,7 @@ bool FileUtils::copyFileWithPath(string sourceFilePath, string destinationFilePa
     
   
   //Thuc hien sao chep tung dong du lieu tu file nguon sang file dich
-  console.log("Dang thuc hien sao chep file" + sourceFilePath + " sang file " + destinationFilePath + " ...");
+  console.log("Dang thuc hien sao chep file '" + sourceFilePath + "' sang file '" + destinationFilePath + "'...");
   ifstream sourceFile(sourceFilePath);
   ofstream destinationFile(destinationFilePath);
 
@@ -209,6 +205,6 @@ bool FileUtils::copyFileWithPath(string sourceFilePath, string destinationFilePa
     destinationFile << line << '\n';
   }
 
-  console.log("Da sao chep thanh cong file" + sourceFilePath + " sang file " + destinationFilePath + " ...");
+  console.log("Da sao chep thanh cong file '" + sourceFilePath + "' sang file '" + destinationFilePath);
   return true;
 }

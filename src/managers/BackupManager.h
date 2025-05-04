@@ -32,9 +32,7 @@ extern string BACKUP_DIRECTORY;
 class BackupManager
 {
 	private:
-		vector<string> fileList;
 		string directory; //ten thu muc sao luu
-		string createdDate; //format theo yyyy/mm/dd hh:mm:ss
 		UserManager userMgr; // Khai bao doi tuong UserManager
 		WalletManager walletMgr; // Khai bao doi tuong WalletManager
 		TransactionManager transactionMgr; // Khai bao doi tuong TransactionManager
@@ -42,9 +40,10 @@ class BackupManager
 	protected:
 	public:
 		string generateBackupFileName(); //Ham tao ten file sao luu
-		void generateBackupFolderName(); //Ham tao ten thu muc sao luu
+		string generateBackupFolderName(); //Ham tao ten thu muc sao luu
 		bool createBackupFolder(); //Ham tao thu muc sao luu
 		bool backupData(); //Ham sao luu tat ca cac file du lieu
+		bool processBackupData(string filename, string filenameNextId, string title); //Ham tien hanh sao luu du lieu
 		bool restoreData(); //Ham khoi phuc tat ca du lieu trong cac file sao luu
 		bool deleteBackupData(string backupVersion); //xoa phien ban cua ban sao luu nao do
 };

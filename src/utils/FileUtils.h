@@ -21,6 +21,7 @@ extern string BACKUP_DIRECTORY;
 class FileUtils {
   private:
     string filename; // Ten file du lieu
+    string filenameNextId; // Ten file du lieu nextId
     string fullPath; // Duong dan den file du lieu
     string nextIdFilePath; // Duong dan den file luu nextId
     string tempFilePath;
@@ -29,6 +30,7 @@ class FileUtils {
 		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
   public:
     // Constructors
+    FileUtils() = default; // Constructor mac dinh
     FileUtils(const string& filename, const string& filenameNextId);
 
     //Setters
