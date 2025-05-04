@@ -16,6 +16,7 @@ class BackupMenu : public Menu
 		void display() override;
 		void handleInput() override;
 		void handleBackupNow(); //Ham xu ly sao luu du lieu ngay thoi diem hien tai
+		void handleBackupWhenExitProgram(); //Ham xu ly sao luu du lieu khi thoat chuong trinh
 };
 
 #endif

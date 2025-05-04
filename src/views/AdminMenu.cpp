@@ -56,6 +56,7 @@ void AdminMenu::handleInput() {
     app.setCurrentMenu("BackupRestoreMenu"); // Chuyen sang menu sao luu va khoi phuc du lieu
     return;
   } else if (selectedOption == "9") {
+    handleBeforeLogout();
     app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
     return;
   } else {
@@ -229,8 +230,34 @@ void AdminMenu::handleDeleteUser() {
   }
 }
 
-
 void AdminMenu::handleReadWalletList() {
   Application& app = Application::getInstance();
   app.getWalletMgr().displayList();
+}
+
+void AdminMenu::handleBeforeLogout() {
+  //Tinh nang danh cho admin
+  //Kiem tra yeu cau sao luu du lieu khi dang xuat thoat chuong trinh
+  //Neu co hien thi thong tin xac nhan va thuc hien sao luu du lieu
+  Application& app = Application::getInstance();
+  if(app.getCurrentUser()->getIsAdmin() == true && app.getIsBackupDataWhenExit() == true) {
+    cout << endl;
+    char choice;
+    do
+    {
+      cout << "> Ban co muon sao luu du lieu truoc khi thoat chuong trinh? (y/n): ";
+      cin >> choice;
+      cin.ignore();
+    } while (choice != 'y' && choice != 'n');
+    
+    if(choice == 'y') {
+      bool result = app.getBackupMgr().backupData();
+      if(result == true) {
+        console.notify("Sao luu du lieu thanh cong!");
+      }
+      else {
+        console.notify("Sao luu du lieu that bai!");
+      }
+    }
+  }
 }

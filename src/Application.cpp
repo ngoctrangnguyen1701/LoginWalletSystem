@@ -2,14 +2,14 @@
 #include "Application.h"
 
 //Destructor
-Application::~Application(){  
-  console.notify("Chuong trinh dang dung lai...");
+Application::~Application(){
+  console.notify("Chuong trinh dang dung lai..."); 
   if(currentMenu != NULL) {
     delete currentMenu; // Giai phong bo nho sau khi xong
   }
   if(currentUser != NULL) {
     delete currentUser; // Giai phong bo nho sau khi xong
-  }
+  }  
 
   exit(0); // Thoat chuong trinh
 }
@@ -21,6 +21,9 @@ User* Application::getCurrentUser(){
 Menu* Application::getCurrentMenu(){
   return currentMenu;
 }
+bool Application::getIsBackupDataWhenExit(){
+  return isBackupDataWhenExit;
+}
 UserManager Application::getUserMgr(){
   return userMgr;
 }
@@ -29,6 +32,9 @@ WalletManager Application::getWalletMgr(){
 }
 TransactionManager Application::getTransactionMgr(){
   return transactionMgr;
+}
+BackupManager Application::getBackupMgr(){
+  return backupMgr;
 }
 ConsoleUtils Application::getConsole(){
   return console;
@@ -65,6 +71,10 @@ void Application::setCurrentMenu(string menuName) {
   } else if(menuName == "BackupMenu") {
     currentMenu = new BackupMenu(); // Khoi tao menu sao luu du lieu
   }
+}
+
+void Application::setIsBackupDataWhenExit(bool value) {
+  isBackupDataWhenExit = value;
 }
 
 //Methods

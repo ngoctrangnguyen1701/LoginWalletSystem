@@ -4,11 +4,15 @@
 //Contructors
 //goi truc tiep contructor cua lop Menu
 BackupMenu::BackupMenu() : Menu("Menu sao luu du lieu") {
-  options = vector<string>(4); //Tao vector co 4 phan tu
+  Application& app = Application::getInstance();
+  bool isBackupDataWhenExit = app.getIsBackupDataWhenExit();
+
+  options = vector<string>(4); //Tao vector co 4 phan tu  
   options[0] = "1. Sao luu ngay bay gio";
-  options[1] = "2. Sao luu khi thoat chuong trinh"; // (hien thi trang thai dang bat/tat)";
+  string onOrOff = isBackupDataWhenExit ? "TAT" : "BAT";
+  options[1] = "2. " + onOrOff + " sao luu khi thoat chuong trinh"; 
   options[2] = "3. Xoa ban sao luu"; // (hien thi va cho chon ban sao luu muon xoa)";
-  options[3] = "4. Quay ve menu truoc";
+  options[3] = "4. Quay ve menu truoc"; 
 }
 
 //Methods
@@ -33,8 +37,7 @@ void BackupMenu::handleInput() {
   if (selectedOption == "1") {
     handleBackupNow();
   } else if (selectedOption == "2") {
-    cout << "Processing backup when exit program..." << endl;
-    //TODO: logic sao luu du lieu khi thoat chuong trinh
+    handleBackupWhenExitProgram();
   }
   else if (selectedOption == "3") {
     cout << "Processing delete version backup..." << endl;
@@ -65,5 +68,32 @@ void BackupMenu::handleBackupNow() {
   }
   else {
     console.notify("Sao luu du lieu that bai!");
+  }
+}
+
+void BackupMenu::handleBackupWhenExitProgram() {
+  //Neu dang bat thi chuyen sang tat va nguoc lai
+  Application& app = Application::getInstance();
+  bool isBackupDataWhenExit = app.getIsBackupDataWhenExit();
+
+  string onOrOff = isBackupDataWhenExit ? "TAT" : "BAT";
+  string text = "> Xac nhan " + onOrOff + " sao luu khi thoat chuong trinh? (y/n): ";
+  char choice;
+  do
+  {
+    cout << text;
+    cin >> choice;
+    cin.ignore();
+  } while (choice != 'y' && choice != 'n');
+
+  if(choice == 'y') {
+    if(isBackupDataWhenExit == true) {
+      app.setIsBackupDataWhenExit(false);      
+    }
+    else {
+      app.setIsBackupDataWhenExit(true);
+    }
+    string text_2 = "Da " + onOrOff + " sao luu khi thoat chuong trinh!";
+    cout << text_2 << endl;
   }
 }

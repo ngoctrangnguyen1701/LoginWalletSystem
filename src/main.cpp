@@ -37,7 +37,7 @@ int main() {
   app.initialize();
   app.run();
 
-  // cin.get(); //ngung chuong trinh
+  cin.get(); //ngung chuong trinh nhung khong thoat man hinh terminal
 
   return 0;
 }
