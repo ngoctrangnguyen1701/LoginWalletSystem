@@ -4,7 +4,7 @@
 
 //Duong dan thu muc du lieu theo he dieu hanh
 #ifdef _WIN32
-  #include <windows.h>
+  #include "./common/windows_common.h"
   std::string getAbsolutePath(const std::string& relativePath) {
     wchar_t absolutePath[MAX_PATH];
     std::wstring wideRelativePath(relativePath.begin(), relativePath.end());

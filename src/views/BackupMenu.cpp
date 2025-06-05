@@ -9,8 +9,7 @@ BackupMenu::BackupMenu() : Menu("Menu sao luu du lieu") {
 
   options = vector<string>(4); //Tao vector co 4 phan tu  
   options[0] = "1. Sao luu ngay bay gio";
-  string onOrOff = isBackupDataWhenExit ? "TAT" : "BAT";
-  options[1] = "2. " + onOrOff + " sao luu khi thoat chuong trinh"; 
+  options[1] = "2. Sao luu khi thoat chuong trinh";
   options[2] = "3. Xoa ban sao luu"; // (hien thi va cho chon ban sao luu muon xoa)";
   options[3] = "4. Quay ve menu truoc"; 
 }
@@ -40,8 +39,7 @@ void BackupMenu::handleInput() {
     handleBackupWhenExitProgram();
   }
   else if (selectedOption == "3") {
-    cout << "Processing delete version backup..." << endl;
-    //TODO: logic xoa ban sao luu du lieu
+    handleRemoveBackupData();
   } else if (selectedOption == "4") {
     app.setCurrentMenu("BackupRestoreMenu"); // Chuyen sang menu sao luu va khoi phuc du lieu
     return;
@@ -76,8 +74,10 @@ void BackupMenu::handleBackupWhenExitProgram() {
   Application& app = Application::getInstance();
   bool isBackupDataWhenExit = app.getIsBackupDataWhenExit();
 
-  string onOrOff = isBackupDataWhenExit ? "TAT" : "BAT";
-  string text = "> Xac nhan " + onOrOff + " sao luu khi thoat chuong trinh? (y/n): ";
+  string onOrOff = isBackupDataWhenExit ? "BAT" : "TAT";
+  string reverseOnOrOff = !isBackupDataWhenExit ? "BAT" : "TAT";
+  cout << "Chuong trinh dang '" << onOrOff << "' tinh nang sao luu khi thoat chuong trinh." << endl;
+  string text = "> Ban co muon '" + reverseOnOrOff + "' tinh nang nay? (y/n): ";
   char choice;
   do
   {
@@ -93,7 +93,37 @@ void BackupMenu::handleBackupWhenExitProgram() {
     else {
       app.setIsBackupDataWhenExit(true);
     }
-    string text_2 = "Da " + onOrOff + " sao luu khi thoat chuong trinh!";
+    string text_2 = "Da '" + reverseOnOrOff + "' sao luu khi thoat chuong trinh!";
     cout << text_2 << endl;
   }
+}
+
+void BackupMenu::handleRemoveBackupData() {
+  Application& app = Application::getInstance();
+  app.getBackupMgr().displayList();
+  if(app.getBackupMgr().checkIsEmptyList() == true) {
+    return;
+  }
+  string backupVersion;
+  cout << "> Nhap phien ban ban sao luu muon xoa: ";
+  getline(cin, backupVersion);
+
+  char choice;
+  do
+  {
+    cout << "> Xac nhan xoa phien ban '" << backupVersion << "'? (y/n): ";
+    cin >> choice;
+    cin.ignore();
+  } while (choice != 'y' && choice != 'n');
+
+  if(choice == 'y') {
+    bool result = app.getBackupMgr().deleteBackupData(backupVersion);
+    if(result == true) {
+      console.notify("Xoa ban sao luu thanh cong!");
+    }
+    else {
+      console.notify("Xoa ban sao luu that bai!");
+    }    
+  }
+  
 }

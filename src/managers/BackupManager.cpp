@@ -1,6 +1,7 @@
 //include file .h tuong ung voi .cpp
 #include "BackupManager.h"
 
+
 // backup/
 // └── 20250101_12:00:00/
 //         └── backup_userData.csv
@@ -114,4 +115,66 @@ bool BackupManager::restoreData(){
 
 bool BackupManager::deleteBackupData(string backupVersion){
   return false;
+}
+
+bool BackupManager::checkIsEmptyList() {
+  return backupList.empty();
+}
+
+bool BackupManager::getList() {
+  string path = BACKUP_DIRECTORY;
+  #ifdef _WIN32
+    string searchPath = path + "\\*";
+    WIN32_FIND_DATAA fd;
+    HANDLE hFind = FindFirstFileA(searchPath.c_str(), &fd);
+
+    if (hFind != INVALID_HANDLE_VALUE) {
+      do {
+        string name = fd.cFileName;
+        if ((fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) &&
+          name != "." && name != "..") {
+          cout << name << endl;
+          backupList.push_back(name);
+        }
+      } while (FindNextFileA(hFind, &fd));
+      FindClose(hFind);
+    }
+  #else
+    DIR* dir = opendir(path.c_str());
+    if (dir) {
+      struct dirent* entry;
+      while ((entry = readdir(dir)) != NULL) {
+        string name = entry->d_name;
+        if (entry->d_type == DT_DIR && name != "." && name != "..") {
+          cout << name << endl;
+          backupList.push_back(name);
+        }
+      }
+      closedir(dir);
+    }
+  #endif
+  return true;
+}
+
+void BackupManager::displayList() {
+  bool resultGetList = getList(); 
+  if(resultGetList == false) {
+    console.notify("Khong the doc danh sach sao luu");
+    return;
+  }
+  // Check if list is empty
+  if (backupList.empty()) {
+    cout << "\n===== Danh sach sao luu dang trong =====\n";
+    return;
+  }
+
+  cout << "\n===== Danh sach sao luu =====\n";
+  for (int i = 0; i < backupList.size(); i++) {
+    cout << i + 1 << ". " << backupList[i] << "\t";
+    if(i % 5 == 0) {
+      cout << endl; // In mot dong moi sau moi 5 phan tu
+    }
+  }
+  cout << endl;
+  cout << "Tong so ban sao luu: " << backupList.size() << endl;
 }

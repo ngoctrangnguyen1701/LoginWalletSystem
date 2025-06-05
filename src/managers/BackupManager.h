@@ -21,9 +21,11 @@ using namespace std;
 extern string BACKUP_DIRECTORY;
 
 #ifdef _WIN32
+	#include "../common/windows_common.h"
 	#include <direct.h>    // _mkdir tren Windows
 	#define MKDIR(dir) _mkdir(dir)
 #else
+	#include <dirent.h>
 	#include <sys/stat.h>  // mkdir tren Linux/macOS
 	#include <errno.h>
 	#define MKDIR(dir) mkdir(dir, 0755)
@@ -32,6 +34,7 @@ extern string BACKUP_DIRECTORY;
 class BackupManager
 {
 	private:
+		vector<string> backupList;
 		string directory; //ten thu muc sao luu
 		UserManager userMgr; // Khai bao doi tuong UserManager
 		WalletManager walletMgr; // Khai bao doi tuong WalletManager
@@ -39,6 +42,9 @@ class BackupManager
 		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
 	protected:
 	public:
+		bool checkIsEmptyList();
+		bool getList(); //Lay danh sach cac phien ban sao luu
+		void displayList(); //Hien thi danh sach cac phien ban sao luu
 		string generateBackupFileName(); //Ham tao ten file sao luu
 		string generateBackupFolderName(); //Ham tao ten thu muc sao luu
 		bool createBackupFolder(); //Ham tao thu muc sao luu
