@@ -4,16 +4,16 @@
 //Contructors
 //goi truc tiep contructor cua lop Menu
 AdminMenu::AdminMenu() : Menu("Menu danh cho Admin") {
-  options = vector<string>(9); //Tao vector co 9 phan tu
+  options = vector<string>(8); //Tao vector co 9 phan tu
   options[0] = "1. Doc danh sach nguoi dung";
   options[1] = "2. Tim kiem nguoi dung";
   options[2] = "3. Them nguoi dung";
   options[3] = "4. Thay doi thong tin nguoi dung";
-  options[4] = "5. Xoa nguoi dung";
-  options[5] = "6. Doc danh sach vi";
-  options[6] = "7. Vi tong";
-  options[7] = "8. Sao luu va khoi phuc du lieu";
-  options[8] = "9. Dang xuat";
+  // options[4] = "5. Xoa nguoi dung";
+  options[4] = "5. Doc danh sach vi";
+  options[5] = "6. Vi tong";
+  options[6] = "7. Sao luu va khoi phuc du lieu";
+  options[7] = "8. Dang xuat";
 }
 
 //Methods
@@ -45,17 +45,17 @@ void AdminMenu::handleInput() {
     handleCreateUser();
   } else if (selectedOption == "4") {
     handleUpdateUser();
+  // } else if (selectedOption == "5") {
+  //   handleDeleteUser();
   } else if (selectedOption == "5") {
-    handleDeleteUser();
-  } else if (selectedOption == "6") {
     handleReadWalletList();
-  } else if (selectedOption == "7") {
+  } else if (selectedOption == "6") {
     app.setCurrentMenu("MasterWalletMenu"); // Chuyen sang menu cua vi tong
     return;
-  } else if (selectedOption == "8") {
+  } else if (selectedOption == "7") {
     app.setCurrentMenu("BackupRestoreMenu"); // Chuyen sang menu sao luu va khoi phuc du lieu
     return;
-  } else if (selectedOption == "9") {
+  } else if (selectedOption == "8") {
     handleBeforeLogout();
     app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
     return;

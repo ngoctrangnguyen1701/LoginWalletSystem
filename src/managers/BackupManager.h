@@ -42,9 +42,8 @@ class BackupManager
 		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
 	protected:
 	public:
-		bool checkIsEmptyList();
 		bool getList(); //Lay danh sach cac phien ban sao luu
-		void displayList(); //Hien thi danh sach cac phien ban sao luu
+		vector<string> displayList(); //Hien thi danh sach cac phien ban sao luu
 		string generateBackupFileName(); //Ham tao ten file sao luu
 		string generateBackupFolderName(); //Ham tao ten thu muc sao luu
 		bool createBackupFolder(); //Ham tao thu muc sao luu

@@ -7,11 +7,11 @@ BackupMenu::BackupMenu() : Menu("Menu sao luu du lieu") {
   Application& app = Application::getInstance();
   bool isBackupDataWhenExit = app.getIsBackupDataWhenExit();
 
-  options = vector<string>(4); //Tao vector co 4 phan tu  
+  options = vector<string>(3);
   options[0] = "1. Sao luu ngay bay gio";
   options[1] = "2. Sao luu khi thoat chuong trinh";
-  options[2] = "3. Xoa ban sao luu"; // (hien thi va cho chon ban sao luu muon xoa)";
-  options[3] = "4. Quay ve menu truoc"; 
+  // options[2] = "3. Xoa ban sao luu"; // (hien thi va cho chon ban sao luu muon xoa)";
+  options[2] = "4. Quay ve menu truoc"; 
 }
 
 //Methods
@@ -22,7 +22,7 @@ void BackupMenu::display() {
   cout << "+--------------------------------+" << endl;
   
   for (int i = 0; i < options.size(); i++) {
-    cout << "   " << options[i] << endl;
+    cout << "   " << i + 1 << ". " << options[i] << endl;
   }
   cout << endl;
   cout << "> Chon mot thao tac: ";
@@ -37,10 +37,9 @@ void BackupMenu::handleInput() {
     handleBackupNow();
   } else if (selectedOption == "2") {
     handleBackupWhenExitProgram();
-  }
-  else if (selectedOption == "3") {
-    handleRemoveBackupData();
-  } else if (selectedOption == "4") {
+  // } else if (selectedOption == "3") {
+    // handleRemoveBackupData();
+  } else if (selectedOption == "3") {
     app.setCurrentMenu("BackupRestoreMenu"); // Chuyen sang menu sao luu va khoi phuc du lieu
     return;
   } else {
@@ -98,32 +97,33 @@ void BackupMenu::handleBackupWhenExitProgram() {
   }
 }
 
-void BackupMenu::handleRemoveBackupData() {
-  Application& app = Application::getInstance();
-  app.getBackupMgr().displayList();
-  if(app.getBackupMgr().checkIsEmptyList() == true) {
-    return;
-  }
-  string backupVersion;
-  cout << "> Nhap phien ban ban sao luu muon xoa: ";
-  getline(cin, backupVersion);
+// void BackupMenu::handleRemoveBackupData() {
+//   BackupManager backupMgr;
+//   vector<string> backupList = backupMgr.displayList();
+//   if (backupList.empty()) {
+//     return;
+//   }
 
-  char choice;
-  do
-  {
-    cout << "> Xac nhan xoa phien ban '" << backupVersion << "'? (y/n): ";
-    cin >> choice;
-    cin.ignore();
-  } while (choice != 'y' && choice != 'n');
+//   string backupVersion;
+//   cout << "> Chon phien ban ban sao luu muon xoa: ";
+//   getline(cin, backupVersion);
 
-  if(choice == 'y') {
-    bool result = app.getBackupMgr().deleteBackupData(backupVersion);
-    if(result == true) {
-      console.notify("Xoa ban sao luu thanh cong!");
-    }
-    else {
-      console.notify("Xoa ban sao luu that bai!");
-    }    
-  }
+//   char choice;
+//   do
+//   {
+//     cout << "> Xac nhan xoa phien ban '" << backupVersion << "'? (y/n): ";
+//     cin >> choice;
+//     cin.ignore();
+//   } while (choice != 'y' && choice != 'n');
+
+//   if(choice == 'y') {
+//     bool result = backupMgr.deleteBackupData(backupVersion);
+//     if(result == true) {
+//       console.notify("Xoa ban sao luu thanh cong!");
+//     }
+//     else {
+//       console.notify("Xoa ban sao luu that bai!");
+//     }    
+//   }
   
-}
+// }

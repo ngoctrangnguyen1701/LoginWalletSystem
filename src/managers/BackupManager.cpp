@@ -117,10 +117,6 @@ bool BackupManager::deleteBackupData(string backupVersion){
   return false;
 }
 
-bool BackupManager::checkIsEmptyList() {
-  return backupList.empty();
-}
-
 bool BackupManager::getList() {
   string path = BACKUP_DIRECTORY;
   #ifdef _WIN32
@@ -133,7 +129,6 @@ bool BackupManager::getList() {
         string name = fd.cFileName;
         if ((fd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) &&
           name != "." && name != "..") {
-          cout << name << endl;
           backupList.push_back(name);
         }
       } while (FindNextFileA(hFind, &fd));
@@ -156,25 +151,25 @@ bool BackupManager::getList() {
   return true;
 }
 
-void BackupManager::displayList() {
+vector<string> BackupManager::displayList() {
   bool resultGetList = getList(); 
   if(resultGetList == false) {
     console.notify("Khong the doc danh sach sao luu");
-    return;
+    return backupList;
   }
   // Check if list is empty
   if (backupList.empty()) {
-    cout << "\n===== Danh sach sao luu dang trong =====\n";
-    return;
-  }
-
-  cout << "\n===== Danh sach sao luu =====\n";
-  for (int i = 0; i < backupList.size(); i++) {
-    cout << i + 1 << ". " << backupList[i] << "\t";
-    if(i % 5 == 0) {
-      cout << endl; // In mot dong moi sau moi 5 phan tu
+    cout << "\n===== Danh sach sao luu dang trong =====\n";    
+  } else {
+    cout << "\n===== Danh sach sao luu =====\n";
+    for (int i = 0; i < backupList.size(); i++) {      
+      cout << backupList[i] << "\t";
+      if(i % 5 == 0) {
+        cout << endl; // In mot dong moi sau moi 5 phan tu
+      }
     }
+    cout << endl;
+    cout << "Tong so ban sao luu: " << backupList.size() << endl;
   }
-  cout << endl;
-  cout << "Tong so ban sao luu: " << backupList.size() << endl;
+  return backupList;
 }

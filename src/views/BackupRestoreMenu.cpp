@@ -4,7 +4,7 @@
 //Contructors
 //goi truc tiep contructor cua lop Menu
 BackupRestoreMenu::BackupRestoreMenu() : Menu("Menu sao luu va khoi phuc du lieu") {
-  options = vector<string>(3); // Tao vector co 3 phan tu
+  options = vector<string>(3);
   options[0] = "1. Sao luu";
   options[1] = "2. Khoi phuc";
   options[2] = "3. Quay ve menu truoc";
