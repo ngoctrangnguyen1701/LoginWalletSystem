@@ -1,22 +1,20 @@
-#ifndef WalletMenu_H //Neu chua duoc dinh nghia
-#define WalletMenu_H //Dinh nghia no
+#ifndef BackupRestoreMenu_H //Neu chua duoc dinh nghia
+#define BackupRestoreMenu_H //Dinh nghia no
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
-//include thu vien
-
-
 //include file header noi bo khac
-#include "Menu.h"
 #include "../Application.h"
+#include "Menu.h"
 
-class WalletMenu : public Menu
+class BackupRestoreMenu : public Menu
 {
 	private:		
 	protected:
-	public:		
-		WalletMenu();
+	public:
+		BackupRestoreMenu();
 		void display() override;
 		void handleInput() override;
+		void handleRestoreData();
 };
 
 #endif
