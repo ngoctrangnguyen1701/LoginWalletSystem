@@ -192,11 +192,11 @@ bool User::checkIsValidPassword(string password) {
   }
 
   if(hasUpper == false) {
-    console.notify("Mat khau phai co it nhat 1 ky tu hoa");
+    console.notify("Mat khau phai co it nhat 1 ky tu in hoa");
     return false;
   }
   if(hasUpper == false) {
-    console.notify("Mat khau phai co it nhat 1 ky tu thuong");
+    console.notify("Mat khau phai co it nhat 1 ky tu in thuong");
     return false;
   }
   if(hasNumber == false) {

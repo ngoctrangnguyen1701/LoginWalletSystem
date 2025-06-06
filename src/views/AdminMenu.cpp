@@ -97,7 +97,7 @@ void AdminMenu::handleCreateUser() {
 
   User temp;
   string autoGenPassword = temp.autoGeneratePassword();
-  console.log("Mat khau tu sinh: " + autoGenPassword);
+  console.notify("Mat khau tu sinh: " + autoGenPassword);
 
   User newUser(username, autoGenPassword, fullName, email, isAdmin, isAutoGenPassword);
 

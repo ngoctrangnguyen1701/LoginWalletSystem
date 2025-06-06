@@ -53,6 +53,11 @@ bool UserManager::getList(){
   return result;
 }
 
+vector<User> UserManager::getList_2(){
+  getList();
+  return userList;
+}
+
 void UserManager::displayList() {
   bool resultGetList = getList(); //Doc danh sach user tu file
   if(resultGetList == false) {
