@@ -44,12 +44,14 @@ class BackupManager
 	public:
 		bool getList(); //Lay danh sach cac phien ban sao luu
 		vector<string> displayList(); //Hien thi danh sach cac phien ban sao luu
+		string* findBackupVersion(string backupVersion); //Tim kiem phien ban sao luu theo ten
 		string generateBackupFileName(); //Ham tao ten file sao luu
 		string generateBackupFolderName(); //Ham tao ten thu muc sao luu
 		bool createBackupFolder(); //Ham tao thu muc sao luu
 		bool backupData(); //Ham sao luu tat ca cac file du lieu
 		bool processBackupData(string filename, string filenameNextId, string title); //Ham tien hanh sao luu du lieu
-		bool restoreData(); //Ham khoi phuc tat ca du lieu trong cac file sao luu
+		bool restoreData(string backupVersion); //Ham khoi phuc tat ca du lieu trong cac file sao luu
+		bool processRestoreData(string filename, string filenameNextId, string backupVersion); //Ham tien hanh khoi phuc du lieu
 		bool deleteBackupData(string backupVersion); //xoa phien ban cua ban sao luu nao do
 };
 

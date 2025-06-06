@@ -8,6 +8,7 @@
 #include <cstdlib>
 #include <sstream>
 #include <fstream>
+#include <cstdio>
 
 //include file header noi bo khac
 #include "../utils/ConsoleUtils.h"
@@ -25,6 +26,7 @@ class FileUtils {
     string fullPath; // Duong dan den file du lieu
     string nextIdFilePath; // Duong dan den file luu nextId
     string tempFilePath;
+    string tempFileNextIdPath;
     string backupPath; // Duong dan den file sao luu
     string backupNextIdPath; // Duong dan den file sao luu nextId
 		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
@@ -38,6 +40,10 @@ class FileUtils {
     void setBackupNextIdPath(string backupFolderName);
 
     //Getters
+    string getFullPath();
+    string getNextIdFilePath();
+    string getTempFilePath();
+    string getTempNextIdFilePath();
     string getBackupPath();
     string getBackupNextIdPath();
     
@@ -49,6 +55,8 @@ class FileUtils {
     bool createFileWithPath(string path);
     bool copyFile();
     bool copyFileWithPath(string sourceFilePath, string destinationFilePath);
+    bool removeFileWithPath(string path);
+    bool renameFileWithPath(string path, string name);
     
     // Template methods    
     template <typename T, typename M>

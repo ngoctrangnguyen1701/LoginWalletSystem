@@ -33,8 +33,7 @@ void BackupRestoreMenu::handleInput() {
     app.setCurrentMenu("BackupMenu"); // Chuyen sang menu sao luu du lieu
     return;
   } else if (selectedOption == "2") {
-    cout << "Processing restore..." << endl;
-    //TODO: logic khoi phuc du lieu, hien thi danh sach cac ban sao luu
+    handleRestoreData();
   }
   else if (selectedOption == "3") {
     app.setCurrentMenu("AdminMenu"); // Chuyen sang menu danh cho admin
@@ -42,5 +41,46 @@ void BackupRestoreMenu::handleInput() {
   } else {
     cout << "Lua chon khong hop le! Vui long chon lai" << endl;
     return;
+  }
+  char choice;
+  do
+  {    
+    cout << "> Quay tro ve menu? (y): ";
+    cin >> choice;
+    cin.ignore();
+  } while (choice != 'y');
+  app.setCurrentMenu("BackupRestoreMenu"); // Chuyen sang menu admin
+}
+
+void BackupRestoreMenu::handleRestoreData() {
+  BackupManager backupMgr;
+  vector<string> backupList = backupMgr.displayList();
+  if (backupList.empty()) {
+    return;
+  }
+
+  string backupVersion;
+  cout << "> Nhap phien ban ban sao luu muon xoa: ";
+  getline(cin, backupVersion);
+
+  char choice;
+  do
+  {
+    cout << "=== CANH BAO: Khoi phuc du lieu co the lam mat du lieu hien tai ===" << endl;
+    cout << "> Xac nhan khoi phuc phien ban '" << backupVersion << "'? (y/n): ";
+    cin >> choice;
+    cin.ignore();
+  } while (choice != 'y' && choice != 'n');
+
+  if(choice == 'n') {
+    return;
+  }
+  
+  bool result = backupMgr.restoreData(backupVersion);
+  if(result == true) {
+    console.notify("Khoi phuc du lieu thanh cong!");    
+  }
+  else {
+    console.notify("Khoi phuc du lieu that bai!");
   }
 }

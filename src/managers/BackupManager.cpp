@@ -100,8 +100,8 @@ bool BackupManager::processBackupData(string filename, string filenameNextId, st
   fileUtils.createFileWithPath(fileUtils.getBackupPath());
   fileUtils.createFileWithPath(fileUtils.getBackupNextIdPath());
 
-  bool resultUser = fileUtils.copyFile();
-  if(resultUser == false) {
+  bool result = fileUtils.copyFile();
+  if(result == false) {
     console.notify("Sao luu that bai " + title + "!");
     return false;
   }
@@ -109,8 +109,104 @@ bool BackupManager::processBackupData(string filename, string filenameNextId, st
   return true;
 };
 
-bool BackupManager::restoreData(){
-  return false;
+bool BackupManager::restoreData(string backupVersion){
+  //Kiem tra xem phien ban sao luu co ton tai
+  string* backupVersionPtr = findBackupVersion(backupVersion);
+  if(backupVersionPtr == NULL) {
+    console.notify("Khong tim thay phien ban sao luu '" + backupVersion + "'");
+    return false;
+  }
+
+  console.notify("Dang thuc hien qua trinh khoi phuc...");
+
+  //Khoi phuc file du lieu nguoi dung 
+  string title = "du lieu nguoi dung";
+  bool resultUser = processRestoreData(userMgr.filename, userMgr.filenameNextId, backupVersion);
+  if(resultUser == false) {
+    console.notify("Khoi phuc that bai " + title + "!");
+    return false;
+  }
+  console.notify("Khoi phuc thanh cong " + title + "!");
+
+  //Khoi phuc file du lieu vi
+  title = "du lieu vi";
+  bool resulWallet = processRestoreData(walletMgr.filename, walletMgr.filenameNextId, backupVersion);
+  if(resulWallet == false) {
+    console.notify("Khoi phuc that bai " + title + "!");
+    return false;
+  }
+  console.notify("Khoi phuc thanh cong " + title + "!");
+
+  //Khoi phuc file du lieu lich su giao dich
+  title = "du lieu lich su giao dich";
+  bool resulTransaction = processRestoreData(transactionMgr.filename, transactionMgr.filenameNextId, backupVersion);
+  if(resulTransaction == false) {
+    console.notify("Khoi phuc that bai " + title + "!");
+    return false;
+  }
+  console.notify("Khoi phuc thanh cong " + title + "!");
+
+  console.notify("Hoan tat khoi phuc!");
+  return true;
+}
+
+bool BackupManager::processRestoreData(string filename, string filenameNextId,string backupVersion) {
+  //Tao 1 file moi trong thu muc data
+  //Sao chep du lieu cho file moi tu file backup
+  //Xoa file du lieu hien tai
+  //Doi ten file moi thanh ten file hien tai
+
+  FileUtils fileUtils(filename, filenameNextId);
+  fileUtils.setBackupPath(backupVersion);
+  fileUtils.setBackupNextIdPath(backupVersion);
+
+  string tempFile = fileUtils.getTempFilePath();
+  string tempNextIdFile = fileUtils.getTempNextIdFilePath();
+  string backupFile = fileUtils.getBackupPath();
+  string backupNextIdFile = fileUtils.getBackupNextIdPath();
+  string dataFile = fileUtils.getFullPath();
+  string nextIdFile = fileUtils.getNextIdFilePath();
+
+  //Tao file moi de sao chep du lieu
+  bool resultCreate = fileUtils.createFileWithPath(tempFile);
+  if(resultCreate == false) {
+    return false;
+  }
+  resultCreate = fileUtils.createFileWithPath(tempNextIdFile);
+  if(resultCreate == false) {
+    return false;
+  }
+
+  //Sao chep du lieu tu file backup sang file moi
+  bool resultCopy = fileUtils.copyFileWithPath(backupFile, tempFile);
+  if(resultCopy == false) {
+    return false;
+  }
+  resultCopy = fileUtils.copyFileWithPath(backupNextIdFile, tempNextIdFile);
+  if(resultCopy == false) {
+    return false;
+  }
+
+  //Xoa file du lieu hien tai
+  bool resultRemove = fileUtils.removeFileWithPath(dataFile);
+  if(resultRemove == false) {
+    return false;
+  }
+  resultRemove = fileUtils.removeFileWithPath(nextIdFile);
+  if(resultRemove == false) {
+    return false;
+  }
+
+  //Doi ten file moi thanh ten file hien tai
+  bool resultRename = fileUtils.renameFileWithPath(tempFile, dataFile);
+  if(resultRename == false) {
+    return false;
+  }
+  resultRename = fileUtils.renameFileWithPath(tempNextIdFile, nextIdFile);
+  if(resultRename == false) {
+    return false;
+  }
+  return true; 
 }
 
 bool BackupManager::deleteBackupData(string backupVersion){
@@ -163,8 +259,8 @@ vector<string> BackupManager::displayList() {
   } else {
     cout << "\n===== Danh sach sao luu =====\n";
     for (int i = 0; i < backupList.size(); i++) {      
-      cout << backupList[i] << "\t";
-      if(i % 5 == 0) {
+      cout << i + 1 << ". "<< backupList[i] << "    ";
+      if(i != 0 && i % 5 == 0) {
         cout << endl; // In mot dong moi sau moi 5 phan tu
       }
     }
@@ -172,4 +268,18 @@ vector<string> BackupManager::displayList() {
     cout << "Tong so ban sao luu: " << backupList.size() << endl;
   }
   return backupList;
+}
+
+string* BackupManager::findBackupVersion(string backupVersion) {
+  bool resultGetList = getList(); 
+  if(resultGetList == false) {
+    console.notify("Khong the doc danh sach sao luu");
+    return NULL;
+  }
+  for (int i = 0; i < backupList.size(); i++) {
+    if (backupList[i] == backupVersion) {
+      return &backupList[i]; // Tra ve con tro den phien ban sao luu tim thay
+    }
+  }
+  return NULL;
 }

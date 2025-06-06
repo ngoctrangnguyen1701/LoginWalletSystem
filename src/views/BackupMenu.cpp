@@ -11,7 +11,7 @@ BackupMenu::BackupMenu() : Menu("Menu sao luu du lieu") {
   options[0] = "1. Sao luu ngay bay gio";
   options[1] = "2. Sao luu khi thoat chuong trinh";
   // options[2] = "3. Xoa ban sao luu"; // (hien thi va cho chon ban sao luu muon xoa)";
-  options[2] = "4. Quay ve menu truoc"; 
+  options[2] = "3. Quay ve menu truoc"; 
 }
 
 //Methods
@@ -22,7 +22,7 @@ void BackupMenu::display() {
   cout << "+--------------------------------+" << endl;
   
   for (int i = 0; i < options.size(); i++) {
-    cout << "   " << i + 1 << ". " << options[i] << endl;
+    cout << "   " << options[i] << endl;
   }
   cout << endl;
   cout << "> Chon mot thao tac: ";
@@ -93,7 +93,7 @@ void BackupMenu::handleBackupWhenExitProgram() {
       app.setIsBackupDataWhenExit(true);
     }
     string text_2 = "Da '" + reverseOnOrOff + "' sao luu khi thoat chuong trinh!";
-    cout << text_2 << endl;
+    console.notify(text_2);    
   }
 }
 

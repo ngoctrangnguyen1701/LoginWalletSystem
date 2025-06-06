@@ -20,6 +20,7 @@ FileUtils::FileUtils(const string& filename, const string& filenameNextId) {
   fullPath = DATA_DIRECTORY + filename + ".csv";
   nextIdFilePath = DATA_DIRECTORY + filenameNextId + ".txt";
   tempFilePath = DATA_DIRECTORY + "temp_" + filename + ".csv";
+  tempFileNextIdPath = DATA_DIRECTORY + "temp_" + filenameNextId + ".txt";
 }
 
 //Setters
@@ -32,6 +33,22 @@ void FileUtils::setBackupNextIdPath(string backupFolderName){
 };
 
 //Getters
+string FileUtils::getFullPath() {
+  return fullPath;
+}
+
+string FileUtils::getNextIdFilePath() {
+  return nextIdFilePath;
+}
+
+string FileUtils::getTempFilePath(){
+  return tempFilePath;
+};
+
+string FileUtils::getTempNextIdFilePath(){
+  return tempFileNextIdPath;
+};
+
 string FileUtils::getBackupPath(){
   return backupPath;
 };
@@ -206,5 +223,38 @@ bool FileUtils::copyFileWithPath(string sourceFilePath, string destinationFilePa
   }
 
   console.log("Da sao chep thanh cong file '" + sourceFilePath + "' sang file '" + destinationFilePath);
+  return true;
+}
+
+bool FileUtils::removeFileWithPath(string path) {
+  //Kiem tra file co ton tai
+  if(isExistFileWithPath(path) == false) {
+    string text = "Khong ton tai file '" + path;
+    console.log(text);
+    return false;
+  }
+
+  if(remove(path.c_str()) != 0) {
+    cerr << "Khong the xoa file '" << path << "'" << endl;
+    exit(1);
+  }
+  console.log("Da xoa thanh cong file '" + path + "'");
+  return true;
+}
+
+bool FileUtils::renameFileWithPath(string path, string name) {
+  //name phai la duong dan den file moi
+  //Kiem tra file co ton tai
+  if(isExistFileWithPath(path) == false) {
+    string text = "Khong ton tai file '" + path;
+    console.log(text);
+    return false;
+  }
+
+  if(rename(path.c_str(), name.c_str()) != 0) {
+    cerr << "Khong the doi ten file '" << path << "'" << endl;
+    exit(1);
+  }
+  console.log("Da doi ten thanh cong file '" + path + "' thanh '" + name + "'");
   return true;
 }

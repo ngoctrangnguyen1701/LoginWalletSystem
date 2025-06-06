@@ -14,6 +14,7 @@ class BackupRestoreMenu : public Menu
 		BackupRestoreMenu();
 		void display() override;
 		void handleInput() override;
+		void handleRestoreData();
 };
 
 #endif
