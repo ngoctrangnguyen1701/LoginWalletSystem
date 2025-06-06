@@ -1,20 +1,19 @@
 //include file .h tuong ung voi .cpp
 #include "AdminMenu.h"
 
-
 //Contructors
 //goi truc tiep contructor cua lop Menu
 AdminMenu::AdminMenu() : Menu("Menu danh cho Admin") {
-  options = vector<string>(9); //Tao vector co 9 phan tu
+  options = vector<string>(8); //Tao vector co 9 phan tu
   options[0] = "1. Doc danh sach nguoi dung";
   options[1] = "2. Tim kiem nguoi dung";
   options[2] = "3. Them nguoi dung";
   options[3] = "4. Thay doi thong tin nguoi dung";
-  options[4] = "5. Xoa nguoi dung";
-  options[5] = "6. Doc danh sach vi";
-  options[6] = "7. Vi tong";
-  options[7] = "8. Sao luu va khoi phuc du lieu";
-  options[8] = "9. Dang xuat";
+  // options[4] = "5. Xoa nguoi dung";
+  options[4] = "5. Doc danh sach vi";
+  options[5] = "6. Vi tong";
+  options[6] = "7. Sao luu va khoi phuc du lieu";
+  options[7] = "8. Dang xuat";
 }
 
 //Methods
@@ -46,21 +45,23 @@ void AdminMenu::handleInput() {
     handleCreateUser();
   } else if (selectedOption == "4") {
     handleUpdateUser();
+  // } else if (selectedOption == "5") {
+  //   handleDeleteUser();
   } else if (selectedOption == "5") {
-    handleDeleteUser();
-  } else if (selectedOption == "6") {
     handleReadWalletList();
-  } else if (selectedOption == "7") {
+  } else if (selectedOption == "6") {
     app.setCurrentMenu("MasterWalletMenu"); // Chuyen sang menu cua vi tong
     return;
+  } else if (selectedOption == "7") {
+    app.setCurrentMenu("BackupRestoreMenu"); // Chuyen sang menu sao luu va khoi phuc du lieu
+    return;
   } else if (selectedOption == "8") {
-    cout << "Processing backup and restore data..." << endl;
-    // TODO: logic for backup and restore data
-  } else if (selectedOption == "9") {
+    handleBeforeLogout();
     app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
     return;
   } else {
     cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    return;
   }
   // cout << endl;
   char choice;
@@ -229,8 +230,34 @@ void AdminMenu::handleDeleteUser() {
   }
 }
 
-
 void AdminMenu::handleReadWalletList() {
   Application& app = Application::getInstance();
   app.getWalletMgr().displayList();
+}
+
+void AdminMenu::handleBeforeLogout() {
+  //Tinh nang danh cho admin
+  //Kiem tra yeu cau sao luu du lieu khi dang xuat thoat chuong trinh
+  //Neu co hien thi thong tin xac nhan va thuc hien sao luu du lieu
+  Application& app = Application::getInstance();
+  if(app.getCurrentUser()->getIsAdmin() == true && app.getIsBackupDataWhenExit() == true) {
+    cout << endl;
+    char choice;
+    do
+    {
+      cout << "> Ban co muon sao luu du lieu truoc khi thoat chuong trinh? (y/n): ";
+      cin >> choice;
+      cin.ignore();
+    } while (choice != 'y' && choice != 'n');
+    
+    if(choice == 'y') {
+      bool result = app.getBackupMgr().backupData();
+      if(result == true) {
+        console.notify("Sao luu du lieu thanh cong!");
+      }
+      else {
+        console.notify("Sao luu du lieu that bai!");
+      }
+    }
+  }
 }

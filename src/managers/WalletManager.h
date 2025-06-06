@@ -50,6 +50,7 @@ class WalletManager
 		// bool restoreWalletData();
 
 		friend class Application;
+		friend class BackupManager;
 };
 
 #endif

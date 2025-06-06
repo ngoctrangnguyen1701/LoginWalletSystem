@@ -47,6 +47,7 @@ void LoginMenu::handleInput() {
     isRunning = false;
   } else {
     cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    return;
   }
 }
 

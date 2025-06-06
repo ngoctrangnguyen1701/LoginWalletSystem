@@ -4,7 +4,7 @@
 
 //Duong dan thu muc du lieu theo he dieu hanh
 #ifdef _WIN32
-  #include <windows.h>
+  #include "./common/windows_common.h"
   std::string getAbsolutePath(const std::string& relativePath) {
     wchar_t absolutePath[MAX_PATH];
     std::wstring wideRelativePath(relativePath.begin(), relativePath.end());
@@ -24,12 +24,9 @@
 
 using namespace std;
 
-#include "./utils/HashUtils.h"
-
-// #include "./libraries/picosha2.h"
-
-//bien toan cuc
+//khai bao bien toan cuc
 string DATA_DIRECTORY = getAbsolutePath("../data/");
+string BACKUP_DIRECTORY = getAbsolutePath("../backup/");
 
 #include "Application.h"
 
@@ -40,7 +37,7 @@ int main() {
   app.initialize();
   app.run();
 
-  // cin.get(); //ngung chuong trinh
+  cin.get(); //ngung chuong trinh nhung khong thoat man hinh terminal
 
   return 0;
 }

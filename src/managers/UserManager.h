@@ -52,6 +52,7 @@ class UserManager
 		bool restoreUserData();
 
 		friend class Application;
+		friend class BackupManager;
 };
 
 #endif
