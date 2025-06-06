@@ -66,7 +66,8 @@ void BackupRestoreMenu::handleRestoreData() {
   char choice;
   do
   {
-    cout << "=== CANH BAO: Khoi phuc du lieu co the lam mat du lieu hien tai ===" << endl;
+    cout << "################################" << endl;
+    cout << "CANH BAO: Khoi phuc du lieu co the lam mat du lieu hien tai" << endl;
     cout << "> Xac nhan khoi phuc phien ban '" << backupVersion << "'? (y/n): ";
     cin >> choice;
     cin.ignore();
