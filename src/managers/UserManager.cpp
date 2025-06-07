@@ -104,7 +104,7 @@ void UserManager::displayList() {
   cout << "Tong so nguoi dung: " << userList.size() << endl;
 }
 
-bool UserManager::updateUser(int userId, string fullName, string email){
+bool UserManager::updateUser(int userId, string fullName, string email, string passwordHash) {
   //Lay danh sach user va nextUserId moi nhat
   bool resultGetList = getList();
   if(resultGetList == false) {
@@ -125,7 +125,9 @@ bool UserManager::updateUser(int userId, string fullName, string email){
   if(email != "") {
     userExist->setEmail(email);
   }
-  
+  if(passwordHash != "") {
+    userExist->setPasswordHash(passwordHash);
+  }
 
   //Save userList vao file, do file van ban thao tac ghi de 1 dong se de bi pha cau truc cua file trong truong hop do dai chuoi thay doi
   //nen phai ghi lai toan bo file

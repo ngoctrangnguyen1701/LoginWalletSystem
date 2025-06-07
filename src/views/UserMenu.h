@@ -11,6 +11,7 @@ class UserMenu : public Menu
 		UserMenu();
 		void display() override;
 		void handleInput() override;
+		void handleChangeInfo();
 };
 
 #endif

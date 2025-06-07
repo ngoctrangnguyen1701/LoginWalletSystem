@@ -37,7 +37,8 @@ void UserMenu::handleInput() {
 
   Application& app = Application::getInstance();
   if (selectedOption == "1") {
-    cout << "Processing update info..." << endl;      
+    handleChangeInfo();
+    // cout << "Processing update info..." << endl;      
     //TODO: logic update info
   } else if (selectedOption == "2") {
     int userId = app.getCurrentUser()->getUserId(); //Lay userId cua nguoi dung hien tai
@@ -84,3 +85,78 @@ void UserMenu::handleInput() {
 //     return;
 //   }
 // }
+
+void UserMenu::handleChangeInfo() {
+  cout << endl;
+  int choice = 0;
+  do
+  { 
+    if(choice != 0 && choice != 1 && choice != 2 && choice != 3 && choice != 4) {
+      cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    }
+    cout << "===== Thay doi thong tin =====" << endl;
+    cout << "   " << "1. Ho va ten" << endl;
+    cout << "   " << "2. Email" << endl;
+    cout << "   " << "3. Thay doi mat khau" << endl;
+    cout << "   " << "4. Quay tro ve menu" << endl;
+    cout << "> Chon mot thao tac: ";
+    cin >> choice;
+    cin.ignore();
+  } while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
+
+  // cin.ignore(); // Bo qua ki tu xuong dong
+  Application& app = Application::getInstance();
+  User* currentUser = app.getCurrentUser();
+  int userId = currentUser->getUserId();
+  string fullName = "";
+  string email = "";
+
+  if(choice == 1) {
+    cout << "> Nhap ho va ten moi: ";
+    getline(cin, fullName);
+  } else if(choice == 2) {
+    cout << "> Nhap email moi: ";
+    getline(cin, email);
+  } else if(choice == 4) {
+    app.setCurrentMenu("UserMenu"); // Chuyen sang menu user
+    return;
+  }
+
+  if(choice == 1 || choice == 2) {
+    bool resultUpdate = app.getUserMgr().updateUser(userId, fullName, email);
+    if(resultUpdate == true) {
+      if(choice == 1) {
+        string text = currentUser->getFullName() + " -> " + fullName;
+        console.notify("Thay doi thong tin ho va ten: " + text);
+      }
+      if(choice == 2) {
+        string text = currentUser->getEmail() + " -> " + email;
+        console.notify("Thay doi thong tin email: " + text);
+      }
+    } else {
+      console.notify("Thay doi thong tin that bai!");
+    }
+  }
+  else if(choice == 3) {
+    string newPassord;
+    bool isValidPassword = false;
+    bool isDuplicateOldPassword = false;
+    do
+    {
+      cout << "> Nhap mat khau moi: ";
+      getline(cin, newPassord);
+      isDuplicateOldPassword = currentUser->checkIsDuplicatePassword(newPassord);
+      if(isDuplicateOldPassword == false) {
+        isValidPassword = currentUser->checkIsValidPassword(newPassord);
+      }
+    } while (isValidPassword == false || isDuplicateOldPassword == true);
+    string passwordHash = HashUtils::generateHash(newPassord, currentUser->getPasswordSalt());
+    bool resultUpdate = app.getUserMgr().updateUser(userId, fullName, email, passwordHash);
+    if(resultUpdate == true) {
+      console.notify("Thay doi mat khau thanh cong!");
+    } else {
+      console.notify("Thay doi mat khau that bai!");
+    }
+  }
+  return;
+}

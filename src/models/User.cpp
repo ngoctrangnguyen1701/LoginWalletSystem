@@ -210,3 +210,13 @@ bool User::checkIsValidPassword(string password) {
 
   return true;
 };
+
+bool User::checkIsDuplicatePassword(string newPassword) {
+  //so sanh 2 ma bam cua mat khau moi va mat khau hien tai
+  string newPasswordHash = HashUtils::generateHash(newPassword, this->passwordSalt);
+  if(newPasswordHash == this->passwordHash) {
+    console.notify("Mat khau moi trung voi mat khau hien tai");
+    return true;
+  }
+  return false;
+}

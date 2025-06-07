@@ -36,7 +36,7 @@ class UserManager
 		bool createUser(User newUser);
 		bool getList(); //-> page size = 10
 		void displayList(); //-> page size = 10
-		bool updateUser(int userId, string fullName, string email);
+		bool updateUser(int userId, string fullName = "", string email = "", string passwordHash = "");
 		bool deleteUser(int userId); // -> then deleteWallet;
 		User* findUserFromFile(string username, string password);
 		User* findUserById(int userId);

@@ -72,6 +72,7 @@ class User
 		bool requirePasswordChange(); // voi mat khau tu sinh khi lan dau tien dang nhap
 		string autoGeneratePassword(); //Ham tao mat khau tu sinh
 		bool checkIsValidPassword(string password); //Ham kiem tra mat khau co hop le hay khong
+		bool checkIsDuplicatePassword(string newPassword); //Kiem tra mat khau moi co trung voi mat khau hien tai hay khong
 };
 
 #endif
