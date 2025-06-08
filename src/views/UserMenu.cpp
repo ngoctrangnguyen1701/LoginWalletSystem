@@ -116,6 +116,14 @@ void UserMenu::handleChangeInfo() {
     return;
   }
 
+  //Xac thuc OTP truoc khi cap nhat thong tin
+  OTPManager otpMgr;
+  bool isValidOTP = otpMgr.verifyOTP(userId, "changeInfo");
+  if(isValidOTP == false) {
+    console.notify("Thay doi thong tin that bai!");
+    return;
+  }
+
   bool resultUpdate = app.getUserMgr().updateUser(userId, fullName, email);
   string text = "";
   if(resultUpdate == true) {
