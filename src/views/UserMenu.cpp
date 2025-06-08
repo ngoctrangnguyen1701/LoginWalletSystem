@@ -11,12 +11,6 @@
 //Contructors
 //goi truc tiep contructor cua lop Menu
 UserMenu::UserMenu() : Menu("Menu cho nguoi dung") {
-  Application& app = Application::getInstance();
-  User* currentUser = app.getCurrentUser();
-  cout << "############################" << endl;
-  cout << "Xin chao " << currentUser->getFullName() << " den voi he thong!" << endl;
-  cout << "############################" << endl;
-  
   options = vector<string>(4); //Tao vector co 4 phan tu
   options[0] = "1. Thay doi thong tin";
   options[1] = "2. Thay doi mat khau";
@@ -129,6 +123,7 @@ void UserMenu::handleChangeInfo() {
   if(resultUpdate == true) {
     if(choice == 1 || choice == 3) {
       text = currentUser->getFullName() + " -> " + fullName;
+      console.notify("Thay doi ho va ten: " + text);
     }
     if(choice == 2 || choice == 3) {
       text = currentUser->getEmail() + " -> " + email;

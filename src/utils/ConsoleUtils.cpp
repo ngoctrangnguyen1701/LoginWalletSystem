@@ -11,10 +11,17 @@ using namespace std;
 void ConsoleUtils::notify(string text){
   cout << text << endl;
 };
+
 void ConsoleUtils::log(string text) {
   if(isShowLog == true) {
     cout << "#################" << endl;
     cout << text << endl;
     cout << "#################" << endl;
   }
+};
+
+void ConsoleUtils::important(string text) {
+  cout << "############################" << endl;
+  cout << text << endl;
+  cout << "############################" << endl;  
 };

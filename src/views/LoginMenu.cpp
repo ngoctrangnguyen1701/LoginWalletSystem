@@ -61,7 +61,7 @@ void LoginMenu::handleLogin() {
     } else {
       if(currentUser->getIsAutoGenPassword() == true) {
         // Neu la nguoi dung moi dang nhap lan dau tien, yeu cau doi mat khau
-        cout << "Ban can doi mat khau truoc khi su dung he thong!" << endl;
+        console.important("THONG BAO: Ban can doi mat khau truoc khi su dung he thong!");
         bool result = currentUser->changePassword();
         if(result == true) {
           // Cap nhat lai bien isAutoGenPassword
@@ -77,6 +77,8 @@ void LoginMenu::handleLogin() {
           console.notify("Thay doi mat khau that bai!");
         }
       }
+      string text = "Xin chao " + currentUser->getFullName() + " den voi he thong!";
+      console.important(text);
       app.setCurrentMenu("UserMenu"); // Chuyen sang menu user
     }      
   }
