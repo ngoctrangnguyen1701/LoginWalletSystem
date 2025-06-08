@@ -15,6 +15,8 @@ class LoginMenu : public Menu
 		void display() override;
 		void handleInput() override;
 		void handleLogin();
+		void handleSignup();
+		bool checkIsExistUsername(string username);
 };
 
 #endif
