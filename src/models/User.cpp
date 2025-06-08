@@ -118,18 +118,38 @@ User* User::authenticate(string username, string password){
   User* user = userMgr.findUserFromFile(username, password);  
   return user;
 };
-	
-bool User::changePassword(string oldPassword, string newPassword){
-  //TODO
-  bool reuslt = false;
-  return reuslt;
-};
-	
-// bool User::updateInfo(UserInfo newInfo){
-//   //TODO
-//   bool reuslt = false;
-//   return reuslt;
-// };
+
+bool User::changePassword(){
+  string newPassword;
+  string newPasswordHash;
+  bool isDuplicatePassword;
+  bool isValidPassword;
+  do
+  {
+    isDuplicatePassword = false;
+    isValidPassword = false;
+    cout << "> Nhap mat khau moi: ";
+    getline(cin, newPassword);
+    newPasswordHash = HashUtils::generateHash(newPassword, passwordSalt);
+    if(newPasswordHash == passwordHash) {
+      console.notify("Mat khau moi trung voi mat khau hien tai!");
+      isDuplicatePassword = true;
+    }
+
+    if(isDuplicatePassword == false) {
+      isValidPassword = checkIsValidPassword(newPassword);
+    }
+  } while (isDuplicatePassword == true || isValidPassword == false);
+
+  bool resultChangePassword = changePasswordHash(newPasswordHash);
+  return resultChangePassword;
+}
+
+bool User::changePasswordHash(string newPasswordHash){
+  UserManager userMgr;
+  bool resultUpdate = userMgr.updateUser(userId, "", "", newPasswordHash);
+  return resultUpdate;
+}
 	
 bool User::requirePasswordChange(){
   //TODO
@@ -210,13 +230,3 @@ bool User::checkIsValidPassword(string password) {
 
   return true;
 };
-
-bool User::checkIsDuplicatePassword(string newPassword) {
-  //so sanh 2 ma bam cua mat khau moi va mat khau hien tai
-  string newPasswordHash = HashUtils::generateHash(newPassword, this->passwordSalt);
-  if(newPasswordHash == this->passwordHash) {
-    console.notify("Mat khau moi trung voi mat khau hien tai");
-    return true;
-  }
-  return false;
-}

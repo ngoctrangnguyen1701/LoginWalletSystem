@@ -5,13 +5,15 @@
 #include "Menu.h"
 class UserMenu : public Menu
 {
-	private:		
+	private:
+		bool isReloadLogin = false; //load lai menu dang nhap neu nguoi dung yeu cau doi mat khau
 	protected:
 	public:
 		UserMenu();
 		void display() override;
 		void handleInput() override;
 		void handleChangeInfo();
+		void handleChangePassword();
 };
 
 #endif
