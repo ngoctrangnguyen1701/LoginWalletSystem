@@ -4,24 +4,22 @@
 //Contructors
 //goi truc tiep contructor cua lop Menu
 AdminMenu::AdminMenu() : Menu("Menu danh cho Admin") {
-  options = vector<string>(8); //Tao vector co 9 phan tu
+  options = vector<string>(7);
   options[0] = "1. Doc danh sach nguoi dung";
-  options[1] = "2. Tim kiem nguoi dung";
-  options[2] = "3. Them nguoi dung";
-  options[3] = "4. Thay doi thong tin nguoi dung";
+  // options[1] = "2. Tim kiem nguoi dung";
+  options[1] = "2. Them nguoi dung";
+  options[2] = "3. Thay doi thong tin nguoi dung";
   // options[4] = "5. Xoa nguoi dung";
-  options[4] = "5. Doc danh sach vi";
-  options[5] = "6. Vi tong";
-  options[6] = "7. Sao luu va khoi phuc du lieu";
-  options[7] = "8. Dang xuat";
+  options[3] = "4. Doc danh sach vi";
+  options[4] = "5. Vi tong";
+  options[5] = "6. Sao luu va khoi phuc du lieu";
+  options[6] = "7. Dang xuat";
 }
 
 //Methods
 void AdminMenu::display() {
   cout << endl;
-  cout << "+--------------------------------+" << endl;
-  cout << "       " << title << endl;
-  cout << "+--------------------------------+" << endl;
+  printHeader();
   
   for (int i = 0; i < options.size(); i++) {
     cout << "   " << options[i] << endl;
@@ -37,25 +35,25 @@ void AdminMenu::handleInput() {
   Application& app = Application::getInstance();
   if (selectedOption == "1") {
     handleReadUserList();
-  } else if (selectedOption == "2") {
-    //TODO: logic for searching user
-    cout << "Processing searching user..." << endl;
+  // } else if (selectedOption == "2") {
+  //   //TODO: logic for searching user
+  //   cout << "Processing searching user..." << endl;
   }
-  else if (selectedOption == "3") {
+  else if (selectedOption == "2") {
     handleCreateUser();
-  } else if (selectedOption == "4") {
+  } else if (selectedOption == "3") {
     handleUpdateUser();
   // } else if (selectedOption == "5") {
   //   handleDeleteUser();
-  } else if (selectedOption == "5") {
+  } else if (selectedOption == "4") {
     handleReadWalletList();
-  } else if (selectedOption == "6") {
+  } else if (selectedOption == "5") {
     app.setCurrentMenu("MasterWalletMenu"); // Chuyen sang menu cua vi tong
     return;
-  } else if (selectedOption == "7") {
+  } else if (selectedOption == "6") {
     app.setCurrentMenu("BackupRestoreMenu"); // Chuyen sang menu sao luu va khoi phuc du lieu
     return;
-  } else if (selectedOption == "8") {
+  } else if (selectedOption == "7") {
     handleBeforeLogout();
     app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
     return;
@@ -131,8 +129,6 @@ void AdminMenu::handleUpdateUser() {
   cout << "> Nhap ID nguoi dung muon thay doi: ";
   cin >> userId;
   cin.ignore();
-  //TODO
-  //check userId co ton tai truoc khi lua chon thay doi thong tin
   
   cout << endl;
   int choice_2 = 0;

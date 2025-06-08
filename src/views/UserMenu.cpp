@@ -21,9 +21,7 @@ UserMenu::UserMenu() : Menu("Menu cho nguoi dung") {
 //Methods
 void UserMenu::display() {
   cout << endl;
-  cout << "+--------------------------------+" << endl;
-  cout << "       " << title << endl;
-  cout << "+--------------------------------+" << endl;
+  printHeader();
   
   for (int i = 0; i < options.size(); i++) {
     cout << "   " << options[i] << endl;

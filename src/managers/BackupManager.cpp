@@ -250,10 +250,7 @@ vector<string> BackupManager::displayList() {
   } else {
     cout << "\n===== Danh sach sao luu =====\n";
     for (int i = 0; i < backupList.size(); i++) {      
-      cout << i + 1 << ". "<< backupList[i] << "    ";
-      if(i != 0 && i % 5 == 0) {
-        cout << endl; // In mot dong moi sau moi 5 phan tu
-      }
+      cout << i + 1 << ". "<< backupList[i] << endl;
     }
     cout << endl;
     cout << "Tong so ban sao luu: " << backupList.size() << endl;

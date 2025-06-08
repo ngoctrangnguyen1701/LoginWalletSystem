@@ -25,8 +25,9 @@ class Menu
 		//Destructor
 		virtual ~Menu(); 
 
-		void setIsRunning(bool x);			
-		bool getIsRunning();			
+		void setIsRunning(bool x);
+		bool getIsRunning();
+		void printHeader();
 
 		//Lop thuan ao, bat buoc lop con phai co override
 		virtual void display() = 0;

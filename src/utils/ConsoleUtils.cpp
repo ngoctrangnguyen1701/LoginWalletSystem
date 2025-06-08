@@ -21,7 +21,12 @@ void ConsoleUtils::log(string text) {
 };
 
 void ConsoleUtils::important(string text) {
-  cout << "############################" << endl;
+  int length = text.length();
+  string border = "";
+  for(int i = 0; i < length; i++) {
+    border += "#";
+  }
+  cout << border << endl;
   cout << text << endl;
-  cout << "############################" << endl;  
+  cout << border << endl;
 };

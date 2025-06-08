@@ -13,9 +13,7 @@ BackupRestoreMenu::BackupRestoreMenu() : Menu("Menu sao luu va khoi phuc du lieu
 //Methods
 void BackupRestoreMenu::display() {
   cout << endl;
-  cout << "+-------------------------------------+" << endl;
-  cout << "   " << title << endl;
-  cout << "+-------------------------------------+" << endl;
+  printHeader();
   
   for (int i = 0; i < options.size(); i++) {
     cout << "   " << options[i] << endl;
@@ -66,8 +64,7 @@ void BackupRestoreMenu::handleRestoreData() {
   char choice;
   do
   {
-    cout << "################################" << endl;
-    cout << "CANH BAO: Khoi phuc du lieu co the lam mat du lieu hien tai" << endl;
+    console.important("CANH BAO: Khoi phuc du lieu co the lam mat du lieu hien tai!");
     cout << "> Xac nhan khoi phuc phien ban '" << backupVersion << "'? (y/n): ";
     cin >> choice;
     cin.ignore();

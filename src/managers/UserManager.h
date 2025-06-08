@@ -36,6 +36,7 @@ class UserManager
 		bool createUser(User newUser);
     bool getList();
 		vector<User> getList_2();
+		void displayList();
     bool updateUser(int userId, string fullName = "", string email = "", string passwordHash = "", string isAutoGenPassword = "");
 		bool deleteUser(int userId); // -> then deleteWallet;
 		User* findUserFromFile(string username, string password);

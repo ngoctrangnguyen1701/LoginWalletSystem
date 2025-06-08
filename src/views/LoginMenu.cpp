@@ -22,9 +22,7 @@ LoginMenu::LoginMenu() : Menu("Man hinh dang nhap") {
 //Methods
 void LoginMenu::display() {
   cout << endl;
-  cout << "+--------------------------------+" << endl;
-  cout << "       " << title << endl;
-  cout << "+--------------------------------+" << endl;
+  printHeader();  
   
   for (int i = 0; i < options.size(); i++) {
     cout << "   " << options[i] << endl;
@@ -75,6 +73,7 @@ void LoginMenu::handleLogin() {
           console.notify("Thay doi mat khau that bai!");
         }
       }
+      cout << endl;
       string text = "Xin chao " + currentUser->getFullName() + " den voi he thong!";
       console.important(text);
       app.setCurrentMenu("UserMenu"); // Chuyen sang menu user
