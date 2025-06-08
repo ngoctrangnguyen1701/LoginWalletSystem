@@ -74,7 +74,7 @@ void LoginMenu::handleLogin() {
         }
       }
       cout << endl;
-      string text = "Xin chao " + currentUser->getFullName() + " den voi he thong!";
+      string text = "     Xin chao " + currentUser->getFullName() + " den voi he thong!     ";
       console.important(text);
       app.setCurrentMenu("UserMenu"); // Chuyen sang menu user
     }      

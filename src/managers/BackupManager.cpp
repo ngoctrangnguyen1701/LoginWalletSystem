@@ -7,10 +7,6 @@
 
 
 //Methods
-string BackupManager::generateBackupFileName(){
-  return "";
-}
-
 string BackupManager::generateBackupFolderName() {
   time_t now = time(NULL);
   tm* local_time = localtime(&now);

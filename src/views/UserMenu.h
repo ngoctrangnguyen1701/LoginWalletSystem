@@ -3,6 +3,8 @@
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
 #include "Menu.h"
+#include "../managers/OTPManager.h"
+
 class UserMenu : public Menu
 {
 	private:

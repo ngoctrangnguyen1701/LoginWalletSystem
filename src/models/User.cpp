@@ -141,6 +141,13 @@ bool User::changePassword(){
     }
   } while (isDuplicatePassword == true || isValidPassword == false);
 
+  //Xac thuc OTP truoc khi cap nhat thong tin
+  OTPManager otpMgr;
+  bool isValidOTP = otpMgr.verifyOTP(userId, "changePassword");
+  if(isValidOTP == false) {    
+    return false;
+  }
+
   bool resultChangePassword = changePasswordHash(newPasswordHash);
   return resultChangePassword;
 }

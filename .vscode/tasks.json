@@ -19,7 +19,7 @@
         "managers/UserManager.cpp",
         "managers/WalletManager.cpp",
         "managers/TransactionManager.cpp",
-        // "managers/OTPManager.cpp",
+        "managers/OTPManager.cpp",
         "managers/BackupManager.cpp",
         "utils/FileUtils.cpp",
         "utils/ConsoleUtils.cpp",
