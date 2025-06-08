@@ -40,9 +40,7 @@ void LoginMenu::handleInput() {
   if (selectedOption == "1") {
     handleLogin();
   } else if (selectedOption == "2") {
-    cout << "Processing signup..." << endl;
-    //TODO
-    //logic signup...
+    handleSignup();
   } else if (selectedOption == "3") {
     isRunning = false;
   } else {
@@ -82,4 +80,60 @@ void LoginMenu::handleLogin() {
       app.setCurrentMenu("UserMenu"); // Chuyen sang menu user
     }      
   }
+}
+
+void LoginMenu::handleSignup() {
+  //Nhap thon tin user tu ban phim
+  string username;
+  string password;
+  string fullName;
+  string email;
+  bool isAdmin = false;
+  bool isAutoGenPassword = false;
+  cout << endl;
+  cout << "===== Thong tin dang ky =====" << endl;
+  bool isExistUsername = false;
+  do
+  {
+    cout << "> Ten dang nhap: ";
+    getline(cin, username);
+    isExistUsername = checkIsExistUsername(username);
+  } while (isExistUsername == true); //Kiem tra ten dang nhap da ton tai hay chua
+  
+  cout << "> Ho va ten: ";
+  getline(cin, fullName);
+  cout << "> Email: ";
+  getline(cin, email);
+
+  User temp;
+  bool isValidPassword = false;
+  do
+  {
+    cout << "> Mat khau: ";
+    getline(cin, password);
+    isValidPassword = temp.checkIsValidPassword(password);    
+  } while (isValidPassword == false); //Kiem tra mat khau hop le
+
+  User newUser(username, password, fullName, email, isAdmin, isAutoGenPassword);
+  Application& app = Application::getInstance();
+  bool resultCreate = app.getUserMgr().createUser(newUser);
+  if(resultCreate == true) {
+    console.notify("Dang ky thanh cong!");
+  } else {
+    console.notify("Dang ky that bai!");
+  }
+  app.setCurrentMenu("LoginMenu"); // Chuyen sang menu dang nhap
+}
+
+
+bool LoginMenu::checkIsExistUsername(string username) {
+  Application& app = Application::getInstance();
+  vector<User> userList = app.getUserMgr().getList_2();
+  for(int i = 0; i < userList.size(); i++) {
+    if(userList[i].getUsername() == username) {
+      console.notify("Ten dang nhap da ton tai, vui long chon ten khac!");
+      return true;
+    }
+  }
+  return false;
 }
