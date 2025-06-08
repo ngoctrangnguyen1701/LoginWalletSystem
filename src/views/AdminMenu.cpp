@@ -170,9 +170,9 @@ void AdminMenu::handleUpdateUser() {
 
   bool resultUpdate = app.getUserMgr().updateUser(userId, fullName, email);
   if(resultUpdate == true) {
-    console.notify("Cap nhat user thanh cong!");
+    console.notify("Thay doi thong tin nguoi dung thanh cong!");
   } else {
-    console.notify("Cap nhat user that bai!");
+    console.notify("Thay doi thong tin nguoi dung that bai!");
   }
 }
 

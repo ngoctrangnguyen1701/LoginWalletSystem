@@ -19,17 +19,21 @@ bool UserManager::createUser(User newUser){
   if(resultGetList == false) {
     return false;
   }
-  //TODO
-  //Kiem tra username da duoc su dung hay chua
 
-
-  //kiem tra xem user_id da ton tai
+  //kiem tra xem user_id  va username da ton tai
   int userId = nextUserId;
   User* userExist = findUserById(userId); 
   if(userExist != NULL) {
-    string text = "Da ton tai userId '" + to_string(userId) + " '";
-    console.notify(text);
-    return false;
+    if(userExist->getUserId() == userId) {
+      string text = "Da ton tai userId '" + to_string(userId) + " '";
+      console.notify(text);
+      return false;
+    }
+    if(userExist->getUsername() == newUser.getUsername()) {
+      string text = "Da ton tai ten dang nhap '" + newUser.getUsername() + " '";
+      console.notify(text);
+      return false;
+    }
   }
   newUser.setUserId(userId); //gan id cho user
   nextUserId++; //tang nexUserId len 1
@@ -109,7 +113,7 @@ void UserManager::displayList() {
   cout << "Tong so nguoi dung: " << userList.size() << endl;
 }
 
-bool UserManager::updateUser(int userId, string fullName, string email){
+bool UserManager::updateUser(int userId, string fullName, string email, string passwordHash, string isAutoGenPassword) {
   //Lay danh sach user va nextUserId moi nhat
   bool resultGetList = getList();
   if(resultGetList == false) {
@@ -130,7 +134,13 @@ bool UserManager::updateUser(int userId, string fullName, string email){
   if(email != "") {
     userExist->setEmail(email);
   }
-  
+  if(passwordHash != "") {
+    userExist->setPasswordHash(passwordHash);
+  }
+  if(isAutoGenPassword != "") {
+    bool isAutoGen = isAutoGenPassword == "true" ? true : false;
+    userExist->setIsAutoGenPassword(isAutoGen);
+  }
 
   //Save userList vao file, do file van ban thao tac ghi de 1 dong se de bi pha cau truc cua file trong truong hop do dai chuoi thay doi
   //nen phai ghi lai toan bo file
@@ -172,9 +182,6 @@ bool UserManager::deleteUser(int userId){
 }
 
 User* UserManager::findUserFromFile(string username, string password){
-  //TODO
-  //password su dung ham hashPassword de ra chuoi ma hoa
-
   try {   
     // Mo file de doc
     string fullPath = DATA_DIRECTORY + filename + ".csv"; //lay duong dan file
@@ -232,7 +239,7 @@ User* UserManager::findUserById(int userId){
   return NULL;
 }
 
-User* UserManager::findUserByIdFromFile(int userId) {
+User* UserManager::findUserByConditionFromFile(string key, string value) {
   try {   
     // Mo file de doc
     string fullPath = DATA_DIRECTORY + filename + ".csv"; //lay duong dan file
@@ -248,9 +255,18 @@ User* UserManager::findUserByIdFromFile(int userId) {
     while (getline(file, line)) {
       stringstream ss(line);          
       result = readItemFromFile(ss);
-      if(result.getUserId() == userId) {
-        isExist = true;
-        break;
+      if(key == "userId") {
+        int userId = stoi(value);
+        if(result.getUserId() == userId) {
+          isExist = true;
+          break;
+        }
+      }
+      else if(key == "username") {
+        if(result.getUsername() == value) {
+          isExist = true;
+          break;
+        }
       }
     }
     file.close();
@@ -272,16 +288,6 @@ User* UserManager::findUserByIdFromFile(int userId) {
     return NULL;
   }
 }
-
-// string UserManager::generateRandomPassword(){
-//   //TODO
-//   return "";
-// }
-
-// string UserManager::hashPassword(string plainPassword){
-//   //TODO
-//   return "";
-// }
 
 bool UserManager::createSampleData() {
   vector<User> userList;

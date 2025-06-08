@@ -52,11 +52,32 @@ void LoginMenu::handleInput() {
 void LoginMenu::handleLogin() {  
   Application& app = Application::getInstance();
   app.login();
-  if(app.getCurrentUser() != NULL) {
-    if(app.getCurrentUser()->getIsAdmin() == true) {
+  User* currentUser = app.getCurrentUser(); // Lay nguoi dung hien tai dang nhap thanh cong
+  if(currentUser != NULL) {
+    if(currentUser->getIsAdmin() == true) {
       app.setCurrentMenu("AdminMenu"); // Chuyen sang menu admin
     } else {
-      app.setCurrentMenu("UserMenu"); // Chuyen sang menu nguoi dung
+      if(currentUser->getIsAutoGenPassword() == true) {
+        // Neu la nguoi dung moi dang nhap lan dau tien, yeu cau doi mat khau
+        console.important("THONG BAO: Ban can doi mat khau truoc khi su dung he thong!");
+        bool result = currentUser->changePassword();
+        if(result == true) {
+          // Cap nhat lai bien isAutoGenPassword
+          result = app.getUserMgr().updateUser(currentUser->getUserId(), "", "", "", "false");
+          if(result == true) {
+            console.notify("Thay doi mat khau thanh cong! Vui long dang nhap lai!");
+            app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
+            return;
+          } else {
+            console.notify("Cap nhat mat khau that bai!");
+          }
+        } else {
+          console.notify("Thay doi mat khau that bai!");
+        }
+      }
+      string text = "Xin chao " + currentUser->getFullName() + " den voi he thong!";
+      console.important(text);
+      app.setCurrentMenu("UserMenu"); // Chuyen sang menu user
     }      
   }
 }
