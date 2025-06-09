@@ -16,6 +16,8 @@ class ConsoleUtils {
     void notify(string text);
     // In log binh thuong
     void log(string text);
+    // In thong tin quan trong
+    void important(string text);
 };
 
 #endif

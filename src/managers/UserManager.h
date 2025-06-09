@@ -34,20 +34,17 @@ class UserManager
 
 		//Methods
 		bool createUser(User newUser);
-		bool getList(); //-> page size = 10
-		void displayList(); //-> page size = 10
-		bool updateUser(int userId, string fullName, string email);
+    bool getList();
+		vector<User> getList_2();
+		void displayList();
+    bool updateUser(int userId, string fullName = "", string email = "", string passwordHash = "", string isAutoGenPassword = "");
 		bool deleteUser(int userId); // -> then deleteWallet;
 		User* findUserFromFile(string username, string password);
 		User* findUserById(int userId);
-		User* findUserByIdFromFile(int userId);
-		// string generateRandomPassword();
-		// string hashPassword(string plainPassword);
-		// bool saveUserToFile(User newUser);		
+		User* findUserByConditionFromFile(string key, string value);
 		bool createSampleData();
 		User readItemFromFile(stringstream& ss); //Doc user tu file
 		void writeItemToFile(fstream& file, User item); //Ghi user vao file
-		// bool loadUsersFromFile(string filename);
 		bool backupUserData();
 		bool restoreUserData();
 

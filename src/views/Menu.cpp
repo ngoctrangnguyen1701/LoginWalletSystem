@@ -26,3 +26,14 @@ void Menu::setIsRunning(bool x){
 bool Menu::getIsRunning() {
   return isRunning;
 };
+void Menu::printHeader() {
+  int length = title.length();
+  string border = "+-----";
+  for(int i = 0; i < length; i++) {
+    border += "-";
+  }
+  border += "-----+";
+  cout << border << endl;
+  cout << "      " << title << "      " << endl;
+  cout << border << endl;
+}

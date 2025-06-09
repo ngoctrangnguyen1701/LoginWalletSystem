@@ -57,7 +57,7 @@ void WalletManager::displayList() {
     //find username by userId
     string username;
     UserManager userMgr;
-    User* user = userMgr.findUserByIdFromFile(item.getUserId());
+    User* user = userMgr.findUserByConditionFromFile("userId", to_string(item.getUserId()));
     if(user == NULL) {
       console.notify("Khong the doc toan bo danh sach vi");
       return;

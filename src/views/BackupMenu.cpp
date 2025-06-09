@@ -17,9 +17,7 @@ BackupMenu::BackupMenu() : Menu("Menu sao luu du lieu") {
 //Methods
 void BackupMenu::display() {
   cout << endl;
-  cout << "+--------------------------------+" << endl;
-  cout << "       " << title << endl;
-  cout << "+--------------------------------+" << endl;
+  printHeader();
   
   for (int i = 0; i < options.size(); i++) {
     cout << "   " << options[i] << endl;

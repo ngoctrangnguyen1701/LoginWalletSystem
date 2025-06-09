@@ -36,8 +36,6 @@ int main() {
   Application& app = Application::getInstance();
   app.initialize();
   app.run();
-
-  cin.get(); //ngung chuong trinh nhung khong thoat man hinh terminal
-
+  // cin.get(); //ngung chuong trinh nhung khong thoat man hinh terminal
   return 0;
 }
