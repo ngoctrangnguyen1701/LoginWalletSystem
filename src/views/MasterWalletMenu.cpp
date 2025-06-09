@@ -10,7 +10,7 @@
 
 //Contructors
 //goi truc tiep contructor cua lop Menu
-MasterWalletMenu::MasterWalletMenu() : Menu("Menu thao tac vi tien") {
+MasterWalletMenu::MasterWalletMenu() : Menu("Menu thao tac vi tong") {
   options = vector<string>(5); //Tao vector co 5 phan tu
   options[0] = "1. Nap";
   options[1] = "2. Rut";    
@@ -37,8 +37,7 @@ void MasterWalletMenu::handleInput() {
 
   Application& app = Application::getInstance();
   if (selectedOption == "1") {
-    cout << "Processing deposit..." << endl;      
-    //TODO
+    handleDeposit();
   } else if (selectedOption == "2") {
     cout << "Processing withdraw..." << endl;
     //TODO
@@ -64,5 +63,44 @@ void MasterWalletMenu::handleInput() {
     cin >> choice;
     cin.ignore();
   } while (choice != 'y');    
-  app.setCurrentMenu("AdminMenu"); // Chuyen sang menu admin
+  app.setCurrentMenu("MasterWalletMenu"); // Chuyen sang menu vi tong
+}
+
+void MasterWalletMenu::handleDeposit() {
+  //Tinh nang nap diem vao vi tong
+  console.task("Nap diem vao vi tong");
+  int amount;
+  do
+  {
+    cout << "> Nhap so diem can nap: ";
+    cin >> amount;
+    cin.ignore();
+    if (amount <= 0) {
+      console.notify("So diem nap phai lon hon 0!");
+    }
+  } while (amount <= 0);
+
+  char choice;
+  do
+  {    
+    cout << "> Xac nhan NAP '" << amount << "' diem vao vi tong? (y/n): ";
+    cin >> choice;
+    cin.ignore();
+  } while (choice != 'y' && choice != 'n');
+
+  if(choice == 'n') {
+    return;
+  }
+
+  //Cap nhat du lieu vi
+  Application& app = Application::getInstance();
+  bool result = app.getWalletMgr().updateBalance(1, amount, "increment"); //Vi tong co id mac dinh = 1
+  if(result == false) {
+    console.notify("Nap diem that bai!");
+    return;
+  }  
+  console.notify("Nap diem thanh cong!");
+  
+  //Tao giao dich nap diem vao vi tong
+  //TODO
 }

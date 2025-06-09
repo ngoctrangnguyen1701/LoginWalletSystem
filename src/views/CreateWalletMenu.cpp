@@ -28,8 +28,6 @@ void CreateWalletMenu::handleInput() {
   Application& app = Application::getInstance();
   if (selectedOption == "1") {
     handleCreateWallet();
-    // cout << "Processing create..." << endl;      
-    //TODO
   } else if (selectedOption == "2") {
     app.setCurrentMenu("UserMenu"); // Chuyen sang menu nguoi dung thong thuong
     return;
@@ -69,7 +67,7 @@ void CreateWalletMenu::handleCreateWallet() {
 
   bool result = walletMgr.createWallet(newWallet);
   if (result == true) {
-    console.notify("Tao vi thanh cong!");    
+    console.notify("Tao vi thanh cong!");
   } else {
     console.notify("Tao vi that bai!");
   }

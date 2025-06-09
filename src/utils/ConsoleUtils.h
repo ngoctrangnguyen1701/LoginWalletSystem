@@ -18,6 +18,8 @@ class ConsoleUtils {
     void log(string text);
     // In thong tin quan trong
     void important(string text);
+    //In thao tac dang thuc hien
+    void task(string text);
 };
 
 #endif

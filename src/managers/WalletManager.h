@@ -35,7 +35,8 @@ class WalletManager
 		bool createWallet(Wallet newWallet);
 		bool getList();
 		void displayList();
-		// bool updateWallet(int walletId, string fullName, string email);
+		bool updateBalance(int walletId, int amount, string type); //type la 'increment' hoac la 'decrement'
+		// bool updateWallet(int walletId, int balance);
 		// bool deleteWallet(int walletId); // -> then deleteTransaction;
 		// Wallet* findWalletFromFile(string walletname, string password);
 		Wallet* findWalletById(int walletId);

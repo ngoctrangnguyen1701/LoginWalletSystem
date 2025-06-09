@@ -19,6 +19,7 @@ class Wallet
 
 		//Setters
 		void setWalletId(int walletId);
+		void setBalance(int walletId);
 
 		//Getters
 		int getWalletId();
@@ -27,6 +28,7 @@ class Wallet
 		bool getIsMaster();
 
 		//Methods
+		
 		// Transaction* transfer(Wallet* destination, int amount);
 };
 

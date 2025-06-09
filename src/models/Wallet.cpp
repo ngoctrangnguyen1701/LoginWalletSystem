@@ -18,6 +18,9 @@ Wallet::Wallet(int userId, int balance, bool isMaster){
 void Wallet::setWalletId(int walletId) {
   this->walletId = walletId;
 }
+void Wallet::setBalance(int balance) {
+  this->balance = balance;
+}
 
 //Getters
 int Wallet::getWalletId() {

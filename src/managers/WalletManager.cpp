@@ -123,6 +123,63 @@ void WalletManager::displayList() {
   cout << "Tong so vi: " << walletList.size() << endl;
 }
 
+bool WalletManager::updateBalance(int walletId, int amount, string type) {
+  //Lay danh sach wallet va nextWalletId moi nhat
+  bool resultGetList = getList();
+  if(resultGetList == false) {
+    return false;
+  }
+
+  //kiem tra xem wallet_id co ton tai
+  Wallet* walletExist = findWalletById(walletId);
+  if(walletExist == NULL) {
+    string text = "Khong ton tai walletId '" + to_string(walletId) + "'";
+    console.notify(text);
+    return false;
+  }
+  int balance;
+  if(type == "increment") {
+    balance = walletExist->getBalance() + amount;
+  }
+  else if(type == "decrement") {
+    balance = walletExist->getBalance() - amount;
+  }
+
+  walletExist->setBalance(balance);
+
+  //Save walletList vao file, do file van ban thao tac ghi de 1 dong se de bi pha cau truc cua file trong truong hop do dai chuoi thay doi
+  //nen phai ghi lai toan bo file
+  FileUtils fileUtils(filename, filenameNextId);
+  bool resultSave = fileUtils.saveDataByList(*this, walletList, nextWalletId);
+  // delete walletExist; //giai phong bo nho
+  return resultSave;
+}
+
+// bool WalletManager::updateWallet(int walletId, int balance) {
+//   //Lay danh sach wallet va nextWalletId moi nhat
+//   bool resultGetList = getList();
+//   if(resultGetList == false) {
+//     return false;
+//   }
+
+//   //kiem tra xem wallet_id co ton tai
+//   Wallet* walletExist = findWalletById(walletId);
+//   if(walletExist == NULL) {
+//     string text = "Khong ton tai walletId '" + to_string(walletId) + "'";
+//     console.notify(text);
+//     return false;
+//   }
+
+//   walletExist->setBalance(balance);
+
+//   //Save walletList vao file, do file van ban thao tac ghi de 1 dong se de bi pha cau truc cua file trong truong hop do dai chuoi thay doi
+//   //nen phai ghi lai toan bo file
+//   FileUtils fileUtils(filename, filenameNextId);
+//   bool resultSave = fileUtils.saveDataByList(*this, walletList, nextWalletId);
+//   // delete walletExist; //giai phong bo nho
+//   return resultSave;
+// }
+
 Wallet* WalletManager::findWalletById(int walletId) {
   int size = walletList.size();
   for (int i = 0; i < size; i++) {
