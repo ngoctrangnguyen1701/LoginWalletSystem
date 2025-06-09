@@ -124,6 +124,7 @@ void WalletManager::displayList() {
 }
 
 bool WalletManager::updateBalance(int walletId, int amount, string type) {
+  //type la 'increment' hoac la 'decrement'
   //Lay danh sach wallet va nextWalletId moi nhat
   bool resultGetList = getList();
   if(resultGetList == false) {
@@ -142,7 +143,12 @@ bool WalletManager::updateBalance(int walletId, int amount, string type) {
     balance = walletExist->getBalance() + amount;
   }
   else if(type == "decrement") {
+    //Doi voi thao tac giam so du phai kiem tra so tien sau khi tru khong duoc nho hon 0
     balance = walletExist->getBalance() - amount;
+    if(balance < 0) {
+      console.notify("So du hien tai khong du!");
+      return false;
+    }
   }
 
   walletExist->setBalance(balance);

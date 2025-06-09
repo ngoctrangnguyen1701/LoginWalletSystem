@@ -39,8 +39,7 @@ void MasterWalletMenu::handleInput() {
   if (selectedOption == "1") {
     handleDeposit();
   } else if (selectedOption == "2") {
-    cout << "Processing withdraw..." << endl;
-    //TODO
+    handleWithdraw();
   } else if (selectedOption == "3") {
     cout << "Processing check balance..." << endl;
     //TODO
@@ -102,5 +101,44 @@ void MasterWalletMenu::handleDeposit() {
   console.notify("Nap diem thanh cong!");
   
   //Tao giao dich nap diem vao vi tong
+  //TODO
+}
+
+void MasterWalletMenu::handleWithdraw() {
+  //Tinh nang nap diem vao vi tong
+  console.task("Rut diem o vi tong");
+  int amount;
+  do
+  {
+    cout << "> Nhap so diem can rut: ";
+    cin >> amount;
+    cin.ignore();
+    if (amount <= 0) {
+      console.notify("So diem rut phai lon hon 0!");
+    }
+  } while (amount <= 0);
+
+  char choice;
+  do
+  {    
+    cout << "> Xac nhan RUT '" << amount << "' diem o vi tong? (y/n): ";
+    cin >> choice;
+    cin.ignore();
+  } while (choice != 'y' && choice != 'n');
+
+  if(choice == 'n') {
+    return;
+  }
+
+  //Cap nhat du lieu vi
+  Application& app = Application::getInstance();
+  bool result = app.getWalletMgr().updateBalance(1, amount, "decrement"); //Vi tong co id mac dinh = 1
+  if(result == false) {
+    console.notify("Rut diem that bai!");
+    return;
+  }  
+  console.notify("Rut diem thanh cong!");
+  
+  //Tao giao dich rut diem o vi tong
   //TODO
 }
