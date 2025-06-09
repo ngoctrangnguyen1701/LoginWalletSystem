@@ -12,9 +12,7 @@ CreateWalletMenu::CreateWalletMenu() : Menu("Menu thao tac vi tien") {
 //Methods
 void CreateWalletMenu::display() {
   cout << endl;
-  cout << "+--------------------------------+" << endl;
-  cout << "       " << title << endl;
-  cout << "+--------------------------------+" << endl;
+  printHeader();
   
   for (int i = 0; i < options.size(); i++) {
     cout << "   " << options[i] << endl;
@@ -32,10 +30,11 @@ void CreateWalletMenu::handleInput() {
     cout << "Processing create..." << endl;      
     //TODO
   } else if (selectedOption == "2") {
-    //TODO // Chuyen sang menu nguoi dung thong thuong
+    app.setCurrentMenu("UserMenu"); // Chuyen sang menu nguoi dung thong thuong
     return;
   } else {
     cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    return;
   }
   
   // cout << endl;

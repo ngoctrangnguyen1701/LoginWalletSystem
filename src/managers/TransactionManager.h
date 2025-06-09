@@ -37,6 +37,7 @@ class TransactionManager
 		void writeItemToFile(fstream& file, Transaction& item); //Ghi ransaction vao file
 
 		friend class Application;
+		friend class BackupManager;
 };
 
 #endif

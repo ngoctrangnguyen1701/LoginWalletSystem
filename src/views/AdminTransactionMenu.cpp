@@ -12,9 +12,7 @@ AdminTransactionMenu::AdminTransactionMenu() : Menu("Menu lich su giao dich cho 
 //Methods
 void AdminTransactionMenu::display() {
   cout << endl;
-  cout << "+------------------------------------------+" << endl;
-  cout << "       " << title << endl;
-  cout << "+------------------------------------------+" << endl;
+  printHeader();
   
   for (int i = 0; i < options.size(); i++) {
     cout << "   " << options[i] << endl;
@@ -35,6 +33,7 @@ void AdminTransactionMenu::handleInput() {
     return;
   } else {
     cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    return;
   }
   
   // cout << endl;

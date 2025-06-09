@@ -11,6 +11,7 @@
 //include file header noi bo khac
 #include "../utils/HashUtils.h"
 #include "../utils/ConsoleUtils.h"
+#include "../managers/OTPManager.h"
 
 using namespace std;
 
@@ -33,6 +34,7 @@ class User
 		bool isAutoGenPassword;
 		// DateTime createdAt; //TODO
 		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
+		OTPManager otpMgr; // Khai bao doi tuong OTPManager
 	protected:
 	public:
 		// Constructors
@@ -67,7 +69,8 @@ class User
 
 		//Methods
 		User* authenticate(string username, string password);
-		bool changePassword(string oldPassword, string newPassword);
+		bool changePassword();
+		bool changePasswordHash(string newPasswordHash);
 		// bool updateInfo(UserInfo newInfo); //TODO
 		bool requirePasswordChange(); // voi mat khau tu sinh khi lan dau tien dang nhap
 		string autoGeneratePassword(); //Ham tao mat khau tu sinh
