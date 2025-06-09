@@ -32,19 +32,20 @@ class WalletManager
 		~WalletManager();
 
 		//Methods
-		// bool createWallet(Wallet newWallet);
+		bool createWallet(Wallet newWallet);
 		bool getList();
 		void displayList();
 		// bool updateWallet(int walletId, string fullName, string email);
 		// bool deleteWallet(int walletId); // -> then deleteTransaction;
 		// Wallet* findWalletFromFile(string walletname, string password);
-		// Wallet* findWalletById(int walletId);
+		Wallet* findWalletById(int walletId);
 		// Wallet* findWalletByIdFromFile(int walletId);
+		Wallet* findWalletByUserId(int userId);
 		Wallet* findWalletByUserIdFromFile(int userId);
 		// bool saveWalletToFile(Wallet newWallet);		
 		bool createSampleData();
 		Wallet readItemFromFile(stringstream& ss); //Doc wallet tu file
-		void writeItemToFile(fstream& file, Wallet& item); //Ghi wallet vao file
+		void writeItemToFile(fstream& file, Wallet item); //Ghi wallet vao file
 		// bool loadWalletsFromFile(string filename);
 		// bool backupWalletData();
 		// bool restoreWalletData();

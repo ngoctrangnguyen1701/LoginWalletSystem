@@ -17,6 +17,7 @@ class CreateWalletMenu : public Menu
 		CreateWalletMenu();
 		void display() override;
 		void handleInput() override;
+		void handleCreateWallet();
 };
 
 #endif

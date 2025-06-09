@@ -16,6 +16,49 @@ WalletManager::~WalletManager(){
 }
 
 //Methods
+bool WalletManager::createWallet(Wallet newWallet){
+  //Lay danh sach wallet va nextWalletId moi nhat
+  bool resultGetList = getList();
+  if(resultGetList == false) {
+    return false;
+  }
+
+  //kiem tra xem wallet_id va user_id da ton tai, moi user_id chi duoc tao duy nhat 1 vi
+  int walletId = nextWalletId;
+  Wallet* walletExist = findWalletById(walletId); 
+  if(walletExist != NULL) {
+    if(walletExist->getWalletId() == walletId) {
+      string text = "Da ton tai walletId '" + to_string(walletId) + "'";
+      console.notify(text);
+      return false;
+    }
+  }
+
+  //kiem tra xem user_id co ton tai trong danh sach user khong
+  int userId = newWallet.getUserId();
+  Wallet* userWallet = findWalletByUserId(userId);
+  if(userWallet != NULL) {
+    string text = "Da ton tai vi cua userId '" + to_string(userId) + "'";
+    console.notify(text);
+    return false;
+  }
+
+  newWallet.setWalletId(nextWalletId); //gan id cho wallet
+  nextWalletId++; //tang nextWalletId len 1
+
+  FileUtils fileUtils(filename, filenameNextId); 
+  bool resultSave = fileUtils.appendItem(*this, newWallet, nextWalletId); 
+  if(resultSave == true) {
+    string text = "Luu thanh cong wallet_id '" + to_string(walletId) + "'";
+    console.notify(text);
+    return true;
+  } else {
+    string text = "Luu that bai wallet_id '" + to_string(walletId) + "'";
+    console.notify(text);
+    return false; 
+  }
+}
+
 bool WalletManager::getList(){
   FileUtils fileUtils(filename, filenameNextId); 
   bool result = fileUtils.loadFile(*this, walletList, nextWalletId);
@@ -78,6 +121,26 @@ void WalletManager::displayList() {
   // Print footer
   cout << "+------+-------------------------+---------------+----------+\n";
   cout << "Tong so vi: " << walletList.size() << endl;
+}
+
+Wallet* WalletManager::findWalletById(int walletId) {
+  int size = walletList.size();
+  for (int i = 0; i < size; i++) {
+    if(walletList[i].getWalletId() == walletId) {
+      return &walletList[i]; //tra ve con tro den wallet
+    }
+  }
+  return NULL;
+}
+
+Wallet* WalletManager::findWalletByUserId(int userId) {
+  int size = walletList.size();
+  for (int i = 0; i < size; i++) {
+    if(walletList[i].getUserId() == userId) {
+      return &walletList[i]; //tra ve con tro den wallet
+    }
+  }
+  return NULL;
 }
 
 Wallet* WalletManager::findWalletByUserIdFromFile(int userId) {
@@ -161,10 +224,9 @@ Wallet WalletManager::readItemFromFile(stringstream& ss) {
   return wallet;
 }
 
-
-void WalletManager::writeItemToFile(fstream& file, Wallet& item) {
+void WalletManager::writeItemToFile(fstream& file, Wallet item) {
   file << item.getWalletId() << ","
-       << item.getWalletId() << ","
+       << item.getUserId() << ","
        << item.getBalance() << ","
        << item.getIsMaster() << endl;      
 }

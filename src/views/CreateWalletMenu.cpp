@@ -27,7 +27,8 @@ void CreateWalletMenu::handleInput() {
 
   Application& app = Application::getInstance();
   if (selectedOption == "1") {
-    cout << "Processing create..." << endl;      
+    handleCreateWallet();
+    // cout << "Processing create..." << endl;      
     //TODO
   } else if (selectedOption == "2") {
     app.setCurrentMenu("UserMenu"); // Chuyen sang menu nguoi dung thong thuong
@@ -46,4 +47,30 @@ void CreateWalletMenu::handleInput() {
     cin.ignore();
   } while (choice != 'y');    
   app.setCurrentMenu("UserMenu"); // Chuyen sang menu nguoi dung thong thuong
+}
+
+void CreateWalletMenu::handleCreateWallet() {
+  char choice;
+  do
+  {    
+    cout << "> Xac nhan tao vi tien? (y/n): ";
+    cin >> choice;
+    cin.ignore();
+  } while (choice != 'y' && choice != 'n');
+
+  if(choice == 'n') {
+    return;
+  }
+
+  Application& app = Application::getInstance();
+  WalletManager walletMgr = app.getWalletMgr();
+  int userId = app.getCurrentUser()->getUserId();
+  Wallet newWallet(userId, 0, false);
+
+  bool result = walletMgr.createWallet(newWallet);
+  if (result == true) {
+    console.notify("Tao vi thanh cong!");    
+  } else {
+    console.notify("Tao vi that bai!");
+  }
 }
