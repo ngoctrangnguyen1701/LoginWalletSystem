@@ -40,7 +40,7 @@ class WalletManager
 		// bool deleteWallet(int walletId); // -> then deleteTransaction;
 		// Wallet* findWalletFromFile(string walletname, string password);
 		Wallet* findWalletById(int walletId);
-		// Wallet* findWalletByIdFromFile(int walletId);
+		Wallet* findWalletByIdFromFile(int walletId);
 		Wallet* findWalletByUserId(int userId);
 		Wallet* findWalletByUserIdFromFile(int userId);
 		// bool saveWalletToFile(Wallet newWallet);		

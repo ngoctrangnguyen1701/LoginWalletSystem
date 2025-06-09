@@ -19,6 +19,7 @@ class MasterWalletMenu : public Menu
 		void handleInput() override;
 		void handleDeposit();
 		void handleWithdraw();
+		void handleCheckBalance();
 };
 
 #endif

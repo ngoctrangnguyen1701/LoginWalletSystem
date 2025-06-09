@@ -41,8 +41,7 @@ void MasterWalletMenu::handleInput() {
   } else if (selectedOption == "2") {
     handleWithdraw();
   } else if (selectedOption == "3") {
-    cout << "Processing check balance..." << endl;
-    //TODO
+    handleCheckBalance();
   } else if (selectedOption == "4") {
     app.setCurrentMenu("AdminTransactionMenu"); // Chuyen sang menu lich su giao dich cua admin
     return;
@@ -67,6 +66,7 @@ void MasterWalletMenu::handleInput() {
 
 void MasterWalletMenu::handleDeposit() {
   //Tinh nang nap diem vao vi tong
+  cout << endl;
   console.task("Nap diem vao vi tong");
   int amount;
   do
@@ -106,6 +106,7 @@ void MasterWalletMenu::handleDeposit() {
 
 void MasterWalletMenu::handleWithdraw() {
   //Tinh nang nap diem vao vi tong
+  cout << endl;
   console.task("Rut diem o vi tong");
   int amount;
   do
@@ -141,4 +142,15 @@ void MasterWalletMenu::handleWithdraw() {
   
   //Tao giao dich rut diem o vi tong
   //TODO
+}
+
+void MasterWalletMenu::handleCheckBalance() {
+  Application& app = Application::getInstance();
+  Wallet* wallet =  app.getWalletMgr().findWalletByIdFromFile(1); //Vi tong co id mac dinh = 1
+  if(wallet != NULL) {
+    cout << "So du hien tai la: " << wallet->getBalance() << endl;
+  }
+  else {
+    cout << "Khong the doc so du hien tai!" << endl;
+  }
 }

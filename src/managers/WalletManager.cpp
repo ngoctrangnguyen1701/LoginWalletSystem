@@ -196,6 +196,47 @@ Wallet* WalletManager::findWalletById(int walletId) {
   return NULL;
 }
 
+Wallet* WalletManager::findWalletByIdFromFile(int walletId) {
+  try {   
+    // Mo file de doc
+    string fullPath = DATA_DIRECTORY + filename + ".csv"; //lay duong dan file
+    ifstream file(fullPath);
+    if (!file.is_open()) {
+      cerr << "Khong the mo file '" << fullPath << "'" << endl;
+      file.close();
+      return NULL;
+    }  
+    string line;
+    bool isExist = false;
+    Wallet result;
+    while (getline(file, line)) {
+      stringstream ss(line);          
+      result = readItemFromFile(ss);
+      if(result.getWalletId() == walletId) {
+        isExist = true;
+        break;
+      }
+    }
+    file.close();
+    if(isExist == false) {
+      string text = "Khong tim thay item trong file '" + fullPath + "'";
+      console.log(text);
+      // return Wallet(); //tra ve Wallet rong
+      return NULL;
+    }
+    else {
+      string text = "Da tim thay item trong file '" + fullPath + "'";
+      console.log(text);
+      Wallet* wallet = new Wallet(result); //tra ve con tro den Wallet tim thay
+      return wallet;
+    }    
+  }
+  catch (const exception &e) {
+    cerr << "Error: " << e.what() << endl;
+    return NULL;
+  }
+}
+
 Wallet* WalletManager::findWalletByUserId(int userId) {
   int size = walletList.size();
   for (int i = 0; i < size; i++) {
