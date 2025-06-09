@@ -30,11 +30,14 @@ class TransactionManager
 		~TransactionManager();
 
 		//Methods
-		bool getList();
-		void displayList();
+		bool getList(int walletId = 0); //walletId = 0 la lay toan bo lich su giao dich trong file du lieu
+		void displayList(int walletId = 0);
 		bool createSampleData();
 		Transaction readItemFromFile(stringstream& ss); //Doc wallet tu file
-		void writeItemToFile(fstream& file, Transaction& item); //Ghi ransaction vao file
+		void writeItemToFile(fstream& file, Transaction item); //Ghi ransaction vao file
+		bool createTransaction(Transaction newTransaction);
+		Transaction* findTransactionById(int transactionId);
+		void findTransactionByWalleIdFromFile(int walletId);
 
 		friend class Application;
 		friend class BackupManager;

@@ -43,8 +43,10 @@ void MasterWalletMenu::handleInput() {
   } else if (selectedOption == "3") {
     handleCheckBalance();
   } else if (selectedOption == "4") {
-    app.setCurrentMenu("AdminTransactionMenu"); // Chuyen sang menu lich su giao dich cua admin
-    return;
+    handleDisplayTransaction();
+    //TODO
+    // app.setCurrentMenu("AdminTransactionMenu"); // Chuyen sang menu lich su giao dich cua admin
+    // return;
   } else if (selectedOption == "5") {
     app.setCurrentMenu("AdminMenu"); // Chuyen sang menu admin
     return;
@@ -98,10 +100,34 @@ void MasterWalletMenu::handleDeposit() {
     console.notify("Nap diem that bai!");
     return;
   }  
-  console.notify("Nap diem thanh cong!");
   
   //Tao giao dich nap diem vao vi tong
-  //TODO
+  int walletId = 1; //Vi tong co id mac dinh = 1
+  string referenceId = "";
+  int sourceWalletId = 0;
+  int destinationWalletId = 0;
+  string type = "deposit";
+  // int amount = ;
+  string createdDate = getCurrentDateTimeFormatted();
+  string status = "success";
+  Transaction newTransaction(
+    walletId,
+    referenceId,
+    sourceWalletId,
+    destinationWalletId,
+    type,
+    amount,
+    createdDate,
+    status
+  );
+
+  bool resultTrans = app.getTransactionMgr().createTransaction(newTransaction);
+  if(resultTrans == false) {
+    console.notify("Tao giao dich that bai!");
+    return;
+  }
+  console.notify("Tao giao dich thanh cong!");
+  console.notify("Nap diem thanh cong!");
 }
 
 void MasterWalletMenu::handleWithdraw() {
@@ -138,10 +164,34 @@ void MasterWalletMenu::handleWithdraw() {
     console.notify("Rut diem that bai!");
     return;
   }  
-  console.notify("Rut diem thanh cong!");
   
   //Tao giao dich rut diem o vi tong
-  //TODO
+  int walletId = 1; //Vi tong co id mac dinh = 1
+  string referenceId = "";
+  int sourceWalletId = 0;
+  int destinationWalletId = 0;
+  string type = "withdraw";
+  // int amount = ;
+  string createdDate = getCurrentDateTimeFormatted();
+  string status = "success";
+  Transaction newTransaction(
+    walletId,
+    referenceId,
+    sourceWalletId,
+    destinationWalletId,
+    type,
+    amount,
+    createdDate,
+    status
+  );
+
+  bool resultTrans = app.getTransactionMgr().createTransaction(newTransaction);
+  if(resultTrans == false) {
+    console.notify("Tao giao dich that bai!");
+    return;
+  }
+  console.notify("Tao giao dich thanh cong!");
+  console.notify("Rut diem thanh cong!");
 }
 
 void MasterWalletMenu::handleCheckBalance() {
@@ -153,4 +203,9 @@ void MasterWalletMenu::handleCheckBalance() {
   else {
     cout << "Khong the doc so du hien tai!" << endl;
   }
+}
+
+void MasterWalletMenu::handleDisplayTransaction() {
+  Application& app = Application::getInstance();
+  app.getTransactionMgr().displayList(1); //Vi tong co id mac dinh = 1
 }

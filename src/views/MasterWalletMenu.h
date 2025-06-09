@@ -8,6 +8,7 @@
 //include file header noi bo khac
 #include "Menu.h"
 #include "../Application.h"
+#include "../utils/DateTimeUtils.h"
 
 class MasterWalletMenu : public Menu
 {
@@ -20,6 +21,7 @@ class MasterWalletMenu : public Menu
 		void handleDeposit();
 		void handleWithdraw();
 		void handleCheckBalance();
+		void handleDisplayTransaction();
 };
 
 #endif

@@ -14,14 +14,21 @@ TransactionManager::~TransactionManager(){
 }
 
 //Methods
-bool TransactionManager::getList(){
-  FileUtils fileUtils(filename, filenameNextId); 
-  bool result = fileUtils.loadFile(*this, transactionList, nextTransactionId);
+bool TransactionManager::getList(int walletId){
+  FileUtils fileUtils(filename, filenameNextId);
+  bool result;
+  if(walletId == 0) {
+    result = fileUtils.loadFile(*this, transactionList, nextTransactionId);
+  }
+  else {
+    findTransactionByWalleIdFromFile(walletId);
+    return true;
+  }
   return result;
 }
 
-void TransactionManager::displayList() {
-  bool resultGetList = getList(); //Doc danh sach transaction tu file
+void TransactionManager::displayList(int walletId) {
+  bool resultGetList = getList(walletId); //Doc danh sach transaction tu file
   if(resultGetList == false) {
     console.notify("Khong the doc danh sach lich su giao dich");
     return;
@@ -34,7 +41,7 @@ void TransactionManager::displayList() {
   
   // Calculate the width of each column to display
   // const int idWidth = 6;
-  // const int usernameWidth = 25;
+  // const int transactionnameWidth = 25;
   // const int balanceWidth = 15;
   // const int isMasterWidth = 10;
   
@@ -47,6 +54,7 @@ void TransactionManager::displayList() {
   for (int i = 0; i < transactionList.size(); i++) {
     Transaction item = transactionList[i];
     //TODO: hien thi giao dich theo mo ta, vd: ngay ..., giao dich chuyen 1000 diem cho vi A thanh cong...
+    cout << endl;
     cout << "________ ID: " << item.getTransactionId() << " ________" << endl;
     cout << "ID vi: " << item.getWalletId() << endl;
     if(item.getReferenceId() != "") {
@@ -171,7 +179,7 @@ bool TransactionManager::createSampleData() {
   return result;
 }
 
-void TransactionManager::writeItemToFile(fstream& file, Transaction& item) {
+void TransactionManager::writeItemToFile(fstream& file, Transaction item) {
   //convert du lieu ghi vao file de khi doc file len du lieu khong bi loi
 
   string referenceId = item.getReferenceId();
@@ -226,4 +234,90 @@ Transaction TransactionManager::readItemFromFile(stringstream& ss) {
   Transaction transaction(walletId, referenceId, sourceWalletId, destinationWalletId, type, amount, createdDate, status);
   transaction.setTransactionId(transactionId);
   return transaction;
+}
+
+bool TransactionManager::createTransaction(Transaction newTransaction){
+  //Lay danh sach transaction va nextTransactionId moi nhat
+  bool resultGetList = getList();
+  if(resultGetList == false) {
+    return false;
+  }
+
+  //kiem tra xem transaction_id  va transactionname da ton tai
+  int transactionId = nextTransactionId;
+  Transaction* transactionExist = findTransactionById(transactionId); 
+  if(transactionExist != NULL) {
+    string text = "Da ton tai transactionId '" + to_string(transactionId) + " '";
+    console.notify(text);
+    return false;
+  }
+  newTransaction.setTransactionId(transactionId); //gan id cho transaction
+  nextTransactionId++; //tang nexTransactionId len 1
+
+  FileUtils fileUtils(filename, filenameNextId); 
+  bool resultSave = fileUtils.appendItem(*this, newTransaction, nextTransactionId); 
+  if(resultSave == true) {
+    string text = "Luu thanh cong transaction_id '" + to_string(transactionId) + "'";
+    console.notify(text);
+    return true;
+  } else {
+    string text = "Luu that bai transaction_id '" + to_string(transactionId) + "'";
+    console.notify(text);
+    return false; 
+  }
+}
+
+Transaction* TransactionManager::findTransactionById(int transactionId){
+  //tim kiem transaction co id = transactionId khong  
+  for (int i = 0; i < transactionList.size(); i++) {
+    if (transactionList[i].getTransactionId() == transactionId) {
+      string text = "Tim thay transactionId '" + to_string(transactionId) + "'";
+      console.log(text);
+      return &transactionList[i]; //tra ve con tro den transaction      
+    }
+  }
+  //Neu khong tim thay transaction thi tra ve NULL
+  string text = "Khong tim thay transaction_id '" + to_string(transactionId) + "'";
+  console.log(text);
+  return NULL;
+}
+
+void TransactionManager::findTransactionByWalleIdFromFile(int walletId){
+  try {   
+    // Mo file de doc
+    string fullPath = DATA_DIRECTORY + filename + ".csv"; //lay duong dan file
+    ifstream file(fullPath);
+    if (!file.is_open()) {
+      cerr << "Khong ton tai file '" << fullPath << "'" << endl;
+      file.close();
+      // return User();
+      // return NULL;
+    }  
+    string line;
+    // bool isExist = false;
+    Transaction result;
+    while (getline(file, line)) {
+      stringstream ss(line);          
+      result = readItemFromFile(ss);
+      if(result.getWalletId() == walletId) {
+        transactionList.push_back(result);
+      }
+    }
+    file.close();
+    // if(isExist == false) {
+    //   string text = "Khong tim thay item trong file '" + fullPath + "'";
+    //   console.log(text);
+    //   // return NULL;
+    // }
+    // else {
+    //   string text = "Da tim thay item trong file '" + fullPath + "'";
+    //   console.log(text);
+    //   User* user = new User(result); //tra ve con tro den user tim thay
+    //   return user;
+    // }    
+  }
+  catch (const exception &e) {
+    cerr << "Error: " << e.what() << endl;
+    // return NULL;
+  }
 }
