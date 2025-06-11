@@ -36,17 +36,22 @@ class WalletManager
 		bool getList();
 		void displayList();
 		bool updateBalance(int walletId, int amount, string type); //type la 'increment' hoac la 'decrement'
+		bool updateBalanceTwoWallets(int walletId_1, int amount_1, string type_1, int walletId_2, int amount_2, string type_2); //type la 'increment' hoac la 'decrement'
+		bool updateBalanceNotSave(Wallet* wallet, int amount, string type);
 		// bool updateWallet(int walletId, int balance);
 		// bool deleteWallet(int walletId); // -> then deleteTransaction;
 		// Wallet* findWalletFromFile(string walletname, string password);
 		Wallet* findWalletById(int walletId);
+		vector<Wallet> findWalletByIds(int walletId_1, int walletId_2);
 		Wallet* findWalletByIdFromFile(int walletId);
 		Wallet* findWalletByUserId(int userId);
 		Wallet* findWalletByUserIdFromFile(int userId);
-		// bool saveWalletToFile(Wallet newWallet);		
+		// bool saveWalletToFile(Wallet newWallet);
 		bool createSampleData();
 		Wallet readItemFromFile(stringstream& ss); //Doc wallet tu file
 		void writeItemToFile(fstream& file, Wallet item); //Ghi wallet vao file
+		bool saveList();
+		// bool checkIsValidBalance(int balance); //Kiem tra balance co hop le
 		// bool loadWalletsFromFile(string filename);
 		// bool backupWalletData();
 		// bool restoreWalletData();

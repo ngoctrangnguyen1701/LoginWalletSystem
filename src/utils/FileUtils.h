@@ -67,6 +67,9 @@ class FileUtils {
     
     template <typename T, typename M>
     bool appendItem(M &classManager, const T& item, int nextId);
+
+    template <typename T, typename M>
+    bool appendItems(M &classManager, const T& item_1, const T& item_2, int nextId);
 };
 
 // Include the implementation file at the end of the header

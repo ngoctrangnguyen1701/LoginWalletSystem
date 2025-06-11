@@ -2,7 +2,11 @@
 #define UserWallet_H //Dinh nghia no
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
-#include "Wallet.h" // Ensure Wallet.h exists and defines the Wallet class or struct
+//include thu vien
+#include <string>
+
+//include file header noi bo khac
+#include "Wallet.h"
 
 class UserWallet : public Wallet
 {
@@ -10,6 +14,7 @@ class UserWallet : public Wallet
 	protected:
 	public:
 		//Contructors
+		UserWallet();
 		UserWallet(int userId, int balance);
 
 		//Methods

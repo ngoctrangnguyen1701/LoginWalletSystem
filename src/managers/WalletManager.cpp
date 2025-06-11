@@ -50,11 +50,11 @@ bool WalletManager::createWallet(Wallet newWallet){
   bool resultSave = fileUtils.appendItem(*this, newWallet, nextWalletId); 
   if(resultSave == true) {
     string text = "Luu thanh cong wallet_id '" + to_string(walletId) + "'";
-    console.notify(text);
+    console.log(text);
     return true;
   } else {
     string text = "Luu that bai wallet_id '" + to_string(walletId) + "'";
-    console.notify(text);
+    console.log(text);
     return false; 
   }
 }
@@ -155,36 +155,81 @@ bool WalletManager::updateBalance(int walletId, int amount, string type) {
 
   //Save walletList vao file, do file van ban thao tac ghi de 1 dong se de bi pha cau truc cua file trong truong hop do dai chuoi thay doi
   //nen phai ghi lai toan bo file
-  FileUtils fileUtils(filename, filenameNextId);
-  bool resultSave = fileUtils.saveDataByList(*this, walletList, nextWalletId);
-  // delete walletExist; //giai phong bo nho
+  bool resultSave = saveList();
   return resultSave;
 }
 
-// bool WalletManager::updateWallet(int walletId, int balance) {
-//   //Lay danh sach wallet va nextWalletId moi nhat
-//   bool resultGetList = getList();
-//   if(resultGetList == false) {
-//     return false;
-//   }
+bool WalletManager::updateBalanceTwoWallets(int walletId_1, int amount_1, string type_1, int walletId_2, int amount_2, string type_2) {
+  //type la 'increment' hoac la 'decrement'
+  //Lay danh sach wallet va nextWalletId moi nhat
+  bool resultGetList = getList();
+  if(resultGetList == false) {
+    return false;
+  }
 
-//   //kiem tra xem wallet_id co ton tai
-//   Wallet* walletExist = findWalletById(walletId);
-//   if(walletExist == NULL) {
-//     string text = "Khong ton tai walletId '" + to_string(walletId) + "'";
-//     console.notify(text);
-//     return false;
-//   }
+  int size = walletList.size();
+  Wallet* wallet_1;
+  Wallet* wallet_2;
+  for (int i = 0; i < size; i++) {
+    if(walletList[i].getWalletId() == walletId_1) {
+      wallet_1 = &walletList[i];
+      bool result = updateBalanceNotSave(wallet_1, amount_1, type_1);
+      if(result == false) {
+        return false;
+      }
+    }
 
-//   walletExist->setBalance(balance);
+    if(walletList[i].getWalletId() == walletId_2) {
+      wallet_2 = &walletList[i];
+      bool result = updateBalanceNotSave(wallet_2, amount_2, type_2);
+      if(result == false) {
+        return false;
+      }
+    }
+  }
 
-//   //Save walletList vao file, do file van ban thao tac ghi de 1 dong se de bi pha cau truc cua file trong truong hop do dai chuoi thay doi
-//   //nen phai ghi lai toan bo file
-//   FileUtils fileUtils(filename, filenameNextId);
-//   bool resultSave = fileUtils.saveDataByList(*this, walletList, nextWalletId);
-//   // delete walletExist; //giai phong bo nho
-//   return resultSave;
-// }
+  if(wallet_1 == NULL) {
+    string text = "Khong ton tai walletId '" + to_string(walletId_1) + "'";
+    console.notify(text);
+    return false;
+  }
+
+  if(wallet_2 == NULL) {
+    string text = "Khong ton tai walletId '" + to_string(walletId_2) + "'";
+    console.notify(text);
+    return false;
+  }
+  
+  //Save walletList vao file, do file van ban thao tac ghi de 1 dong se de bi pha cau truc cua file trong truong hop do dai chuoi thay doi
+  //nen phai ghi lai toan bo file
+  bool resultSave = saveList();
+  return resultSave;
+}
+
+bool WalletManager::updateBalanceNotSave(Wallet* wallet, int amount, string type){
+  int balance;
+  if(type == "increment") {
+    balance = wallet->getBalance() + amount;
+  }
+  else if(type == "decrement") {
+    //Doi voi thao tac giam so du phai kiem tra so tien sau khi tru khong duoc nho hon 0
+    balance = wallet->getBalance() - amount;
+    if(balance < 0) {
+      console.notify("So du hien tai khong du!");
+      return false;
+    }
+  }
+  wallet->setBalance(balance);
+  return true;
+}
+
+
+bool WalletManager::saveList() {
+  FileUtils fileUtils(filename, filenameNextId);
+  bool resultSave = fileUtils.saveDataByList(*this, walletList, nextWalletId);
+  return resultSave;
+}
+
 
 Wallet* WalletManager::findWalletById(int walletId) {
   int size = walletList.size();
@@ -194,6 +239,18 @@ Wallet* WalletManager::findWalletById(int walletId) {
     }
   }
   return NULL;
+}
+
+vector<Wallet> WalletManager::findWalletByIds(int walletId_1, int walletId_2){
+  //tim kiem wallet co id = walletId khong  
+  vector<Wallet> list;
+  int size = walletList.size();
+  for (int i = 0; i < size; i++) {
+    if (walletList[i].getWalletId() == walletId_1 || walletList[i].getWalletId() == walletId_2) {
+      list.push_back(walletList[i]);
+    }
+  }
+  return list;
 }
 
 Wallet* WalletManager::findWalletByIdFromFile(int walletId) {

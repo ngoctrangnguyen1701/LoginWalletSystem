@@ -17,6 +17,9 @@ Transaction::Transaction(int walletId, string referenceId, int sourceWalletId, i
 void Transaction::setTransactionId(int transactionId){
   this->transactionId = transactionId;
 };
+void Transaction::setReferenceId(string referenceId){
+  this->referenceId = referenceId;
+};
 void Transaction::setStatus(string status){
   this->status = status;
 };

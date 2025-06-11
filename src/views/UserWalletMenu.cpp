@@ -31,8 +31,7 @@ void UserWalletMenu::handleInput() {
 
   Application& app = Application::getInstance();
   if (selectedOption == "1") {
-    cout << "Processing deposit..." << endl;      
-    //TODO
+    handleDeposit();
   } else if (selectedOption == "2") {
     cout << "Processing withdraw..." << endl;
     //TODO
@@ -62,4 +61,41 @@ void UserWalletMenu::handleInput() {
     cin.ignore();
   } while (choice != 'y');    
   app.setCurrentMenu("UserMenu"); // Chuyen sang menu nguoi dung thong thuong
+}
+
+void UserWalletMenu::handleDeposit() {
+  //Tinh nang nap diem vao vi nguoi dung
+  cout << endl;
+  console.task("Nap diem vao vi");
+  int amount;
+  do
+  {
+    cout << "> Nhap so diem can nap: ";
+    cin >> amount;
+    cin.ignore();
+    if (amount <= 0) {
+      console.notify("So diem nap phai lon hon 0!");
+    }
+  } while (amount <= 0);
+
+  char choice;
+  do
+  {    
+    cout << "> Xac nhan NAP '" << amount << "' diem vao vi? (y/n): ";
+    cin >> choice;
+    cin.ignore();
+  } while (choice != 'y' && choice != 'n');
+
+  if(choice == 'n') {
+    return;
+  }
+
+  UserWallet wallet;
+  bool result = wallet.deposit(amount);
+  if(result == true) {
+    console.notify("Nap diem thanh cong!");
+  }
+  else {
+    console.notify("Nap diem that bai!");
+  }
 }

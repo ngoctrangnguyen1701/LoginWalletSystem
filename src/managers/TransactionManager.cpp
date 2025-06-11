@@ -258,18 +258,56 @@ bool TransactionManager::createTransaction(Transaction newTransaction){
   bool resultSave = fileUtils.appendItem(*this, newTransaction, nextTransactionId); 
   if(resultSave == true) {
     string text = "Luu thanh cong transaction_id '" + to_string(transactionId) + "'";
-    console.notify(text);
+    console.log(text);
     return true;
   } else {
     string text = "Luu that bai transaction_id '" + to_string(transactionId) + "'";
+    console.log(text);
+    return false; 
+  }
+}
+
+bool TransactionManager::createTransactions(Transaction newTransaction_1, Transaction newTransaction_2){
+  //Lay danh sach transaction va nextTransactionId moi nhat
+  bool resultGetList = getList();
+  if(resultGetList == false) {
+    return false;
+  }
+
+  //kiem tra xem transaction_id  va transactionname da ton tai
+  int transactionId_1 = nextTransactionId;
+  int transactionId_2 = nextTransactionId + 1;
+  string referenceId = "REQ" + to_string(transactionId_1) + "_" + to_string(transactionId_2);
+  vector<Transaction> transactionList = findTransactionByIds(transactionId_1, transactionId_2); 
+  if(transactionList.size() > 0) {
+    string text = "Da ton tai transactionId '" + to_string(transactionId_1) + "' hoac '" + to_string(transactionId_2) + "'";
+    console.notify(text);
+    return false;
+  }
+  newTransaction_1.setTransactionId(transactionId_1); //gan id cho transaction
+  newTransaction_1.setReferenceId(referenceId); 
+  newTransaction_2.setTransactionId(transactionId_2); //gan id cho transaction
+  newTransaction_2.setReferenceId(referenceId); 
+
+  nextTransactionId++; //tang nexTransactionId len 1
+
+  FileUtils fileUtils(filename, filenameNextId); 
+  bool resultSave = fileUtils.appendItems(*this, newTransaction_1, newTransaction_2, nextTransactionId); 
+  if(resultSave == true) {
+    string text = "Luu thanh cong transaction_id '" + to_string(transactionId_1) + "' va '" + to_string(transactionId_2) + "'";
+    console.notify(text);
+    return true;
+  } else {
+    string text = "Luu that bai transaction_id '" + to_string(transactionId_1) + "' va '" + to_string(transactionId_2) + "'";
     console.notify(text);
     return false; 
   }
 }
 
 Transaction* TransactionManager::findTransactionById(int transactionId){
-  //tim kiem transaction co id = transactionId khong  
-  for (int i = 0; i < transactionList.size(); i++) {
+  //tim kiem transaction co id = transactionId khong
+  int size = transactionList.size();
+  for (int i = 0; i < size; i++) {
     if (transactionList[i].getTransactionId() == transactionId) {
       string text = "Tim thay transactionId '" + to_string(transactionId) + "'";
       console.log(text);
@@ -280,6 +318,18 @@ Transaction* TransactionManager::findTransactionById(int transactionId){
   string text = "Khong tim thay transaction_id '" + to_string(transactionId) + "'";
   console.log(text);
   return NULL;
+}
+
+vector<Transaction> TransactionManager::findTransactionByIds(int transactionId_1, int transactionId_2){
+  //tim kiem transaction co id = transactionId khong  
+  vector<Transaction> list;
+  int size = transactionList.size();
+  for (int i = 0; i < size; i++) {
+    if (transactionList[i].getTransactionId() == transactionId_1 || transactionList[i].getTransactionId() == transactionId_2) {
+      list.push_back(transactionList[i]);
+    }
+  }
+  return list;
 }
 
 void TransactionManager::findTransactionByWalleIdFromFile(int walletId){
@@ -329,7 +379,7 @@ bool TransactionManager::updateStatus(int transactionId, string status){
     return false;
   }
  
-   //kiem tra xem user_id co ton tai
+  //kiem tra xem user_id co ton tai
   Transaction* transactionExist = findTransactionById(transactionId);
   if(transactionExist == NULL) {
     string text = "Khong ton tai transactionId '" + to_string(transactionId) + "'";
@@ -341,6 +391,49 @@ bool TransactionManager::updateStatus(int transactionId, string status){
 
   //Save transactionList vao file, do file van ban thao tac ghi de 1 dong se de bi pha cau truc cua file trong truong hop do dai chuoi thay doi
   //nen phai ghi lai toan bo file
+  bool resultSave = saveList();
+  return resultSave;
+}
+
+bool TransactionManager::updateStatus(int transactionId_1, string status_1, int transactionId_2, string status_2) {
+  bool resultGetList = getList();
+  if(resultGetList == false) {
+    return false;
+  }
+  int size = transactionList.size();
+  Transaction* transaction_1;
+  Transaction* transaction_2;
+  for (int i = 0; i < size; i++) {
+    if(transactionList[i].getTransactionId() == transactionId_1) {
+      transaction_1 = &transactionList[i];
+      transaction_1->setStatus(status_1);
+    }
+
+    if(transactionList[i].getTransactionId() == transactionId_2) {
+      transaction_2 = &transactionList[i];
+      transaction_2->setStatus(status_2);
+    }
+  }
+
+  if(transaction_1 == NULL) {
+    string text = "Khong ton tai transactionId '" + to_string(transactionId_1) + "'";
+    console.notify(text);
+    return false;
+  }
+
+  if(transaction_2 == NULL) {
+    string text = "Khong ton tai transactionId '" + to_string(transactionId_2) + "'";
+    console.notify(text);
+    return false;
+  }
+  
+  //Save transactionList vao file, do file van ban thao tac ghi de 1 dong se de bi pha cau truc cua file trong truong hop do dai chuoi thay doi
+  //nen phai ghi lai toan bo file
+  bool resultSave = saveList();
+  return resultSave;
+}
+
+bool TransactionManager::saveList() {
   FileUtils fileUtils(filename, filenameNextId);
   bool resultSave = fileUtils.saveDataByList(*this, transactionList, nextTransactionId);
   return resultSave;

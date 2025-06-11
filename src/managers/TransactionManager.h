@@ -36,9 +36,13 @@ class TransactionManager
 		Transaction readItemFromFile(stringstream& ss); //Doc wallet tu file
 		void writeItemToFile(fstream& file, Transaction item); //Ghi ransaction vao file
 		bool createTransaction(Transaction newTransaction);
+		bool createTransactions(Transaction newTransaction_1, Transaction newTransaction_2);
 		Transaction* findTransactionById(int transactionId);
+		vector<Transaction> findTransactionByIds(int transactionId_1, int transactionId_2);
 		void findTransactionByWalleIdFromFile(int walletId);
 		bool updateStatus(int transactionId, string status);
+		bool updateStatus(int transactionId_1, string status_1, int transactionId_2, string status_2);
+		bool saveList();
 
 		friend class Application;
 		friend class BackupManager;

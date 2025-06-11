@@ -12,8 +12,8 @@ class MasterWallet : public Wallet
 	protected:
 	public:
 		//Contructors
+		MasterWallet();
 		MasterWallet(int userId, int balance);
-		MasterWallet(int walletId);
 
 		//Methods
 		bool deposit(int amount);
