@@ -41,15 +41,13 @@ git clone https://github.com/ngoctrangnguyen1701/LoginWalletSystem.git
 ```sh
 cd LoginWalletSystem
 ```
-```sh
-git checkout develop
-```
+no
 <!-- TODO MacOS và Linux không có dev C++, nên viết hướng dẫn thêm ở 1 IDE khác -->
 **🔹 Biên dịch chương trình bằng DevC++**
 1. Mở DevC++
 2. Chọn File → Open → Vào folder tải chương trình → Chọn folder `src` → Chọn file `LoginWalletSystem.dev`
-3. Chọn Execute → Rebuild All (hoặc nhấn phím tắt F12)
-4. Sau khi build thành công, chọn Execute → Run (hoặc nhấn phím tắt F10)
+3. Chọn Execute → Rebuild All
+4. Sau khi build thành công, chọn Execute → Run
 
 <!-- TODO -->
 **🔹 Biên dịch chương trình bằng Visual Studio Code**
@@ -58,7 +56,7 @@ git checkout develop
 3. Cài đặt C/C++ extension trong VSCode
 *[Xem hướng dẫn chi tiết cho bước 2 và 3](https://code.visualstudio.com/docs/languages/cpp)*
 4. Trong Visual Studio Code, Chọn File -> Open Folder -> chọn folder nơi tải chương trình
-5. Trên thanh công cụ, chọn Terminal -> Run Build Task... (hoặc nhấn phím tắt Ctrl+Shift+B trên Windows/Linux, Cmd+Shift+B trên macOS)
+5. Trên thanh công cụ, chọn Terminal -> Run Build Task
 6. Chọn `Build and run the program LoginWalletSystem`
 
 ---
@@ -70,9 +68,7 @@ git checkout develop
 
 ### Tài liệu tham khảo
 <!-- nội dung đang cập nhật -->
-- [C++ SHA256 hash generator](https://github.com/okdshin/PicoSHA2)
-- [Tên tài liệu 1](https://example.com)
-- [Tên tài liệu 2](https://example.com)
+- [C++ SHA256 hash generator](https://github.com/okdshin/PicoSHA2](https://github.com/stbrumme/hash-library))
 
 ---
 
@@ -82,4 +78,3 @@ git checkout develop
 
 ### Cấu trúc thư mục
 [Chi tiết](./docs/Cau_truc_thu_muc.md)
-test 123
