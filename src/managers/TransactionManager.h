@@ -38,6 +38,7 @@ class TransactionManager
 		bool createTransaction(Transaction newTransaction);
 		Transaction* findTransactionById(int transactionId);
 		void findTransactionByWalleIdFromFile(int walletId);
+		bool updateStatus(int transactionId, string status);
 
 		friend class Application;
 		friend class BackupManager;

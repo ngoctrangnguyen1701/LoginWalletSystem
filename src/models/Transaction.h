@@ -25,6 +25,7 @@ class Transaction
 
 		//Setters
 		void setTransactionId(int transactionId);
+		void setStatus(string status);
 
 		//Getters
 		int getTransactionId();

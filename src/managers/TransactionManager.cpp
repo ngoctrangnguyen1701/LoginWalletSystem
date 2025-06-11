@@ -321,3 +321,27 @@ void TransactionManager::findTransactionByWalleIdFromFile(int walletId){
     // return NULL;
   }
 }
+
+bool TransactionManager::updateStatus(int transactionId, string status){
+  //Lay danh sach transaction va nextTransactionId moi nhat
+  bool resultGetList = getList();
+  if(resultGetList == false) {
+    return false;
+  }
+ 
+   //kiem tra xem user_id co ton tai
+  Transaction* transactionExist = findTransactionById(transactionId);
+  if(transactionExist == NULL) {
+    string text = "Khong ton tai transactionId '" + to_string(transactionId) + "'";
+    console.notify(text);
+    return false;
+  }
+
+  transactionExist->setStatus(status);
+
+  //Save transactionList vao file, do file van ban thao tac ghi de 1 dong se de bi pha cau truc cua file trong truong hop do dai chuoi thay doi
+  //nen phai ghi lai toan bo file
+  FileUtils fileUtils(filename, filenameNextId);
+  bool resultSave = fileUtils.saveDataByList(*this, transactionList, nextTransactionId);
+  return resultSave;
+}

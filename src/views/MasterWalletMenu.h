@@ -9,6 +9,7 @@
 #include "Menu.h"
 #include "../Application.h"
 #include "../utils/DateTimeUtils.h"
+#include "../models/MasterWallet.h"
 
 class MasterWalletMenu : public Menu
 {

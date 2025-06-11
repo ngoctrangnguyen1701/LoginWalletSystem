@@ -5,7 +5,7 @@
 #include <string>
 
 //include file header noi bo khac
-//...
+#include "../managers/WalletManager.h"
 
 //Contructors
 Wallet::Wallet(int userId, int balance, bool isMaster){

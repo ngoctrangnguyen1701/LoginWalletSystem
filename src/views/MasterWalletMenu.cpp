@@ -93,41 +93,54 @@ void MasterWalletMenu::handleDeposit() {
     return;
   }
 
-  //Cap nhat du lieu vi
-  Application& app = Application::getInstance();
-  bool result = app.getWalletMgr().updateBalance(1, amount, "increment"); //Vi tong co id mac dinh = 1
-  if(result == false) {
-    console.notify("Nap diem that bai!");
-    return;
-  }  
-  
-  //Tao giao dich nap diem vao vi tong
-  int walletId = 1; //Vi tong co id mac dinh = 1
-  string referenceId = "";
-  int sourceWalletId = 0;
-  int destinationWalletId = 0;
-  string type = "deposit";
-  // int amount = ;
-  string createdDate = getCurrentDateTimeFormatted();
-  string status = "success";
-  Transaction newTransaction(
-    walletId,
-    referenceId,
-    sourceWalletId,
-    destinationWalletId,
-    type,
-    amount,
-    createdDate,
-    status
-  );
-
-  bool resultTrans = app.getTransactionMgr().createTransaction(newTransaction);
-  if(resultTrans == false) {
-    console.notify("Tao giao dich that bai!");
-    return;
+  MasterWallet wallet(1); //Vi tong co id mac dinh = 1
+  bool result = wallet.deposit(amount);
+  if(result == true) {
+    console.notify("Nap diem thanh cong!");
   }
-  console.notify("Tao giao dich thanh cong!");
-  console.notify("Nap diem thanh cong!");
+  else {
+    console.notify("Nap diem that bai!");
+  }
+  // Application& app = Application::getInstance();
+
+  //Tao giao dich nap diem vao vi tong
+  // int walletId = 1; //Vi tong co id mac dinh = 1
+  // string referenceId = "";
+  // int sourceWalletId = 0;
+  // int destinationWalletId = 0;
+  // string type = "deposit";
+  // // int amount = ;
+  // string createdDate = getCurrentDateTimeFormatted();
+  // string status = "success";
+  // Transaction newTransaction(
+  //   walletId,
+  //   referenceId,
+  //   sourceWalletId,
+  //   destinationWalletId,
+  //   type,
+  //   amount,
+  //   createdDate,
+  //   status
+  // );
+
+  // bool resultTrans = app.getTransactionMgr().createTransaction(newTransaction);
+  // if(resultTrans == false) {
+  //   console.notify("Tao giao dich that bai!");
+  //   console.notify("Nap diem that bai!");
+  //   return;
+  // }
+
+  // //Cap nhat du lieu vi
+  // bool result = app.getWalletMgr().updateBalance(1, amount, "increment"); //Vi tong co id mac dinh = 1
+  // if(result == false) {
+  //   console.notify("Tao giao dich that bai!");
+  //   console.notify("Nap diem that bai!");
+  //   app.getTransactionMgr().updateStatus(newTransaction.getTransactionId(), "failed");
+  //   return;
+  // }
+  
+  // console.notify("Tao giao dich thanh cong!");
+  // console.notify("Nap diem thanh cong!");
 }
 
 void MasterWalletMenu::handleWithdraw() {
@@ -157,41 +170,50 @@ void MasterWalletMenu::handleWithdraw() {
     return;
   }
 
-  //Cap nhat du lieu vi
-  Application& app = Application::getInstance();
-  bool result = app.getWalletMgr().updateBalance(1, amount, "decrement"); //Vi tong co id mac dinh = 1
-  if(result == false) {
-    console.notify("Rut diem that bai!");
-    return;
-  }  
-  
-  //Tao giao dich rut diem o vi tong
-  int walletId = 1; //Vi tong co id mac dinh = 1
-  string referenceId = "";
-  int sourceWalletId = 0;
-  int destinationWalletId = 0;
-  string type = "withdraw";
-  // int amount = ;
-  string createdDate = getCurrentDateTimeFormatted();
-  string status = "success";
-  Transaction newTransaction(
-    walletId,
-    referenceId,
-    sourceWalletId,
-    destinationWalletId,
-    type,
-    amount,
-    createdDate,
-    status
-  );
-
-  bool resultTrans = app.getTransactionMgr().createTransaction(newTransaction);
-  if(resultTrans == false) {
-    console.notify("Tao giao dich that bai!");
-    return;
+  MasterWallet wallet(1); //Vi tong co id mac dinh = 1
+  bool result = wallet.withdraw(amount);
+  if(result == true) {
+    console.notify("Rut diem thanh cong!");
   }
-  console.notify("Tao giao dich thanh cong!");
-  console.notify("Rut diem thanh cong!");
+  else {
+    console.notify("Rut diem that bai!");
+  }
+
+  // //Cap nhat du lieu vi
+  // Application& app = Application::getInstance();
+  // bool result = app.getWalletMgr().updateBalance(1, amount, "decrement"); //Vi tong co id mac dinh = 1
+  // if(result == false) {
+  //   console.notify("Rut diem that bai!");
+  //   return;
+  // }  
+  
+  // // //Tao giao dich rut diem o vi tong
+  // // int walletId = 1; //Vi tong co id mac dinh = 1
+  // // string referenceId = "";
+  // // int sourceWalletId = 0;
+  // // int destinationWalletId = 0;
+  // // string type = "withdraw";
+  // // // int amount = ;
+  // // string createdDate = getCurrentDateTimeFormatted();
+  // // string status = "success";
+  // // Transaction newTransaction(
+  // //   walletId,
+  // //   referenceId,
+  // //   sourceWalletId,
+  // //   destinationWalletId,
+  // //   type,
+  // //   amount,
+  // //   createdDate,
+  // //   status
+  // // );
+
+  // // bool resultTrans = app.getTransactionMgr().createTransaction(newTransaction);
+  // // if(resultTrans == false) {
+  // //   console.notify("Tao giao dich that bai!");
+  // //   return;
+  // // }
+  // // console.notify("Tao giao dich thanh cong!");
+  // // console.notify("Rut diem thanh cong!");
 }
 
 void MasterWalletMenu::handleCheckBalance() {

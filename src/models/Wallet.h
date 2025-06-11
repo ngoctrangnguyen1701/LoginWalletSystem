@@ -2,6 +2,10 @@
 #define Wallet_H //Dinh nghia no
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
+#include "../models/Transaction.h"
+#include "../managers/TransactionManager.h"
+#include "../utils/DateTimeUtils.h"
+
 class Wallet
 {
 	private:		
@@ -28,6 +32,10 @@ class Wallet
 		bool getIsMaster();
 
 		//Methods
+		// bool adminDeposist(int amount);
+		// bool adminWithdraw(int amount);
+		// bool userDepoist(int amount);
+		// bool adminWithdraw(int amount);
 		
 		// Transaction* transfer(Wallet* destination, int amount);
 };
