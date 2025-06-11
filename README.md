@@ -67,7 +67,7 @@ cd LoginWalletSystem
 
 ### Tài liệu tham khảo
 <!-- nội dung đang cập nhật -->
-- [C++ SHA256 hash generator](https://github.com/okdshin/PicoSHA2](https://github.com/stbrumme/hash-library))
+- [C++ SHA256 hash generator](https://github.com/stbrumme/hash-library)
 
 ---
 
