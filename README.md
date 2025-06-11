@@ -41,7 +41,6 @@ git clone https://github.com/ngoctrangnguyen1701/LoginWalletSystem.git
 ```sh
 cd LoginWalletSystem
 ```
-no
 <!-- TODO MacOS và Linux không có dev C++, nên viết hướng dẫn thêm ở 1 IDE khác -->
 **🔹 Biên dịch chương trình bằng DevC++**
 1. Mở DevC++
