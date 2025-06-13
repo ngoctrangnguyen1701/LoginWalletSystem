@@ -129,8 +129,57 @@ bool UserWallet::withdraw(int amount) {
 };
 
 
-bool UserWallet::transfer(int walletIdDestination, int amount) {
-  //TODO
-  //Thanh cong tra ve true, nguoc lai tra ve false
-  return false;
+bool UserWallet::transfer(int destinationWalletId, int amount) {
+   //Tao giao dich chuyen diem tu vi nguon sang vi dich
+  // MasterWallet mstWallet; 
+  // int masterWaletId = mstWallet.getWalletId();
+  string referenceId = "";
+  int sourceWalletId = walletId;
+  // int destinationWalletId = destinationWalletId;
+  string type = "transfer";
+  string createdDate = getCurrentDateTimeFormatted();
+  string status = "success";
+  Transaction newTransaction_1(
+    walletId,
+    referenceId,
+    sourceWalletId,
+    destinationWalletId,
+    type,
+    amount,
+    createdDate,
+    status
+  );
+ 
+  //Tao giao dich nhan diem tu vi nguon sang vi dich
+  // referenceId = "";
+  // sourceWalletId = 0;
+  // destinationWalletId = 0;
+  type = "receive";
+   // string createdDate = getCurrentDateTimeFormatted();
+   // string status = "success";
+  Transaction newTransaction_2(
+    destinationWalletId,
+    referenceId,
+    sourceWalletId,
+    destinationWalletId,
+    type,
+    amount,
+    createdDate,
+    status
+  );
+
+  TransactionManager TransactionMgr;
+  bool resultTrans = TransactionMgr.createTransactions(newTransaction_1, newTransaction_2);
+  if(resultTrans == false) {
+    return false;
+  }
+
+  WalletManager WalletMgr;
+  //Cap nhat du lieu vi nguon va vi dich
+  bool result = WalletMgr.updateBalanceTwoWallets(walletId, amount, "decrement", destinationWalletId, amount, "increment"); 
+  if(result == false) {
+    TransactionMgr.updateStatus(newTransaction_1.getTransactionId(), "failed", newTransaction_2.getTransactionId(), "failed");
+    return false;
+  }
+  return true;
 };

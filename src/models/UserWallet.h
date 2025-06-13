@@ -20,8 +20,7 @@ class UserWallet : public Wallet
 		//Methods
 		bool deposit(int amount);
 		bool withdraw(int amount);
-		// Transaction* transfer(Wallet* destination, int amount);
-		bool transfer(int walletIdDestination, int amount);
+		bool transfer(int destinationWalletId, int amount);
 };
 
 #endif

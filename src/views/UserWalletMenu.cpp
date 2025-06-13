@@ -35,8 +35,7 @@ void UserWalletMenu::handleInput() {
   } else if (selectedOption == "2") {
     handleWithdraw();
   } else if (selectedOption == "3") {
-    cout << "Processing tranfer..." << endl;
-    //TODO
+    handleTransfer();
   } else if (selectedOption == "4") {
     cout << "Processing check balance..." << endl;
     //TODO
@@ -133,5 +132,67 @@ void UserWalletMenu::handleWithdraw() {
   }
   else {
     console.notify("Rut diem that bai!");
+  }
+}
+
+void UserWalletMenu::handleTransfer() {
+  //Tinh nang chuyen diem o vi nguoi dung
+  cout << endl;
+  console.task("Chuyen diem cho vi");
+  int walletId;
+  Application& app = Application::getInstance();
+  Wallet* destinationWallet;
+  do
+  {
+    cout << "> Nhap id cua vi can chuyen: ";
+    cin >> walletId;
+    cin.ignore();
+
+    //Kiem tra vi dich co ton tai
+    destinationWallet = app.getWalletMgr().findWalletByIdFromFile(walletId);
+    if(destinationWallet == NULL) {
+      console.notify("Vi nhan diem khong ton tai!");
+    }
+  } while (destinationWallet == NULL);
+
+  int amount;
+  do
+  {
+    cout << "> Nhap so diem can chuyen: ";
+    cin >> amount;
+    cin.ignore();
+    if (amount <= 0) {
+      console.notify("So diem rut phai lon hon 0!");
+    }
+  } while (amount <= 0);
+
+  //hien thi ten nguoi so huu vi nhan diem
+  console.task("Thong tin chuyen diem");
+  User* destinationWalletOwner = app.getUserMgr().findUserByConditionFromFile("userId", to_string(destinationWallet->getUserId()));
+  if(destinationWalletOwner != NULL) {
+    cout << "    ID vi: " << destinationWallet->getWalletId() << endl;
+    cout << "    Nguoi so huu: " << destinationWalletOwner->getFullName() << endl;
+    cout << "    So diem: " << amount << endl;
+  }
+
+  char choice;
+  do
+  {    
+    cout << "> Xac nhan chuyen diem (y/n): ";
+    cin >> choice;
+    cin.ignore();
+  } while (choice != 'y' && choice != 'n');
+
+  if(choice == 'n') {
+    return;
+  }
+
+  UserWallet wallet;
+  bool result = wallet.transfer(destinationWallet->getWalletId(), amount);
+  if(result == true) {
+    console.notify("Chuyen diem thanh cong!");
+  }
+  else {
+    console.notify("Chuyen diem that bai!");
   }
 }

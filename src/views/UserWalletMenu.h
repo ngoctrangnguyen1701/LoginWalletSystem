@@ -20,6 +20,7 @@ class UserWalletMenu : public Menu
 		void handleInput() override;
 		void handleDeposit();
 		void handleWithdraw();
+		void handleTransfer();
 };
 
 #endif
