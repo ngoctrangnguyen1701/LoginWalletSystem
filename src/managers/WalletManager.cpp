@@ -1,6 +1,8 @@
 //include file .h tuong ung voi .cpp
 #include "WalletManager.h"
 
+//include file header noi bo khac
+#include "../Application.h"
 
 //Contructors
 //WalletMenu::WalletMenu(){}
@@ -138,20 +140,29 @@ bool WalletManager::updateBalance(int walletId, int amount, string type) {
     console.notify(text);
     return false;
   }
-  int balance;
-  if(type == "increment") {
-    balance = walletExist->getBalance() + amount;
+  bool result = updateBalanceNotSave(walletExist, amount, type);
+  if(result == false) {
+    return false;
   }
-  else if(type == "decrement") {
-    //Doi voi thao tac giam so du phai kiem tra so tien sau khi tru khong duoc nho hon 0
-    balance = walletExist->getBalance() - amount;
-    if(balance < 0) {
-      console.notify("So du hien tai khong du!");
-      return false;
-    }
-  }
+  
+  // int balance;
+  // if(type == "increment") {
+  //   balance = walletExist->getBalance() + amount;
+  // }
+  // else if(type == "decrement") {
+  //   //Doi voi thao tac giam so du phai kiem tra so tien sau khi tru khong duoc nho hon 0
+  //   balance = walletExist->getBalance() - amount;
+  //   if(balance < 0) {
+  //     //chi hien thong so du khong du khi la chu so huu vi
+  //     Application& app = Application::getInstance();
+  //     if(walletExist->getUserId() == app.getCurrentUser()->getUserId()) {
+  //       console.notify("So du hien tai khong du!");
+  //     }
+  //     return false;
+  //   }
+  // }
 
-  walletExist->setBalance(balance);
+  // walletExist->setBalance(balance);
 
   //Save walletList vao file, do file van ban thao tac ghi de 1 dong se de bi pha cau truc cua file trong truong hop do dai chuoi thay doi
   //nen phai ghi lai toan bo file
@@ -215,7 +226,11 @@ bool WalletManager::updateBalanceNotSave(Wallet* wallet, int amount, string type
     //Doi voi thao tac giam so du phai kiem tra so tien sau khi tru khong duoc nho hon 0
     balance = wallet->getBalance() - amount;
     if(balance < 0) {
-      console.notify("So du hien tai khong du!");
+      //chi hien thong so du khong du khi la chu so huu vi
+      Application& app = Application::getInstance();
+      if(wallet->getUserId() == app.getCurrentUser()->getUserId()) {
+        console.notify("So du hien tai khong du!");
+      }
       return false;
     }
   }

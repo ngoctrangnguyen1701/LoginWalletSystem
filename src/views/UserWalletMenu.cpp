@@ -33,8 +33,7 @@ void UserWalletMenu::handleInput() {
   if (selectedOption == "1") {
     handleDeposit();
   } else if (selectedOption == "2") {
-    cout << "Processing withdraw..." << endl;
-    //TODO
+    handleWithdraw();
   } else if (selectedOption == "3") {
     cout << "Processing tranfer..." << endl;
     //TODO
@@ -45,7 +44,7 @@ void UserWalletMenu::handleInput() {
     //TODO // Chuyen sang menu lich su giao dich cua admin
     return;
   } else if (selectedOption == "6") {
-    //TODO // Chuyen sang menu nguoi dung thong thuong
+    app.setCurrentMenu("UserMenu");
     return;
   } else {
     cout << "Lua chon khong hop le! Vui long chon lai" << endl;
@@ -60,7 +59,7 @@ void UserWalletMenu::handleInput() {
     cin >> choice;
     cin.ignore();
   } while (choice != 'y');    
-  app.setCurrentMenu("UserMenu"); // Chuyen sang menu nguoi dung thong thuong
+  app.setCurrentMenu("UserWalletMenu"); // Chuyen sang menu vi nguoi dung thong thuong
 }
 
 void UserWalletMenu::handleDeposit() {
@@ -97,5 +96,42 @@ void UserWalletMenu::handleDeposit() {
   }
   else {
     console.notify("Nap diem that bai!");
+  }
+}
+
+void UserWalletMenu::handleWithdraw() {
+  //Tinh nang rut diem o vi nguoi dung
+  cout << endl;
+  console.task("Rut diem o vi");
+  int amount;
+  do
+  {
+    cout << "> Nhap so diem can rut: ";
+    cin >> amount;
+    cin.ignore();
+    if (amount <= 0) {
+      console.notify("So diem rut phai lon hon 0!");
+    }
+  } while (amount <= 0);
+
+  char choice;
+  do
+  {    
+    cout << "> Xac nhan RUT '" << amount << "' diem o vi? (y/n): ";
+    cin >> choice;
+    cin.ignore();
+  } while (choice != 'y' && choice != 'n');
+
+  if(choice == 'n') {
+    return;
+  }
+
+  UserWallet wallet;
+  bool result = wallet.withdraw(amount);
+  if(result == true) {
+    console.notify("Rut diem thanh cong!");
+  }
+  else {
+    console.notify("Rut diem that bai!");
   }
 }

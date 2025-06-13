@@ -236,7 +236,7 @@ Transaction TransactionManager::readItemFromFile(stringstream& ss) {
   return transaction;
 }
 
-bool TransactionManager::createTransaction(Transaction newTransaction){
+bool TransactionManager::createTransaction(Transaction &newTransaction){
   //Lay danh sach transaction va nextTransactionId moi nhat
   bool resultGetList = getList();
   if(resultGetList == false) {
@@ -267,7 +267,7 @@ bool TransactionManager::createTransaction(Transaction newTransaction){
   }
 }
 
-bool TransactionManager::createTransactions(Transaction newTransaction_1, Transaction newTransaction_2){
+bool TransactionManager::createTransactions(Transaction &newTransaction_1, Transaction &newTransaction_2){
   //Lay danh sach transaction va nextTransactionId moi nhat
   bool resultGetList = getList();
   if(resultGetList == false) {
@@ -289,17 +289,17 @@ bool TransactionManager::createTransactions(Transaction newTransaction_1, Transa
   newTransaction_2.setTransactionId(transactionId_2); //gan id cho transaction
   newTransaction_2.setReferenceId(referenceId); 
 
-  nextTransactionId++; //tang nexTransactionId len 1
+  nextTransactionId += 2; //tang nexTransactionId len 2
 
   FileUtils fileUtils(filename, filenameNextId); 
   bool resultSave = fileUtils.appendItems(*this, newTransaction_1, newTransaction_2, nextTransactionId); 
   if(resultSave == true) {
     string text = "Luu thanh cong transaction_id '" + to_string(transactionId_1) + "' va '" + to_string(transactionId_2) + "'";
-    console.notify(text);
+    console.log(text);
     return true;
   } else {
     string text = "Luu that bai transaction_id '" + to_string(transactionId_1) + "' va '" + to_string(transactionId_2) + "'";
-    console.notify(text);
+    console.log(text);
     return false; 
   }
 }
