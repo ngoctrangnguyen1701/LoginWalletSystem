@@ -51,7 +51,7 @@ class WalletManager
 		Wallet readItemFromFile(stringstream& ss); //Doc wallet tu file
 		void writeItemToFile(fstream& file, Wallet item); //Ghi wallet vao file
 		bool saveList();
-		// bool checkIsValidBalance(int balance); //Kiem tra balance co hop le
+		bool checkValidDecrement(int userId, int amount); //Kiem tra balance co hop le, type la 'increment' hoac la 'decrement'
 		// bool loadWalletsFromFile(string filename);
 		// bool backupWalletData();
 		// bool restoreWalletData();

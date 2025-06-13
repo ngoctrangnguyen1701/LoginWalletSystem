@@ -37,11 +37,9 @@ void UserWalletMenu::handleInput() {
   } else if (selectedOption == "3") {
     handleTransfer();
   } else if (selectedOption == "4") {
-    cout << "Processing check balance..." << endl;
-    //TODO
+    handleCheckBalance();
   } else if (selectedOption == "5") {
-    //TODO // Chuyen sang menu lich su giao dich cua admin
-    return;
+    handleDisplayTransaction();
   } else if (selectedOption == "6") {
     app.setCurrentMenu("UserMenu");
     return;
@@ -63,6 +61,8 @@ void UserWalletMenu::handleInput() {
 
 void UserWalletMenu::handleDeposit() {
   //Tinh nang nap diem vao vi nguoi dung
+  Application& app = Application::getInstance();
+
   cout << endl;
   console.task("Nap diem vao vi");
   int amount;
@@ -88,6 +88,15 @@ void UserWalletMenu::handleDeposit() {
     return;
   }
 
+  //Xac thuc OTP truoc khi thao tac
+  int userId = app.getCurrentUser()->getUserId();
+  OTPManager otpMgr;
+  bool isValidOTP = otpMgr.verifyOTP(userId, "deposit");
+  if(isValidOTP == false) {
+    console.notify("Nap diem that bai!");
+    return;
+  }
+
   UserWallet wallet;
   bool result = wallet.deposit(amount);
   if(result == true) {
@@ -103,6 +112,7 @@ void UserWalletMenu::handleWithdraw() {
   cout << endl;
   console.task("Rut diem o vi");
   int amount;
+  int isValid;
   do
   {
     cout << "> Nhap so diem can rut: ";
@@ -111,7 +121,10 @@ void UserWalletMenu::handleWithdraw() {
     if (amount <= 0) {
       console.notify("So diem rut phai lon hon 0!");
     }
-  } while (amount <= 0);
+    else {
+      isValid = checkValidDecrement(amount);
+    }
+  } while (amount <= 0 || isValid == false);
 
   char choice;
   do
@@ -122,6 +135,16 @@ void UserWalletMenu::handleWithdraw() {
   } while (choice != 'y' && choice != 'n');
 
   if(choice == 'n') {
+    return;
+  }
+
+  //Xac thuc OTP truoc khi thao tac
+  Application& app = Application::getInstance();
+  int userId = app.getCurrentUser()->getUserId();
+  OTPManager otpMgr;
+  bool isValidOTP = otpMgr.verifyOTP(userId, "withdraw");
+  if(isValidOTP == false) {
+    console.notify("Rut diem that bai!");
     return;
   }
 
@@ -156,34 +179,48 @@ void UserWalletMenu::handleTransfer() {
   } while (destinationWallet == NULL);
 
   int amount;
+  bool isValid;
   do
   {
     cout << "> Nhap so diem can chuyen: ";
     cin >> amount;
     cin.ignore();
     if (amount <= 0) {
-      console.notify("So diem rut phai lon hon 0!");
+      console.notify("So diem chuyen phai lon hon 0!");
     }
-  } while (amount <= 0);
+    else {
+      isValid = checkValidDecrement(amount);
+    }
+  } while (amount <= 0 || isValid == false);
 
   //hien thi ten nguoi so huu vi nhan diem
+  cout << endl;
   console.task("Thong tin chuyen diem");
   User* destinationWalletOwner = app.getUserMgr().findUserByConditionFromFile("userId", to_string(destinationWallet->getUserId()));
   if(destinationWalletOwner != NULL) {
-    cout << "    ID vi: " << destinationWallet->getWalletId() << endl;
-    cout << "    Nguoi so huu: " << destinationWalletOwner->getFullName() << endl;
-    cout << "    So diem: " << amount << endl;
+    cout << "   ID vi: " << destinationWallet->getWalletId() << endl;
+    cout << "   Nguoi so huu: " << destinationWalletOwner->getFullName() << endl;
+    cout << "   So diem: " << amount << endl;
   }
 
   char choice;
   do
   {    
-    cout << "> Xac nhan chuyen diem (y/n): ";
+    cout << "> Xac nhan CHUYEN? (y/n): ";
     cin >> choice;
     cin.ignore();
   } while (choice != 'y' && choice != 'n');
 
   if(choice == 'n') {
+    return;
+  }
+
+  //Xac thuc OTP truoc khi thao tac
+  int userId = app.getCurrentUser()->getUserId();
+  OTPManager otpMgr;
+  bool isValidOTP = otpMgr.verifyOTP(userId, "transfer");
+  if(isValidOTP == false) {
+    console.notify("Chuyen diem that bai!");
     return;
   }
 
@@ -195,4 +232,35 @@ void UserWalletMenu::handleTransfer() {
   else {
     console.notify("Chuyen diem that bai!");
   }
+}
+
+void UserWalletMenu::handleCheckBalance() {
+  Application& app = Application::getInstance();
+  int userId = app.getCurrentUser()->getUserId();
+  Wallet* wallet = app.getWalletMgr().findWalletByUserIdFromFile(userId);
+  if(wallet != NULL) {
+    cout << "So du hien tai la: " << wallet->getBalance() << endl;
+  }
+  else {
+    cout << "Khong the doc so du hien tai!" << endl;
+  }
+}
+
+void UserWalletMenu::handleDisplayTransaction() {
+  Application& app = Application::getInstance();
+  int userId = app.getCurrentUser()->getUserId();
+  Wallet* wallet = app.getWalletMgr().findWalletByUserIdFromFile(userId);
+  if(wallet != NULL) {
+    app.getTransactionMgr().displayList(wallet->getWalletId());
+  }
+  else {
+    cout << "Khong the doc lich su giao dich!" << endl;
+  }
+}
+
+bool UserWalletMenu::checkValidDecrement(int amount) {
+  Application& app = Application::getInstance();
+  int userId = app.getCurrentUser()->getUserId();
+  bool result = app.getWalletMgr().checkValidDecrement(userId, amount);
+  return result;
 }

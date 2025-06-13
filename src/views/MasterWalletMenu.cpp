@@ -86,6 +86,16 @@ void MasterWalletMenu::handleDeposit() {
     return;
   }
 
+  //Xac thuc OTP truoc khi thao tac
+  Application& app = Application::getInstance();
+  int userId = app.getCurrentUser()->getUserId();
+  OTPManager otpMgr;
+  bool isValidOTP = otpMgr.verifyOTP(userId, "deposit");
+  if(isValidOTP == false) {
+    console.notify("Nap diem that bai!");
+    return;
+  }
+
   MasterWallet wallet;
   bool result = wallet.deposit(amount);
   if(result == true) {
@@ -101,6 +111,7 @@ void MasterWalletMenu::handleWithdraw() {
   cout << endl;
   console.task("Rut diem o vi tong");
   int amount;
+  bool isValid;
   do
   {
     cout << "> Nhap so diem can rut: ";
@@ -109,7 +120,10 @@ void MasterWalletMenu::handleWithdraw() {
     if (amount <= 0) {
       console.notify("So diem rut phai lon hon 0!");
     }
-  } while (amount <= 0);
+    else {
+      isValid = checkValidDecrement(amount);
+    }
+  } while (amount <= 0 || isValid == false);
 
   char choice;
   do
@@ -120,6 +134,16 @@ void MasterWalletMenu::handleWithdraw() {
   } while (choice != 'y' && choice != 'n');
 
   if(choice == 'n') {
+    return;
+  }
+
+  //Xac thuc OTP truoc khi thao tac
+  Application& app = Application::getInstance();
+  int userId = app.getCurrentUser()->getUserId();
+  OTPManager otpMgr;
+  bool isValidOTP = otpMgr.verifyOTP(userId, "withdraw");
+  if(isValidOTP == false) {
+    console.notify("Rut diem that bai!");
     return;
   }
 
@@ -147,4 +171,11 @@ void MasterWalletMenu::handleCheckBalance() {
 void MasterWalletMenu::handleDisplayTransaction() {
   Application& app = Application::getInstance();
   app.getTransactionMgr().displayList(1); //Vi tong co id mac dinh = 1
+}
+
+bool MasterWalletMenu::checkValidDecrement(int amount) {
+  Application& app = Application::getInstance();
+  int userId = app.getCurrentUser()->getUserId();
+  bool result = app.getWalletMgr().checkValidDecrement(userId, amount);
+  return result;
 }

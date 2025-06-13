@@ -21,6 +21,9 @@ class UserWalletMenu : public Menu
 		void handleDeposit();
 		void handleWithdraw();
 		void handleTransfer();
+		void handleCheckBalance();
+		void handleDisplayTransaction();
+		bool checkValidDecrement(int amount);
 };
 
 #endif

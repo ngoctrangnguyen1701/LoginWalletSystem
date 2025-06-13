@@ -144,25 +144,6 @@ bool WalletManager::updateBalance(int walletId, int amount, string type) {
   if(result == false) {
     return false;
   }
-  
-  // int balance;
-  // if(type == "increment") {
-  //   balance = walletExist->getBalance() + amount;
-  // }
-  // else if(type == "decrement") {
-  //   //Doi voi thao tac giam so du phai kiem tra so tien sau khi tru khong duoc nho hon 0
-  //   balance = walletExist->getBalance() - amount;
-  //   if(balance < 0) {
-  //     //chi hien thong so du khong du khi la chu so huu vi
-  //     Application& app = Application::getInstance();
-  //     if(walletExist->getUserId() == app.getCurrentUser()->getUserId()) {
-  //       console.notify("So du hien tai khong du!");
-  //     }
-  //     return false;
-  //   }
-  // }
-
-  // walletExist->setBalance(balance);
 
   //Save walletList vao file, do file van ban thao tac ghi de 1 dong se de bi pha cau truc cua file trong truong hop do dai chuoi thay doi
   //nen phai ghi lai toan bo file
@@ -238,13 +219,30 @@ bool WalletManager::updateBalanceNotSave(Wallet* wallet, int amount, string type
   return true;
 }
 
+bool WalletManager::checkValidDecrement(int userId, int amount) {
+  //Kiem tra balance co hop le, chi check truong hop giam diem
+  //Doi voi thao tac giam so du phai kiem tra so tien sau khi tru khong duoc nho hon 0
+  Wallet* wallet = findWalletByUserIdFromFile(userId);
+  if(wallet == NULL) {
+    return false;
+  }
+  int balance = wallet->getBalance() - amount;
+  if(balance < 0) {
+    //chi hien thong so du khong du khi la chu so huu vi
+    Application& app = Application::getInstance();
+    if(wallet->getUserId() == app.getCurrentUser()->getUserId()) {
+      console.notify("So du hien tai khong du!");
+    }
+    return false;
+  }
+  return true;
+}
 
 bool WalletManager::saveList() {
   FileUtils fileUtils(filename, filenameNextId);
   bool resultSave = fileUtils.saveDataByList(*this, walletList, nextWalletId);
   return resultSave;
 }
-
 
 Wallet* WalletManager::findWalletById(int walletId) {
   int size = walletList.size();

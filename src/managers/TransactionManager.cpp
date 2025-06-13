@@ -18,6 +18,7 @@ bool TransactionManager::getList(int walletId){
   FileUtils fileUtils(filename, filenameNextId);
   bool result;
   if(walletId == 0) {
+    //walletId == 0 se doc toan bo danh sach
     result = fileUtils.loadFile(*this, transactionList, nextTransactionId);
   }
   else {
@@ -58,7 +59,7 @@ void TransactionManager::displayList(int walletId) {
     cout << "________ ID: " << item.getTransactionId() << " ________" << endl;
     cout << "ID vi: " << item.getWalletId() << endl;
     if(item.getReferenceId() != "") {
-      cout << "ma tham chieu: " << item.getReferenceId() << endl;
+      cout << "Ma tham chieu: " << item.getReferenceId() << endl;
     }
     // cout << "ma tham chieu chung: " << item.getReferenceId() << endl;
     if(item.getSourceWalletId() != 0) {
@@ -75,6 +76,7 @@ void TransactionManager::displayList(int walletId) {
     cout << "Trang thai: " << item.getStatus() << endl;
   }
   // Print footer
+  cout << endl;
   cout << "---\n";
   cout << "Tong so giao dich: " << transactionList.size() << endl;
 }

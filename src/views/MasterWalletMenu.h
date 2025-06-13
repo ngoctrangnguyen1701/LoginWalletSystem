@@ -23,6 +23,7 @@ class MasterWalletMenu : public Menu
 		void handleWithdraw();
 		void handleCheckBalance();
 		void handleDisplayTransaction();
+		bool checkValidDecrement(int amount);
 };
 
 #endif

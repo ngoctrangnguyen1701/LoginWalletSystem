@@ -32,12 +32,6 @@ class Wallet
 		bool getIsMaster();
 
 		//Methods
-		// bool adminDeposist(int amount);
-		// bool adminWithdraw(int amount);
-		// bool userDepoist(int amount);
-		// bool adminWithdraw(int amount);
-		
-		// Transaction* transfer(Wallet* destination, int amount);
 };
 
 #endif
