@@ -37,17 +37,10 @@ void BackupRestoreMenu::handleInput() {
     app.setCurrentMenu("AdminMenu"); // Chuyen sang menu danh cho admin
     return;
   } else {
-    cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    cout << "Lua chon khong hop le! Vui long chon lai!" << endl;
     return;
   }
-  char choice;
-  do
-  {    
-    cout << "> Quay tro ve menu? (y): ";
-    cin >> choice;
-    cin.ignore();
-  } while (choice != 'y');
-  app.setCurrentMenu("BackupRestoreMenu"); // Chuyen sang menu admin
+  backToMenu("BackupRestoreMenu"); // Chuyen sang menu sao luu va khoi phuc
 }
 
 void BackupRestoreMenu::handleRestoreData() {

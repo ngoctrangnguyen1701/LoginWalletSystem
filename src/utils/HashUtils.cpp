@@ -2,12 +2,6 @@
 #include "HashUtils.h"
 
 //Methods
-// string HashUtils::generateHash(string password, string salt){
-//   string newStr = salt + password;
-//   string hash = picosha2::hash256_hex_string(newStr);
-//   return hash;
-// }
-
 string HashUtils::generateSalt() {
   stringstream ss;
   

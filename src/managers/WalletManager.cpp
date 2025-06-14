@@ -4,19 +4,6 @@
 //include file header noi bo khac
 #include "../Application.h"
 
-//Contructors
-//WalletMenu::WalletMenu(){}
-
-//Destructor
-WalletManager::~WalletManager(){
-  //TODO
-  //Giai phong bo nho
-  // cout << "WalletManager destructor" << endl;
-  if(walletList.size() > 0) {
-    walletList.clear(); 
-  }  
-}
-
 //Methods
 bool WalletManager::createWallet(Wallet newWallet){
   //Lay danh sach wallet va nextWalletId moi nhat
@@ -110,8 +97,6 @@ void WalletManager::displayList() {
 
     username = user->getUsername();
     string isMaster = item.getIsMaster() == 1 ? "Co" : "Khong";
-    //TODO
-    //hien thi dau cham ngan cach cac chu so
 
     cout << "|" << setw(idWidth-1) << right << item.getWalletId() << " |";
     cout << " " << setw(usernameWidth-1) << left << username << "|";

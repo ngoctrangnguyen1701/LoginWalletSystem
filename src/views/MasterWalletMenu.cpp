@@ -44,19 +44,12 @@ void MasterWalletMenu::handleInput() {
     app.setCurrentMenu("AdminMenu"); // Chuyen sang menu admin
     return;
   } else {
-    cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    cout << "Lua chon khong hop le! Vui long chon lai!" << endl;
     return;
   }
   
   // cout << endl;
-  char choice;
-  do
-  {    
-    cout << "> Quay tro ve menu? (y): ";
-    cin >> choice;
-    cin.ignore();
-  } while (choice != 'y');    
-  app.setCurrentMenu("MasterWalletMenu"); // Chuyen sang menu vi tong
+  backToMenu("MasterWalletMenu"); // Chuyen sang menu vi tong
 }
 
 void MasterWalletMenu::handleDeposit() {

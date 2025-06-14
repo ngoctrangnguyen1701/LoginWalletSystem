@@ -42,8 +42,6 @@ class Transaction
 		string getCreatedDate();
 		string getStatus();
 		int getBalance();
-
-		//Methods
 };
 
 #endif

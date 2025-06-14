@@ -10,7 +10,6 @@
 #include <cstring>
 
 //include file header noi bo khac
-// #include "../libraries/picosha2.h"
 #include "../libraries/sha256.h"
 
 using namespace std;

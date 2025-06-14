@@ -4,17 +4,6 @@
 
 using namespace std;
 
-
-//Destructor
-TransactionManager::~TransactionManager(){
-  //TODO
-  //Giai phong bo nho
-  // cout << "TransactionManager destructor" << endl;
-  if(transactionList.size() > 0) {
-    transactionList.clear(); 
-  }  
-}
-
 //Methods
 bool TransactionManager::getList(int walletId){
   FileUtils fileUtils(filename, filenameNextId);
@@ -42,7 +31,6 @@ void TransactionManager::displayList(int walletId) {
     return;
   }
   
-  // Print header with nice formatting
   cout << "\n+-----------------------------------------------------+\n";
   cout << "|             DANH SACH LICH SU GIAO DICH             |\n";
   cout << "+-----------------------------------------------------+\n";
@@ -88,7 +76,7 @@ void TransactionManager::displayList(int walletId) {
     cout << "Trang thai: " << statusStr << endl;
     cout << "So du: " << balanceStr << endl;
   }
-  // Print footer
+  
   cout << endl;
   cout << "---\n";
   cout << "Tong so giao dich: " << transactionList.size() << endl;

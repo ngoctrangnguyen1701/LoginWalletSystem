@@ -136,20 +136,6 @@ void Application::login(){
   }
 }
 
-bool Application::signup(){
-  //TODO
-  bool result = false;
-  //neu dang ky thanh cong tra ra true, khong thanh cong tra ra false
-  return result;
-}
- 
-bool Application::logout(){
-  //TODO
-  //neu dang xuat thanh cong tra ra true, khong thanh cong tra ra false
-  bool result = false;
-  return result;
-}
-
 void Application::run(){  
   console.notify("Chuong trinh dang chay...");
 

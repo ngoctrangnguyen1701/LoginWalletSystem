@@ -12,7 +12,7 @@ string OTPManager::generateOTP(int userId, string type){
   this->type = type;
   this->createdTime = time(NULL); // Thoi diem hien tai
 
-  // Gen ra ma ngau nhien 6 chu so
+  // Gen ra ma ngau nhien 5 chu so
   string randomStr = "";
   for (int i = 0; i < 5; i++)
   {

@@ -1,13 +1,8 @@
 //include file .h tuong ung voi .cpp
 #include "Menu.h"
 
-//include thu vien
-#include <string>
-
 //include file header noi bo khac
-//...
-
-using namespace std;
+#include "../Application.h"
 
 //Contructors
 Menu::Menu(string _title){
@@ -22,10 +17,12 @@ Menu::~Menu() {}
 //Methods
 void Menu::setIsRunning(bool x){
   isRunning = x;
-};			
+};
+
 bool Menu::getIsRunning() {
   return isRunning;
 };
+
 void Menu::printHeader() {
   int length = title.length();
   string border = "+-----";
@@ -36,4 +33,16 @@ void Menu::printHeader() {
   cout << border << endl;
   cout << "      " << title << "      " << endl;
   cout << border << endl;
+}
+
+void Menu::backToMenu(string menuName) {
+  char choice;
+  do
+  {    
+    cout << "> Quay tro ve menu? (y): ";
+    cin >> choice;
+    cin.ignore();
+  } while (choice != 'y');
+  Application& app = Application::getInstance();
+  app.setCurrentMenu(menuName);
 }

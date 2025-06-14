@@ -58,18 +58,16 @@ void AdminMenu::handleInput() {
     app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
     return;
   } else {
-    cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    cout << "Lua chon khong hop le! Vui long chon lai!" << endl;
     return;
   }
-  // cout << endl;
-  char choice;
-  do
-  {    
-    cout << "> Quay tro ve menu? (y): ";
-    cin >> choice;
-    cin.ignore();
-  } while (choice != 'y');
-  app.setCurrentMenu("AdminMenu"); // Chuyen sang menu admin
+
+  if(isReloadMenu == true) {
+    app.setCurrentMenu("AdminMenu"); // Chuyen sang menu admin
+    return;
+  }
+
+  backToMenu("AdminMenu"); // Chuyen sang menu admin
 }
 
 void AdminMenu::handleReadUserList() {
@@ -83,9 +81,10 @@ void AdminMenu::handleCreateUser() {
   string fullName;
   string email;
   bool isAdmin = false;
-  bool isAutoGenPassword = true; //TODO: mat khau tu sinh, yeu cau doi mat khau khi dang nhap lan dau tien
+  bool isAutoGenPassword = true;
+
   cout << endl;
-  cout << "===== Tao nguoi dung moi =====" << endl;
+  console.task("Tao nguoi dung moi");
   cout << "> Ten dang nhap: ";
   getline(cin, username);  
   cout << "> Ho va ten: ";
@@ -109,7 +108,6 @@ void AdminMenu::handleCreateUser() {
 }
 
 void AdminMenu::handleUpdateUser() {
-  // cout << endl;
   char choice;
   do
   {    
@@ -135,19 +133,21 @@ void AdminMenu::handleUpdateUser() {
   do
   { 
     if(choice_2 != 0 && choice_2 != 1 && choice_2 != 2 && choice_2 != 3 && choice_2 != 4) {
-      cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+      cout << "Lua chon khong hop le! Vui long chon lai!" << endl;
     }
-    cout << "===== Thay doi thong tin =====" << endl;
+
+    cout << endl;
+    console.task("Thay doi thong tin");
     cout << "   " << "1. Ho va ten" << endl;
     cout << "   " << "2. Email" << endl;
     cout << "   " << "3. Thay doi [1] va [2]" << endl;
     cout << "   " << "4. Quay tro ve menu" << endl;
+    cout << endl;
     cout << "> Chon mot thao tac: ";
     cin >> choice_2;
     cin.ignore();
   } while (choice_2 != 1 && choice_2 != 2 && choice_2 != 3 && choice_2 != 4);
 
-  // cin.ignore(); // Bo qua ki tu xuong dong
   if(choice_2 == 1) {
     cout << "> Nhap ho va ten moi: ";
     getline(cin, fullName);
@@ -160,7 +160,7 @@ void AdminMenu::handleUpdateUser() {
     cout << "> Nhap email moi: ";
     getline(cin, email);
   } else if(choice_2 == 4) {
-    app.setCurrentMenu("AdminMenu"); // Chuyen sang menu admin
+    isReloadMenu = true;
     return;
   }
 
@@ -173,7 +173,6 @@ void AdminMenu::handleUpdateUser() {
 }
 
 void AdminMenu::handleDeleteUser() {
-  // cout << endl;
   char choice;
   do
   {    
@@ -194,15 +193,12 @@ void AdminMenu::handleDeleteUser() {
   cin >> userId;
   cin.ignore(); 
 
-  //TODO
-  //check userId co ton tai truoc khi xac nhan xoa
-  
   cout << endl;
   int choice_2 = 0;
   do
   { 
     if(choice_2 != 0 && choice_2 != 1 && choice_2 != 2) {
-      cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+      cout << "Lua chon khong hop le! Vui long chon lai!" << endl;
     }
     cout << "===== XAC NHAN XOA USER_ID '" << userId << "' =====" << endl;
     cout << "   " << "1. Dong y xoa" << endl;

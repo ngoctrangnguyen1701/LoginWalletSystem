@@ -21,16 +21,13 @@ using namespace std;
 
 class WalletManager
 {
-		vector<Wallet> walletList; //TODO: gioi han danh sach 100 wallet, 1 vi tong duy nhat, 99 wallet binh thuong, pagination
+		vector<Wallet> walletList;
 		int nextWalletId; //auto increase
 		string filename = "walletData"; //ten file luu wallet
 		string filenameNextId = "nextWalletId"; //ten file luu nextWalletId
 		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
 	protected:
 	public:
-		//Destructor
-		~WalletManager();
-
 		//Methods
 		bool createWallet(Wallet newWallet);
 		bool getList();

@@ -1,17 +1,6 @@
 //include file .h tuong ung voi .cpp
 #include "UserManager.h"
 
-
-//Destructor
-UserManager::~UserManager(){
-  //TODO
-  //Giai phong bo nho
-  // cout << "UserManager destructor" << endl;
-  if(userList.size() > 0) {
-    userList.clear(); 
-  }  
-}
-
 //Methods
 bool UserManager::createUser(User newUser){
   //Lay danh sach user va nextUserId moi nhat
@@ -79,10 +68,7 @@ void UserManager::displayList() {
   const int usernameWidth = 15;
   const int fullNameWidth = 25;
   const int emailWidth = 30;
-  // const int isAdminWidth = 10;
-  // const int isAutoGenWidth = 20;
   
-  // Print header with nice formatting
   cout << "\n+-------------------------------------------------------------------------------+\n";
   cout << "|                           DANH SACH NGUOI DUNG                                |";
   cout << "\n+------+---------------+-------------------------+------------------------------+\n";
@@ -90,9 +76,6 @@ void UserManager::displayList() {
   cout << " " << setw(usernameWidth-1) << left << "Ten dang nhap" << "|";
   cout << " " << setw(fullNameWidth-1) << left << "Ho va ten" << "|";
   cout << " " << setw(emailWidth-1) << left << "Email" << "|";
-  // cout << " " << setw(isAdminWidth-1) << left << "Admin" << "|";
-  // cout << " " << setw(isAutoGenWidth-1) << left << "Mat khau tu dong" << "|";
-  // cout << "\n+------+---------------+-------------------------+------------------------------+----------+--------------------+\n";
   cout << "\n+------+---------------+-------------------------+------------------------------+\n";
   
   // Print each user
@@ -102,13 +85,9 @@ void UserManager::displayList() {
     cout << " " << setw(usernameWidth-1) << left << item.getUsername() << "|";
     cout << " " << setw(fullNameWidth-1) << left << item.getFullName() << "|";
     cout << " " << setw(emailWidth-1) << left << item.getEmail() << "|";
-    // cout << " " << setw(isAdminWidth-1) << left << (item.getIsAdmin() ? "Co" : "Khong") << "|";
-    // cout << " " << setw(isAutoGenWidth-1) << left << (item.getIsAutoGenPassword() ? "Co" : "Khong") << "|";
     cout << endl;
   }
   
-  // Print footer
-  // cout << "+------+---------------+-------------------------+------------------------------+----------+--------------------+\n";
   cout << "+------+---------------+-------------------------+------------------------------+\n";
   cout << "Tong so nguoi dung: " << userList.size() << endl;
 }
@@ -146,7 +125,6 @@ bool UserManager::updateUser(int userId, string fullName, string email, string p
   //nen phai ghi lai toan bo file
   FileUtils fileUtils(filename, filenameNextId);
   bool resultSave = fileUtils.saveDataByList(*this, userList, nextUserId);
-  // delete userExist; //giai phong bo nho
   return resultSave;
 }
 
@@ -177,7 +155,6 @@ bool UserManager::deleteUser(int userId){
   //nen phai ghi lai toan bo file
   FileUtils fileUtils(filename, filenameNextId);
   bool resultSave = fileUtils.saveDataByList(*this, userList, nextUserId);
-  // delete userExist; //giai phong bo nho
   return resultSave;
 }
 
@@ -273,7 +250,6 @@ User* UserManager::findUserByConditionFromFile(string key, string value) {
     if(isExist == false) {
       string text = "Khong tim thay item trong file '" + fullPath + "'";
       console.log(text);
-      // return User(); //tra ve user rong
       return NULL;
     }
     else {
@@ -293,7 +269,7 @@ bool UserManager::createSampleData() {
   vector<User> userList;
   userList.push_back(User("admin", "123", "Administrator", "admin@gmail.com", true, false));
   userList.push_back(User("binhduong", "binhduong123", "Binh Duong 68", "binhduong123@example.com", false, false));
-  userList.push_back(User("tamgiac", "tamgiac123", "Tam giac mach", "tamgiac@example.com", false, false));
+  userList.push_back(User("vungtau", "vungtau123", "Vung Tau", "vungtau@example.com", false, false));
   userList.push_back(User("trian", "trian123", "Tri An", "trian@example.com", false, false));
   userList.push_back(User("vinhhy", "vinhhy123", "Vinh Hy", "vinhhy@example.com", false, false));
   userList.push_back(User("nuicam", "nuicam123", "Thien Cam Son", "nuicam@example.com", false, false));  
@@ -310,7 +286,6 @@ bool UserManager::createSampleData() {
 User UserManager::readItemFromFile(stringstream& ss) {
   int userId; 
   string username;
-  // string password;
   string passwordHash;
   string passwordSalt;
   string fullName;
@@ -323,7 +298,6 @@ User UserManager::readItemFromFile(stringstream& ss) {
   getline(ss, token, ',');
   userId = stoi(token);
   getline(ss, username, ',');
-  // getline(ss, password, ',');
   getline(ss, passwordHash, ',');
   getline(ss, passwordSalt, ',');
   getline(ss, fullName, ',');
@@ -334,7 +308,6 @@ User UserManager::readItemFromFile(stringstream& ss) {
   isAutoGenPassword = (token == "1"); //cho nay se ra true or false
     
   //Tao user va set userId
-  // User user(username, password, fullName, email, isAdmin, isAutoGenPassword);
   User user(username, passwordHash, passwordSalt, fullName, email, isAdmin, isAutoGenPassword);
   user.setUserId(userId);
   return user;
@@ -343,7 +316,6 @@ User UserManager::readItemFromFile(stringstream& ss) {
 void UserManager::writeItemToFile(fstream& file, User item) {
   file << item.getUserId() << ","
       << item.getUsername() << ","
-      // << item.getPassword() << ","
       << item.getPasswordHash() << ","
       << item.getPasswordSalt() << ","
       << item.getFullName() << ","
@@ -351,19 +323,3 @@ void UserManager::writeItemToFile(fstream& file, User item) {
       << item.getIsAdmin() << ","
       << item.getIsAutoGenPassword() << endl;
 };
-
-bool UserManager::backupUserData(){
-  //TODO
-  //Luu danh sach user vao file user.csv
-  //Neu luu thanh cong thi tra ve true, khong thanh cong thi tra ve false
-  bool result = false;
-  return result;
-}
-
-bool UserManager::restoreUserData(){
-  //TODO
-  //Doc danh sach user tu file user.csv
-  //Neu doc thanh cong thi tra ve true, khong thanh cong thi tra ve false
-  bool result = false;
-  return result;
-}

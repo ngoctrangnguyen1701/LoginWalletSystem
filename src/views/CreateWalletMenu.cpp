@@ -32,19 +32,11 @@ void CreateWalletMenu::handleInput() {
     app.setCurrentMenu("UserMenu"); // Chuyen sang menu nguoi dung thong thuong
     return;
   } else {
-    cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    cout << "Lua chon khong hop le! Vui long chon lai!" << endl;
     return;
   }
   
-  // cout << endl;
-  char choice;
-  do
-  {    
-    cout << "> Quay tro ve menu? (y): ";
-    cin >> choice;
-    cin.ignore();
-  } while (choice != 'y');    
-  app.setCurrentMenu("UserMenu"); // Chuyen sang menu nguoi dung thong thuong
+  backToMenu("UserMenu"); // Chuyen sang menu nguoi dung thong thuong
 }
 
 void CreateWalletMenu::handleCreateWallet() {

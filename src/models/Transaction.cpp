@@ -70,5 +70,3 @@ string Transaction::getStatus(){
 int Transaction::getBalance(){
   return balance;
 };
-
-//Methods
