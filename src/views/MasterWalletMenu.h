@@ -8,6 +8,8 @@
 //include file header noi bo khac
 #include "Menu.h"
 #include "../Application.h"
+#include "../utils/Utils.h"
+#include "../models/MasterWallet.h"
 
 class MasterWalletMenu : public Menu
 {
@@ -17,6 +19,11 @@ class MasterWalletMenu : public Menu
 		MasterWalletMenu();
 		void display() override;
 		void handleInput() override;
+		void handleDeposit();
+		void handleWithdraw();
+		void handleCheckBalance();
+		void handleDisplayTransaction();
+		bool checkValidDecrement(int amount);
 };
 
 #endif

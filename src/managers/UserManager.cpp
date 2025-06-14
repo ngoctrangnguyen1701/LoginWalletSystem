@@ -42,11 +42,11 @@ bool UserManager::createUser(User newUser){
   bool resultSave = fileUtils.appendItem(*this, newUser, nextUserId); 
   if(resultSave == true) {
     string text = "Luu thanh cong user_id '" + to_string(userId) + "'";
-    console.notify(text);
+    console.log(text);
     return true;
   } else {
     string text = "Luu that bai user_id '" + to_string(userId) + "'";
-    console.notify(text);
+    console.log(text);
     return false; 
   }
 }

@@ -114,7 +114,7 @@ void Application::initialize(){
 
 void Application::login(){
   cout << endl;
-  cout << "===== Thong tin dang nhap =====" << endl;
+  console.task("Thong tin dang nhap");
 
   string username, password;
   cout << "> Ten dang nhap: ";

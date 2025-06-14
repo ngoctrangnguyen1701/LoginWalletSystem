@@ -2,6 +2,9 @@
 #define Wallet_H //Dinh nghia no
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
+#include "../models/Transaction.h"
+#include "../managers/TransactionManager.h"
+
 class Wallet
 {
 	private:		
@@ -19,6 +22,7 @@ class Wallet
 
 		//Setters
 		void setWalletId(int walletId);
+		void setBalance(int walletId);
 
 		//Getters
 		int getWalletId();
@@ -27,7 +31,6 @@ class Wallet
 		bool getIsMaster();
 
 		//Methods
-		// Transaction* transfer(Wallet* destination, int amount);
 };
 
 #endif
