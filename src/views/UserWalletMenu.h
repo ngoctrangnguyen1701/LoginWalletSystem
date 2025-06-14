@@ -9,6 +9,7 @@
 #include "Menu.h"
 #include "../Application.h"
 #include "../models/UserWallet.h"
+#include "../utils/Utils.h"
 
 class UserWalletMenu : public Menu
 {

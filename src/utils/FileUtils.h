@@ -69,7 +69,7 @@ class FileUtils {
     bool appendItem(M &classManager, const T& item, int nextId);
 
     template <typename T, typename M>
-    bool appendItems(M &classManager, const T& item_1, const T& item_2, int nextId);
+    bool appendItemList(M &classManager, const vector<T>& list, int nextId);
 };
 
 // Include the implementation file at the end of the header

@@ -1,5 +1,5 @@
-#ifndef DateTimeUtils_H //Neu chua duoc dinh nghia
-#define DateTimeUtils_H //Dinh nghia no
+#ifndef Utils_H //Neu chua duoc dinh nghia
+#define Utils_H //Dinh nghia no
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
 #include <iostream>
@@ -24,6 +24,23 @@ inline string getCurrentDateTimeFormatted() {
   t->tm_sec);                   // Giay
 
   return string(buffer);                // Tra ve chuoi thoi gian
+};
+
+// Dinh dang so nguyen: them dau cham moi 3 chu so tu phai sang trai
+inline string formatWithDotSeparator(int number) {
+  string numStr = to_string(number);
+  string result;
+  int count = 0;
+
+  for (int i = numStr.length() - 1; i >= 0; i--) {
+    result = numStr[i] + result;
+    count++;
+    if (count % 3 == 0 && i != 0) {
+      result = '.' + result;
+    }
+  }
+
+  return result;
 }
 
 #endif

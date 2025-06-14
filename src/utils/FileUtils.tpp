@@ -136,7 +136,7 @@ bool FileUtils::appendItem(M &classManager, const T& item, int nextId) {
 }
 
 template <typename T, typename M>
-bool FileUtils::appendItems(M &classManager, const T& item_1, const T& item_2, int nextId) {
+bool FileUtils::appendItemList(M &classManager, const vector<T>& list, int nextId) {
   try {
     fstream file(fullPath, ios::in | ios::out | ios::app);
     if (!file.is_open()) {
@@ -144,9 +144,12 @@ bool FileUtils::appendItems(M &classManager, const T& item_1, const T& item_2, i
       file.close();
       return false;
     }
+
+    int size = list.size();
+    for(int i = 0; i < size; i++) {
+      classManager.writeItemToFile(file, list[i]);
+    }
     
-    classManager.writeItemToFile(file, item_1);
-    classManager.writeItemToFile(file, item_2);
     file.close();
     string text = "Da luu du lieu moi vao file '" + fullPath + "'";
     console.log(text);

@@ -244,6 +244,14 @@ bool WalletManager::saveList() {
   return resultSave;
 }
 
+int WalletManager::loadBalanceFromFile(int walletId) {
+  Wallet* wallet = findWalletByIdFromFile(walletId);
+  if(wallet != NULL) {
+    return wallet->getBalance();
+  }
+  return -1;
+}
+
 Wallet* WalletManager::findWalletById(int walletId) {
   int size = walletList.size();
   for (int i = 0; i < size; i++) {
@@ -291,7 +299,6 @@ Wallet* WalletManager::findWalletByIdFromFile(int walletId) {
     if(isExist == false) {
       string text = "Khong tim thay item trong file '" + fullPath + "'";
       console.log(text);
-      // return Wallet(); //tra ve Wallet rong
       return NULL;
     }
     else {
@@ -342,7 +349,6 @@ Wallet* WalletManager::findWalletByUserIdFromFile(int userId) {
     if(isExist == false) {
       string text = "Khong tim thay item trong file '" + fullPath + "'";
       console.log(text);
-      // return Wallet(); //tra ve Wallet rong
       return NULL;
     }
     else {

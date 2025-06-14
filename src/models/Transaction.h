@@ -17,16 +17,19 @@ class Transaction
 		int amount;
 		string createdDate; //format theo yyyy/mm/dd hh:mm:ss
 		string status; // ("success", "failed")
+		int balance; //So du khi giao dich xong
 	protected:
 	public:
 		// Constructors
 		Transaction() = default;
 		Transaction(int walletId, string referenceId, int sourceWalletId, int destinationWalletId, string type, int amount, string createdDate, string status);
+		Transaction(int walletId, string referenceId, int sourceWalletId, int destinationWalletId, string type, int amount, string createdDate, string status, int balance);
 
 		//Setters
 		void setTransactionId(int transactionId);
 		void setReferenceId(string referenceId);
 		void setStatus(string status);
+		void setBalance(int balance);
 
 		//Getters
 		int getTransactionId();
@@ -38,6 +41,7 @@ class Transaction
 		int getAmount();
 		string getCreatedDate();
 		string getStatus();
+		int getBalance();
 
 		//Methods
 };

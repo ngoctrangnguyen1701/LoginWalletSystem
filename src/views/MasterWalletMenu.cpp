@@ -77,7 +77,7 @@ void MasterWalletMenu::handleDeposit() {
   char choice;
   do
   {    
-    cout << "> Xac nhan NAP '" << amount << "' diem vao vi tong? (y/n): ";
+    cout << "> Xac nhan NAP '" << formatWithDotSeparator(amount) << "' diem vao vi tong? (y/n): ";
     cin >> choice;
     cin.ignore();
   } while (choice != 'y' && choice != 'n');
@@ -128,7 +128,7 @@ void MasterWalletMenu::handleWithdraw() {
   char choice;
   do
   {    
-    cout << "> Xac nhan RUT '" << amount << "' diem o vi tong? (y/n): ";
+    cout << "> Xac nhan RUT '" << formatWithDotSeparator(amount) << "' diem o vi tong? (y/n): ";
     cin >> choice;
     cin.ignore();
   } while (choice != 'y' && choice != 'n');
@@ -161,7 +161,7 @@ void MasterWalletMenu::handleCheckBalance() {
   Application& app = Application::getInstance();
   Wallet* wallet =  app.getWalletMgr().findWalletByIdFromFile(1); //Vi tong co id mac dinh = 1
   if(wallet != NULL) {
-    cout << "So du hien tai la: " << wallet->getBalance() << endl;
+    cout << "So du hien tai la: " << formatWithDotSeparator(wallet->getBalance()) << endl;
   }
   else {
     cout << "Khong the doc so du hien tai!" << endl;

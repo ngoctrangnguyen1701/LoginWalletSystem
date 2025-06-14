@@ -79,7 +79,7 @@ void UserWalletMenu::handleDeposit() {
   char choice;
   do
   {    
-    cout << "> Xac nhan NAP '" << amount << "' diem vao vi? (y/n): ";
+    cout << "> Xac nhan NAP '" << formatWithDotSeparator(amount) << "' diem vao vi? (y/n): ";
     cin >> choice;
     cin.ignore();
   } while (choice != 'y' && choice != 'n');
@@ -129,7 +129,7 @@ void UserWalletMenu::handleWithdraw() {
   char choice;
   do
   {    
-    cout << "> Xac nhan RUT '" << amount << "' diem o vi? (y/n): ";
+    cout << "> Xac nhan RUT '" << formatWithDotSeparator(amount) << "' diem o vi? (y/n): ";
     cin >> choice;
     cin.ignore();
   } while (choice != 'y' && choice != 'n');
@@ -200,7 +200,7 @@ void UserWalletMenu::handleTransfer() {
   if(destinationWalletOwner != NULL) {
     cout << "   ID vi: " << destinationWallet->getWalletId() << endl;
     cout << "   Nguoi so huu: " << destinationWalletOwner->getFullName() << endl;
-    cout << "   So diem: " << amount << endl;
+    cout << "   So diem: " << formatWithDotSeparator(amount) << endl;
   }
 
   char choice;
@@ -239,7 +239,7 @@ void UserWalletMenu::handleCheckBalance() {
   int userId = app.getCurrentUser()->getUserId();
   Wallet* wallet = app.getWalletMgr().findWalletByUserIdFromFile(userId);
   if(wallet != NULL) {
-    cout << "So du hien tai la: " << wallet->getBalance() << endl;
+    cout << "So du hien tai la: " << formatWithDotSeparator(wallet->getBalance()) << endl;
   }
   else {
     cout << "Khong the doc so du hien tai!" << endl;
