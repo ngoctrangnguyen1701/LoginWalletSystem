@@ -16,6 +16,7 @@
 #include "../managers/UserManager.h"
 #include "../utils/FileUtils.h"
 #include "../utils/ConsoleUtils.h"
+#include "../utils/Utils.h"
 
 using namespace std;
 

@@ -51,7 +51,7 @@ void BackupRestoreMenu::handleRestoreData() {
   }
 
   string backupVersion;
-  cout << "> Nhap phien ban ban sao luu muon xoa: ";
+  cout << "> Nhap phien ban sao luu muon khoi phuc: ";
   getline(cin, backupVersion);
 
   char choice;

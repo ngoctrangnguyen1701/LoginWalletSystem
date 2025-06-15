@@ -97,10 +97,11 @@ void WalletManager::displayList() {
 
     username = user->getUsername();
     string isMaster = item.getIsMaster() == 1 ? "Co" : "Khong";
+    string amountStr = formatWithDotSeparator(item.getBalance());    
 
     cout << "|" << setw(idWidth-1) << right << item.getWalletId() << " |";
     cout << " " << setw(usernameWidth-1) << left << username << "|";
-    cout << setw(balanceWidth-1) << right << item.getBalance() << " |";
+    cout << setw(balanceWidth-1) << right << amountStr << " |";
     cout << " " << setw(isMasterWidth-1) << left << isMaster << "|";
     cout << endl;
 

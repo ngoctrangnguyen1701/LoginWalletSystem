@@ -3,7 +3,7 @@
 
 //Contructors
 //goi truc tiep contructor cua lop Menu
-CreateWalletMenu::CreateWalletMenu() : Menu("Menu thao tac vi tien") {
+CreateWalletMenu::CreateWalletMenu() : Menu("Menu tao vi") {
   options = vector<string>(2); //Tao vector co 2 phan tu
   options[0] = "1. Tao vi";
   options[1] = "2. Quay ve menu truoc";
@@ -43,7 +43,7 @@ void CreateWalletMenu::handleCreateWallet() {
   char choice;
   do
   {    
-    cout << "> Xac nhan tao vi tien? (y/n): ";
+    cout << "> Xac nhan tao vi? (y/n): ";
     cin >> choice;
     cin.ignore();
   } while (choice != 'y' && choice != 'n');

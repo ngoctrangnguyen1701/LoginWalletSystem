@@ -3,7 +3,7 @@
 
 //Contructors
 //goi truc tiep contructor cua lop Menu
-UserWalletMenu::UserWalletMenu() : Menu("Menu thao tac vi tien") {
+UserWalletMenu::UserWalletMenu() : Menu("Menu thao tac vi") {
   options = vector<string>(6); //Tao vector co 6 phan tu
   options[0] = "1. Nap";
   options[1] = "2. Rut";
