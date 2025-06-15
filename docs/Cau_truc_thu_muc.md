@@ -70,6 +70,7 @@
 |
 |-- /docs                             # Tài liệu
 |   |-- Cau_truc_thu_muc
+|   |-- Du_lieu_mau
 |   |-- Huong_dan_thao_tac
 |   |-- Phan_cong_cong_viec
 |   |-- Phan_tich_tong_hop_chuc_nang

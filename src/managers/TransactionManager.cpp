@@ -71,7 +71,7 @@ void TransactionManager::displayList(int walletId) {
     string statusStr = item.getStatus() == "success" ? "Thanh cong" : "That bai";
 
     cout << "Loai giao dich: " << type << endl;
-    cout << "So tien: " << amountStr << endl;
+    cout << "So diem: " << amountStr << endl;
     cout << "Thoi gian: " << item.getCreatedDate() << endl;
     cout << "Trang thai: " << statusStr << endl;
     cout << "So du: " << balanceStr << endl;

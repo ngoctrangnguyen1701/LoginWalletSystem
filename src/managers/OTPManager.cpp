@@ -1,13 +1,21 @@
 //include file .h tuong ung voi .cpp
 #include "OTPManager.h"
 
+//include file header noi bo khac
+#include "../Application.h"
+
 //Getters
 int OTPManager::getExpiredTime() {
   return expiredTime;
 }
 
 //Methods
-string OTPManager::generateOTP(int userId, string type){
+bool OTPManager::generateOTP(int userId, string type){
+  Application& app = Application::getInstance();
+  User* userExist =  app.getUserMgr().findUserByConditionFromFile("userId", to_string(userId));
+  if(userExist == NULL) {
+    return false;
+  }
   this->userId = userId;
   this->type = type;
   this->createdTime = time(NULL); // Thoi diem hien tai
@@ -20,8 +28,11 @@ string OTPManager::generateOTP(int userId, string type){
     randomStr += to_string(num);
   }
   this->code = randomStr;
-  cout << "Ma OTP gui den email: " << randomStr << endl;  
-  return randomStr;
+  string email = userExist->getEmail();
+  cout << "Ma OTP gui den email '" + email + "': " << randomStr << endl;
+
+  delete userExist; //Giai phong vung nho
+  return true;
 }
 
 bool OTPManager::checkIsValid(int userId, string type, string OTPCode) {
@@ -41,7 +52,11 @@ bool OTPManager::checkIsValid(int userId, string type, string OTPCode) {
 }
 
 bool OTPManager::verifyOTP(int userId, string type) {
-  generateOTP(userId, type);
+  bool result = generateOTP(userId, type);
+  if(result == false) {
+    console.notify("Lay ma OTP that bai!");
+    return false;
+  }
   cout << "> Nhap ma OTP (hieu luc trong vong " << getExpiredTime() << " giay): ";
   string otpInput;
   getline(cin, otpInput);

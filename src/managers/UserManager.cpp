@@ -267,8 +267,8 @@ User* UserManager::findUserByConditionFromFile(string key, string value) {
 
 bool UserManager::createSampleData() {
   vector<User> userList;
-  userList.push_back(User("admin", "123", "Administrator", "admin@gmail.com", true, false));
-  userList.push_back(User("binhduong", "binhduong123", "Binh Duong 68", "binhduong123@example.com", false, false));
+  userList.push_back(User("admin", "123", "Administrator", "admin@example.com", true, false));
+  userList.push_back(User("binhduong", "binhduong123", "Binh Duong", "binhduong@example.com", false, false));
   userList.push_back(User("vungtau", "vungtau123", "Vung Tau", "vungtau@example.com", false, false));
   userList.push_back(User("trian", "trian123", "Tri An", "trian@example.com", false, false));
   userList.push_back(User("vinhhy", "vinhhy123", "Vinh Hy", "vinhhy@example.com", false, false));

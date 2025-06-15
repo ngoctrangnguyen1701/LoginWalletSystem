@@ -5,7 +5,7 @@ Ví điểm thưởng là cơ chế quản lý các lượng (đơn vị : đi�
 
 🔹 Công nghệ sử dụng: **C++**  
 🔹 Hỗ trợ trên: **Windows / Mac / Linux**  
-🔹 Trạng thái: **Đang phát triển**  
+<!-- 🔹 Trạng thái: **Đang phát triển**   -->
 <!-- - - Trạng thái: **[Hoàn thành / Đang phát triển]**   -->
 
 ---
@@ -57,9 +57,14 @@ git checkout develop
 2. Cài đặt C++ compiler (MinGW cho Windows, GCC cho Linux, hoặc Clang cho macOS)
 3. Cài đặt C/C++ extension trong VSCode
 *[Xem hướng dẫn chi tiết cho bước 2 và 3](https://code.visualstudio.com/docs/languages/cpp)*
-4. Trong Visual Studio Code, Chọn File -> Open Folder -> chọn folder nơi tải chương trình
+4. Trong Visual Studio Code, Chọn File -> Open Folder -> chọn thư mục nơi tải chương trình
 5. Trên thanh công cụ, chọn Terminal -> Run Build Task... (hoặc nhấn phím tắt Ctrl+Shift+B trên Windows/Linux, Cmd+Shift+B trên macOS)
 6. Chọn `Build and run the program LoginWalletSystem`
+
+---
+
+### Dữ liệu cho sẵn trong chương trình
+*Xem chi tiết trong file [Dữ liệu cho sẵn](./docs/Du_lieu_mau.md).*
 
 ---
 
@@ -69,10 +74,7 @@ git checkout develop
 ---
 
 ### Tài liệu tham khảo
-<!-- nội dung đang cập nhật -->
-- [C++ SHA256 hash generator](https://github.com/okdshin/PicoSHA2)
-- [Tên tài liệu 1](https://example.com)
-- [Tên tài liệu 2](https://example.com)
+- [C++ SHA256 hash generator](https://github.com/B-Con/crypto-algorithms)
 
 ---
 
