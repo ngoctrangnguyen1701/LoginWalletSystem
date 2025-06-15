@@ -1,13 +1,6 @@
 //include file .h tuong ung voi .cpp
 #include "UserMenu.h"
 
-//include thu vien
-#include <iostream>
-#include <string>
-
-//include file header noi bo khac
-#include "../Application.h"
-
 //Contructors
 //goi truc tiep contructor cua lop Menu
 UserMenu::UserMenu() : Menu("Menu cho nguoi dung") {
@@ -48,6 +41,7 @@ void UserMenu::handleInput() {
       return;
     } else {
       // Da co vi, chuyen sang menu vi nguoi dung
+      delete wallet; //Giai phong vung nho
       app.setCurrentMenu("UserWalletMenu"); // Chuyen sang menu vi nguoi dung
       return;
     }
@@ -55,7 +49,12 @@ void UserMenu::handleInput() {
     app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
     return;
   } else {
-    cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    cout << "Lua chon khong hop le! Vui long chon lai!" << endl;
+    return;
+  }
+
+  if(isReloadMenu == true) {
+    app.setCurrentMenu("UserMenu"); // Chuyen sang menu user
     return;
   }
 
@@ -63,16 +62,8 @@ void UserMenu::handleInput() {
     app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
     return;
   }
-  
-  // cout << endl;
-  char choice;
-  do
-  {    
-    cout << "> Quay tro ve menu? (y): ";
-    cin >> choice;
-    cin.ignore();
-  } while (choice != 'y');    
-  app.setCurrentMenu("UserMenu"); // Chuyen sang menu admin
+
+  backToMenu("UserMenu"); // Chuyen sang menu user
 }
 
 void UserMenu::handleChangeInfo() {
@@ -81,9 +72,10 @@ void UserMenu::handleChangeInfo() {
   do
   { 
     if(choice != 0 && choice != 1 && choice != 2 && choice != 3 && choice != 4) {
-      cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+      cout << "Lua chon khong hop le! Vui long chon lai!" << endl;
     }
-    cout << "===== Thay doi thong tin =====" << endl;
+    cout << endl;
+    console.task("Thay doi thong tin");
     cout << "   " << "1. Ho va ten" << endl;
     cout << "   " << "2. Email" << endl;
     cout << "   " << "3. Thay doi [1] va [2]" << endl;
@@ -93,7 +85,6 @@ void UserMenu::handleChangeInfo() {
     cin.ignore();
   } while (choice != 1 && choice != 2 && choice != 3 && choice != 4);
 
-  // cin.ignore(); // Bo qua ki tu xuong dong
   Application& app = Application::getInstance();
   User* currentUser = app.getCurrentUser();
   int userId = currentUser->getUserId();
@@ -112,7 +103,7 @@ void UserMenu::handleChangeInfo() {
     cout << "> Nhap email moi: ";
     getline(cin, email);
   } else if(choice == 4) {
-    app.setCurrentMenu("UserMenu"); // Chuyen sang menu user
+    isReloadMenu = true;
     return;
   }
 
@@ -141,6 +132,8 @@ void UserMenu::handleChangeInfo() {
 }
 
 void UserMenu::handleChangePassword(){
+  cout << endl;
+  console.task("Thay doi mat khau");
   Application& app = Application::getInstance();
   User* currentUser = app.getCurrentUser();
   bool result = currentUser->changePassword();

@@ -30,3 +30,7 @@ void ConsoleUtils::important(string text) {
   cout << text << endl;
   cout << border << endl;
 };
+
+void ConsoleUtils::task(string text) {
+  cout << "~~~~ " << text << " ~~~~" << endl;
+}

@@ -61,8 +61,6 @@ class Application
 		static Application& getInstance();
 		void initialize();
 		void login();
-		bool signup();
-		bool logout();
 		void run();
 };
 

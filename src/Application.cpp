@@ -114,7 +114,7 @@ void Application::initialize(){
 
 void Application::login(){
   cout << endl;
-  cout << "===== Thong tin dang nhap =====" << endl;
+  console.task("Thong tin dang nhap");
 
   string username, password;
   cout << "> Ten dang nhap: ";
@@ -130,24 +130,11 @@ void Application::login(){
     delete currentUser; // Giai phong bo nho currentUser truoc khi gan lai
     currentUser = NULL;
     currentUser = new User(*result); // Gan user dang nhap thanh cong cho currentUser
+    delete result; //Giai phong vung nho cua bien con tro result
   } else {
     console.notify("Dang nhap that bai!");
     currentUser = NULL;
   }
-}
-
-bool Application::signup(){
-  //TODO
-  bool result = false;
-  //neu dang ky thanh cong tra ra true, khong thanh cong tra ra false
-  return result;
-}
- 
-bool Application::logout(){
-  //TODO
-  //neu dang xuat thanh cong tra ra true, khong thanh cong tra ra false
-  bool result = false;
-  return result;
 }
 
 void Application::run(){  

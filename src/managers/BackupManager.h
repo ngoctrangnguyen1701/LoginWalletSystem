@@ -8,7 +8,6 @@
 #include <string>
 #include <ctime>
 #include <sstream>
-//#include <algorithm>
 
 //include file header noi bo khac
 #include "../managers/UserManager.h"
@@ -35,8 +34,8 @@ extern string BACKUP_DIRECTORY;
 class BackupManager
 {
 	private:
-		vector<string> backupList;
-		string directory; //ten thu muc sao luu
+		vector<string> backupList; // Danh sach cac phien ban sao luu
+		string directory; //Ten thu muc sao luu
 		UserManager userMgr; // Khai bao doi tuong UserManager
 		WalletManager walletMgr; // Khai bao doi tuong WalletManager
 		TransactionManager transactionMgr; // Khai bao doi tuong TransactionManager

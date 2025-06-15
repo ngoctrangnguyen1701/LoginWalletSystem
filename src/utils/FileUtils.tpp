@@ -134,3 +134,41 @@ bool FileUtils::appendItem(M &classManager, const T& item, int nextId) {
     return false;
   }
 }
+
+template <typename T, typename M>
+bool FileUtils::appendItemList(M &classManager, const vector<T>& list, int nextId) {
+  try {
+    fstream file(fullPath, ios::in | ios::out | ios::app);
+    if (!file.is_open()) {
+      cerr << "Khong ton tai file '" << fullPath << "'" << endl;
+      file.close();
+      return false;
+    }
+
+    int size = list.size();
+    for(int i = 0; i < size; i++) {
+      classManager.writeItemToFile(file, list[i]);
+    }
+    
+    file.close();
+    string text = "Da luu du lieu moi vao file '" + fullPath + "'";
+    console.log(text);
+
+    //Tao file luu tru cho nextUserId      
+    ofstream fileNextId(nextIdFilePath);
+    if (!fileNextId.is_open()) {
+      cerr << "Khong the tao file '" << nextIdFilePath << "'" << endl;
+      fileNextId.close();
+      exit(1);    
+    }
+    fileNextId << nextId << endl;
+    fileNextId.close();
+    text = "Da luu du lieu moi nextId vao file '" + nextIdFilePath + "'";
+    console.log(text);
+    return true;
+    
+  } catch (const exception& e) {
+    cerr << "Error: " << e.what() << endl;        
+    return false;
+  }
+}

@@ -28,7 +28,7 @@ class OTPManager
 		int getExpiredTime();
 
 		//Methods
-		string generateOTP(int userId, string type);
+		bool generateOTP(int userId, string type);
 		bool checkIsValid(int userId, string type, string OTPCode); //-> check correct and expired
 		bool verifyOTP(int userId, string type); 
 };

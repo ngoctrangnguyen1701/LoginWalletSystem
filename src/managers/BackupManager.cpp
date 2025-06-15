@@ -1,10 +1,5 @@
 //include file .h tuong ung voi .cpp
 #include "BackupManager.h"
-//#include <algorithm>
-
-//Contructors
-//BackupManager::BackupManager(){}
-
 
 //Methods
 string BackupManager::generateBackupFolderName() {

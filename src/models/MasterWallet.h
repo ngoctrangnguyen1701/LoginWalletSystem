@@ -2,7 +2,9 @@
 #define MasterWallet_H //Dinh nghia no
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
+//include file header noi bo khac
 #include "Wallet.h"
+#include "../managers/WalletManager.h"
 
 class MasterWallet : public Wallet
 {
@@ -10,12 +12,12 @@ class MasterWallet : public Wallet
 	protected:
 	public:
 		//Contructors
+		MasterWallet();
 		MasterWallet(int userId, int balance);
 
 		//Methods
 		bool deposit(int amount);
 		bool withdraw(int amount);
-		// Transaction* transfer(Wallet* destination, int amount);
 };
 
 #endif

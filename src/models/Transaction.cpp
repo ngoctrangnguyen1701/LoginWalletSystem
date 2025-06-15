@@ -13,9 +13,30 @@ Transaction::Transaction(int walletId, string referenceId, int sourceWalletId, i
   this->status = status;
 }
 
+Transaction::Transaction(int walletId, string referenceId, int sourceWalletId, int destinationWalletId, string type, int amount, string createdDate, string status, int balance) {
+  this->walletId = walletId;
+  this->referenceId = referenceId;
+  this->sourceWalletId = sourceWalletId;
+  this->destinationWalletId = destinationWalletId;
+  this->type = type;
+  this->amount = amount;
+  this->createdDate = createdDate;
+  this->status = status;
+  this->balance = balance;
+}
+
 //Setters
 void Transaction::setTransactionId(int transactionId){
   this->transactionId = transactionId;
+};
+void Transaction::setReferenceId(string referenceId){
+  this->referenceId = referenceId;
+};
+void Transaction::setStatus(string status){
+  this->status = status;
+};
+void Transaction::setBalance(int balance){
+  this->balance = balance;
 };
 
 //Getters
@@ -46,5 +67,6 @@ string Transaction::getCreatedDate(){
 string Transaction::getStatus(){
   return status;
 };
-
-//Methods
+int Transaction::getBalance(){
+  return balance;
+};
