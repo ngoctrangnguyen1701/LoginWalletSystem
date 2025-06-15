@@ -159,6 +159,7 @@ void MasterWalletMenu::handleCheckBalance() {
   else {
     cout << "Khong the doc so du hien tai!" << endl;
   }
+  delete wallet; //Giai phong vung nho
 }
 
 void MasterWalletMenu::handleDisplayTransaction() {

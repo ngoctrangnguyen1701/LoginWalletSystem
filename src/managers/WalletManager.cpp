@@ -103,6 +103,8 @@ void WalletManager::displayList() {
     cout << setw(balanceWidth-1) << right << item.getBalance() << " |";
     cout << " " << setw(isMasterWidth-1) << left << isMaster << "|";
     cout << endl;
+
+    delete user; //Giai phong vung nho
   }
   
   // Print footer
@@ -220,6 +222,7 @@ bool WalletManager::checkValidDecrement(int userId, int amount) {
     }
     return false;
   }
+  delete wallet; //Giai phong vung nho
   return true;
 }
 
@@ -234,6 +237,7 @@ int WalletManager::loadBalanceFromFile(int walletId) {
   if(wallet != NULL) {
     return wallet->getBalance();
   }
+  delete wallet; //Giai phong vung nho
   return -1;
 }
 

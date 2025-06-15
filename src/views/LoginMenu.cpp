@@ -51,6 +51,7 @@ void LoginMenu::handleLogin() {
     } else {
       if(currentUser->getIsAutoGenPassword() == true) {
         // Neu la nguoi dung moi dang nhap lan dau tien, yeu cau doi mat khau
+        cout << endl;
         console.important("THONG BAO: Ban can doi mat khau truoc khi su dung he thong!");
         bool result = currentUser->changePassword();
         if(result == true) {

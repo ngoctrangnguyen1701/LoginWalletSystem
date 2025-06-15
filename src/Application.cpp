@@ -130,6 +130,7 @@ void Application::login(){
     delete currentUser; // Giai phong bo nho currentUser truoc khi gan lai
     currentUser = NULL;
     currentUser = new User(*result); // Gan user dang nhap thanh cong cho currentUser
+    delete result; //Giai phong vung nho cua bien con tro result
   } else {
     console.notify("Dang nhap that bai!");
     currentUser = NULL;

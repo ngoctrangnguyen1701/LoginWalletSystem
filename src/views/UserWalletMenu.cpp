@@ -224,6 +224,9 @@ void UserWalletMenu::handleTransfer() {
   else {
     console.notify("Chuyen diem that bai!");
   }
+
+  delete destinationWallet; //Giai phong vung nho
+  delete destinationWalletOwner; //Giai phong vung nho
 }
 
 void UserWalletMenu::handleCheckBalance() {
@@ -236,6 +239,7 @@ void UserWalletMenu::handleCheckBalance() {
   else {
     cout << "Khong the doc so du hien tai!" << endl;
   }
+  delete wallet; //Giai phong vung nho
 }
 
 void UserWalletMenu::handleDisplayTransaction() {

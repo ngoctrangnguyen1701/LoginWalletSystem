@@ -41,6 +41,7 @@ void UserMenu::handleInput() {
       return;
     } else {
       // Da co vi, chuyen sang menu vi nguoi dung
+      delete wallet; //Giai phong vung nho
       app.setCurrentMenu("UserWalletMenu"); // Chuyen sang menu vi nguoi dung
       return;
     }
@@ -61,7 +62,7 @@ void UserMenu::handleInput() {
     app.setCurrentMenu("LoginMenu"); // Chuyen sang menu login
     return;
   }
-  
+
   backToMenu("UserMenu"); // Chuyen sang menu user
 }
 
