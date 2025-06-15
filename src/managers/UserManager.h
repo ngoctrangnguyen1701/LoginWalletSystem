@@ -22,16 +22,13 @@ extern string DATA_DIRECTORY;
 
 class UserManager
 {
-		vector<User> userList; //TODO: gioi han danh sach 100 user, 1 admin duy nhat, 99 user binh thuong, pagination
+		vector<User> userList;
 		int nextUserId; //auto increase
 		string filename = "userData"; //ten file luu user
 		string filenameNextId = "nextUserId"; //ten file luu nextUserId
 		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils
 	protected:
 	public:
-		//Destructor
-		~UserManager();
-
 		//Methods
 		bool createUser(User newUser);
     bool getList();
@@ -45,8 +42,6 @@ class UserManager
 		bool createSampleData();
 		User readItemFromFile(stringstream& ss); //Doc user tu file
 		void writeItemToFile(fstream& file, User item); //Ghi user vao file
-		bool backupUserData();
-		bool restoreUserData();
 
 		friend class Application;
 		friend class BackupManager;

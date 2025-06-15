@@ -15,7 +15,8 @@ using namespace std;
 
 class AdminMenu : public Menu
 {
-	private:		
+	private:
+		bool isReloadMenu = false;
 	protected:
 	public:
 		AdminMenu();

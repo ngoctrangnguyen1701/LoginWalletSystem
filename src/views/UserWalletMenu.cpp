@@ -3,7 +3,7 @@
 
 //Contructors
 //goi truc tiep contructor cua lop Menu
-UserWalletMenu::UserWalletMenu() : Menu("Menu thao tac vi tien") {
+UserWalletMenu::UserWalletMenu() : Menu("Menu thao tac vi") {
   options = vector<string>(6); //Tao vector co 6 phan tu
   options[0] = "1. Nap";
   options[1] = "2. Rut";
@@ -44,19 +44,11 @@ void UserWalletMenu::handleInput() {
     app.setCurrentMenu("UserMenu");
     return;
   } else {
-    cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    cout << "Lua chon khong hop le! Vui long chon lai!" << endl;
     return;
   }
   
-  // cout << endl;
-  char choice;
-  do
-  {    
-    cout << "> Quay tro ve menu? (y): ";
-    cin >> choice;
-    cin.ignore();
-  } while (choice != 'y');    
-  app.setCurrentMenu("UserWalletMenu"); // Chuyen sang menu vi nguoi dung thong thuong
+  backToMenu("UserWalletMenu"); // Chuyen sang menu vi nguoi dung thong thuong
 }
 
 void UserWalletMenu::handleDeposit() {
@@ -232,6 +224,9 @@ void UserWalletMenu::handleTransfer() {
   else {
     console.notify("Chuyen diem that bai!");
   }
+
+  delete destinationWallet; //Giai phong vung nho
+  delete destinationWalletOwner; //Giai phong vung nho
 }
 
 void UserWalletMenu::handleCheckBalance() {
@@ -244,6 +239,7 @@ void UserWalletMenu::handleCheckBalance() {
   else {
     cout << "Khong the doc so du hien tai!" << endl;
   }
+  delete wallet; //Giai phong vung nho
 }
 
 void UserWalletMenu::handleDisplayTransaction() {

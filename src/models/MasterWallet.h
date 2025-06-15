@@ -18,7 +18,6 @@ class MasterWallet : public Wallet
 		//Methods
 		bool deposit(int amount);
 		bool withdraw(int amount);
-		// Transaction* transfer(Wallet* destination, int amount);
 };
 
 #endif

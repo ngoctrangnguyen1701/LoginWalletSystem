@@ -541,16 +541,6 @@ OverrideBuildCmd=0
 BuildCmd=
 
 [Unit50]
-FileName=libraries\picosha2.h
-CompileCpp=1
-Folder=libraries
-Compile=1
-Link=1
-Priority=1000
-OverrideBuildCmd=0
-BuildCmd=
-
-[Unit51]
 FileName=libraries\sha256.cpp
 CompileCpp=1
 Folder=libraries
@@ -560,7 +550,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit52]
+[Unit51]
 FileName=libraries\sha256.h
 CompileCpp=1
 Folder=libraries
@@ -570,7 +560,7 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit53]
+[Unit52]
 FileName=views\BackupRestoreMenu.cpp
 CompileCpp=1
 Folder=views
@@ -580,10 +570,20 @@ Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
 
-[Unit54]
+[Unit53]
 FileName=views\BackupRestoreMenu.h
 CompileCpp=1
 Folder=views
+Compile=1
+Link=1
+Priority=1000
+OverrideBuildCmd=0
+BuildCmd=
+
+[Unit54]
+FileName=utils\Utils.h
+CompileCpp=1
+Folder=utils
 Compile=1
 Link=1
 Priority=1000

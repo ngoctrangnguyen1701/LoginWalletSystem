@@ -15,6 +15,7 @@ UserWallet::UserWallet() {
     this->walletId = wallet->getWalletId();
   }
   this->isMaster = false;
+  delete wallet; //Giai phong vung nho
 }
 
 //Methods

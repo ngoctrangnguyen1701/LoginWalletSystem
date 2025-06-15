@@ -41,18 +41,11 @@ void BackupMenu::handleInput() {
     app.setCurrentMenu("BackupRestoreMenu"); // Chuyen sang menu sao luu va khoi phuc du lieu
     return;
   } else {
-    cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    cout << "Lua chon khong hop le! Vui long chon lai!" << endl;
     return;
   }
 
-  char choice;
-  do
-  {
-    cout << "> Quay tro ve menu? (y): ";
-    cin >> choice;
-    cin.ignore();
-  } while (choice != 'y');
-  app.setCurrentMenu("BackupMenu"); // Chuyen sang menu sao luu du lieu
+  backToMenu("BackupMenu"); // Chuyen sang menu sao luu du lieu
 }
 
 void BackupMenu::handleBackupNow() {

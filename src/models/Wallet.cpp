@@ -1,9 +1,6 @@
 //include file .h tuong ung voi .cpp
 #include "Wallet.h"
 
-//include thu vien
-#include <string>
-
 //include file header noi bo khac
 #include "../managers/WalletManager.h"
 

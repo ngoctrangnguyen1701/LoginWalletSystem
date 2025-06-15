@@ -1,14 +1,8 @@
 //include file .h tuong ung voi .cpp
 #include "LoginMenu.h"
 
-//include thu vien
-#include <iostream>
-#include <string>
-
 //include file header noi bo khac
 #include "../Application.h"
-
-using namespace std;
 
 //Contructors
 //goi truc tiep contructor cua lop Menu
@@ -42,7 +36,7 @@ void LoginMenu::handleInput() {
   } else if (selectedOption == "3") {
     isRunning = false;
   } else {
-    cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    cout << "Lua chon khong hop le! Vui long chon lai!" << endl;
     return;
   }
 }
@@ -57,6 +51,7 @@ void LoginMenu::handleLogin() {
     } else {
       if(currentUser->getIsAutoGenPassword() == true) {
         // Neu la nguoi dung moi dang nhap lan dau tien, yeu cau doi mat khau
+        cout << endl;
         console.important("THONG BAO: Ban can doi mat khau truoc khi su dung he thong!");
         bool result = currentUser->changePassword();
         if(result == true) {
@@ -82,7 +77,7 @@ void LoginMenu::handleLogin() {
 }
 
 void LoginMenu::handleSignup() {
-  //Nhap thon tin user tu ban phim
+  //Nhap thong tin user tu ban phim
   string username;
   string password;
   string fullName;
@@ -90,7 +85,7 @@ void LoginMenu::handleSignup() {
   bool isAdmin = false;
   bool isAutoGenPassword = false;
   cout << endl;
-  cout << "===== Thong tin dang ky =====" << endl;
+  console.task("Thong tin dang ky");
   bool isExistUsername = false;
   do
   {
@@ -123,7 +118,6 @@ void LoginMenu::handleSignup() {
   }
   app.setCurrentMenu("LoginMenu"); // Chuyen sang menu dang nhap
 }
-
 
 bool LoginMenu::checkIsExistUsername(string username) {
   Application& app = Application::getInstance();

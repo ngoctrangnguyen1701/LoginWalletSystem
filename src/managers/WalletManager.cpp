@@ -4,19 +4,6 @@
 //include file header noi bo khac
 #include "../Application.h"
 
-//Contructors
-//WalletMenu::WalletMenu(){}
-
-//Destructor
-WalletManager::~WalletManager(){
-  //TODO
-  //Giai phong bo nho
-  // cout << "WalletManager destructor" << endl;
-  if(walletList.size() > 0) {
-    walletList.clear(); 
-  }  
-}
-
 //Methods
 bool WalletManager::createWallet(Wallet newWallet){
   //Lay danh sach wallet va nextWalletId moi nhat
@@ -110,14 +97,15 @@ void WalletManager::displayList() {
 
     username = user->getUsername();
     string isMaster = item.getIsMaster() == 1 ? "Co" : "Khong";
-    //TODO
-    //hien thi dau cham ngan cach cac chu so
+    string amountStr = formatWithDotSeparator(item.getBalance());    
 
     cout << "|" << setw(idWidth-1) << right << item.getWalletId() << " |";
     cout << " " << setw(usernameWidth-1) << left << username << "|";
-    cout << setw(balanceWidth-1) << right << item.getBalance() << " |";
+    cout << setw(balanceWidth-1) << right << amountStr << " |";
     cout << " " << setw(isMasterWidth-1) << left << isMaster << "|";
     cout << endl;
+
+    delete user; //Giai phong vung nho
   }
   
   // Print footer
@@ -235,6 +223,7 @@ bool WalletManager::checkValidDecrement(int userId, int amount) {
     }
     return false;
   }
+  delete wallet; //Giai phong vung nho
   return true;
 }
 
@@ -249,6 +238,7 @@ int WalletManager::loadBalanceFromFile(int walletId) {
   if(wallet != NULL) {
     return wallet->getBalance();
   }
+  delete wallet; //Giai phong vung nho
   return -1;
 }
 

@@ -20,16 +20,13 @@ using namespace std;
 class TransactionManager
 {
 	private:
-		vector<Transaction> transactionList; //TODO: pagination
+		vector<Transaction> transactionList; //Danh sach lich su giao dich
 		int nextTransactionId; //auto increase
 		string filename = "transactionData"; //ten file luu transaction
 		string filenameNextId = "nextTransactionId"; //ten file luu nextTransactionId
 		ConsoleUtils console; // Khai bao doi tuong ConsoleUtils		
 	protected:
 	public:
-		//Destructor
-		~TransactionManager();
-
 		//Methods
 		bool getList(int walletId = 0); //walletId = 0 la lay toan bo lich su giao dich trong file du lieu
 		void displayList(int walletId = 0);

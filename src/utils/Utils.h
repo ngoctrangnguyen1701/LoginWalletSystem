@@ -23,7 +23,7 @@ inline string getCurrentDateTimeFormatted() {
   t->tm_min,                    // Phut
   t->tm_sec);                   // Giay
 
-  return string(buffer);                // Tra ve chuoi thoi gian
+  return string(buffer); // Tra ve chuoi thoi gian
 };
 
 // Dinh dang so nguyen: them dau cham moi 3 chu so tu phai sang trai

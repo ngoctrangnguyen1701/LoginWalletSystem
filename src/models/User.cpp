@@ -7,14 +7,10 @@
 //Contructors
 User::User(string username, string password, string fullName, string email, bool isAdmin, bool isAutoGenPassword){
   this->username = username;
-  // this->password = password;
   this->fullName = fullName;
   this->email = email;
   this->isAdmin = isAdmin;
   this->isAutoGenPassword = isAutoGenPassword;
-  //TODO
-  // this->createdAt.date = "2023-10-01"; //mac dinh la ngay hien tai
-  // this->createdAt.time = "12:00:00"; //mac dinh la thoi gian hien tai
 
   //Hash password
   this->passwordSalt = HashUtils::generateSalt();
@@ -29,18 +25,7 @@ User::User(string username, string passwordHash, string passwordSalt, string ful
   this->fullName = fullName;
   this->email = email;
   this->isAdmin = isAdmin;
-  this->isAutoGenPassword = isAutoGenPassword;
-  
-  //TODO
-  // this->createdAt.date = "2023-10-01"; //mac dinh la ngay hien tai
-  // this->createdAt.time = "12:00:00"; //mac dinh la thoi gian hien tai
-}
-
-//Destructor
-User::~User(){
-  //TODO
-  //Xoa user
-  // cout << "User destructor" << endl;
+  this->isAutoGenPassword = isAutoGenPassword;  
 }
 
 //Getters
@@ -51,10 +36,6 @@ int User::getUserId() {
 string User::getUsername() {
   return username;
 }
-
-// string User::getPassword() {
-//   return password;
-// }
 
 string User::getPasswordHash(){
   return passwordHash;
@@ -87,9 +68,6 @@ void User::setUserId(int userId) {
 void User::setUsername(string username) {
   this->username = username;
 }
-// void User::setPassword(string password) {
-//   this->password = password; 
-// }
 void User::setPasswordHash(string passwordHash) {
   this->passwordHash = passwordHash;
 };
@@ -114,7 +92,6 @@ User* User::authenticate(string username, string password){
   //Kiem tra co dung thong tin dang nhap khong  
   //Neu co thi tra ve true, khong thi tra ve false
   UserManager userMgr;
-  //TODO: su dung ham hash de ma hoa mat khau
   User* user = userMgr.findUserFromFile(username, password);  
   return user;
 };
@@ -158,13 +135,6 @@ bool User::changePasswordHash(string newPasswordHash){
   return resultUpdate;
 }
 	
-bool User::requirePasswordChange(){
-  //TODO
-  //neu la mat khau tu sinh thi phai doi mat khau
-  bool reuslt = false;
-  return reuslt;
-};
-
 string User::autoGeneratePassword() {
   //Do dai toi thieu 7 ky tu
   //Bao gom chu hoa, chu thuong, so va ky tu dac biet
@@ -192,7 +162,6 @@ bool User::checkIsValidPassword(string password) {
   //ex: A@a1234
   
   if(password.length() < 7) {
-    // cout << "Mat khau phai co do dai toi thieu 7 ky tu" << endl;
     console.notify("Mat khau phai co do dai toi thieu 7 ky tu");
     return false;
   }  
@@ -203,7 +172,6 @@ bool User::checkIsValidPassword(string password) {
   bool hasSpecialCharacter = false;
   for(int i = 0; i < password.length(); i++) {
     if(password[i] == ' ') {
-      // cout << "Mat khau khong duoc chua khoang trang" << endl;
       console.notify("Mat khau khong duoc chua khoang trang");
       return false;
     }

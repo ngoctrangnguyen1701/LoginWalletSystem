@@ -28,6 +28,7 @@ class Menu
 		void setIsRunning(bool x);
 		bool getIsRunning();
 		void printHeader();
+		void backToMenu(string menuName);
 
 		//Lop thuan ao, bat buoc lop con phai co override
 		virtual void display() = 0;
