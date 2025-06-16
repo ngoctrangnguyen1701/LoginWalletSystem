@@ -23,6 +23,7 @@ _Nhập `y` để hiển thị danh sách người dùng (nhập `n` để từ 
 _Nhập ID người dùng muốn thay đổi
 _Chọn thông tin muốn thay đổi
 _Nhập thông tin mới
+_Xác thực OTP (mã OTP sẽ được đến email đăng ký của người dùng đang được admin thay đổi)
 _Thay đổi thông tin thành công -> Nhập `y` để quay trở về menu
 
 **4. Đọc danh sách tất cả các ví**<br>
