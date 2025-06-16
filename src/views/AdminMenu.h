@@ -26,6 +26,7 @@ class AdminMenu : public Menu
 		void handleUpdateUser();
 		void handleDeleteUser();
 		void handleReadWalletList();
+		void handleBeforeLogout();
 };
 
 #endif

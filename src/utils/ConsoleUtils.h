@@ -1,4 +1,8 @@
-#pragma once
+#ifndef ConsoleUtils_H //Neu chua duoc dinh nghia
+#define ConsoleUtils_H //Dinh nghia no
+//tranh include nhieu lan trong cac file .cpp khi su dung chung file header
+
+
 #include <string>
 using namespace std;
 
@@ -12,4 +16,8 @@ class ConsoleUtils {
     void notify(string text);
     // In log binh thuong
     void log(string text);
+    // In thong tin quan trong
+    void important(string text);
 };
+
+#endif

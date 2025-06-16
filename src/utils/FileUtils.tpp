@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdio>
 using namespace std;
 
 template <typename T, typename M>
@@ -29,8 +30,15 @@ bool FileUtils::saveDataByList(M &classManager, vector<T> data, int nextId) {
   file.close();
 
   //Thay the file goc bang file tam
-  remove(fullPath.c_str());
-  rename(tempFilePath.c_str(), fullPath.c_str());
+  if(remove(fullPath.c_str()) != 0) {
+    cerr << "Khong the xoa file '" << fullPath << "'" << endl;
+    exit(1);
+  }
+  if(rename(tempFilePath.c_str(), fullPath.c_str()) != 0) {
+    cerr << "Khong the xoa file '" << tempFilePath << "'" << endl;
+    exit(1);
+  }
+  
   string text = "Da luu du lieu vao file '" + fullPath + "'";
   console.log(text);
 

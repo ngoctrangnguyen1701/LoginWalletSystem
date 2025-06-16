@@ -118,18 +118,45 @@ User* User::authenticate(string username, string password){
   User* user = userMgr.findUserFromFile(username, password);  
   return user;
 };
-	
-bool User::changePassword(string oldPassword, string newPassword){
-  //TODO
-  bool reuslt = false;
-  return reuslt;
-};
-	
-// bool User::updateInfo(UserInfo newInfo){
-//   //TODO
-//   bool reuslt = false;
-//   return reuslt;
-// };
+
+bool User::changePassword(){
+  string newPassword;
+  string newPasswordHash;
+  bool isDuplicatePassword;
+  bool isValidPassword;
+  do
+  {
+    isDuplicatePassword = false;
+    isValidPassword = false;
+    cout << "> Nhap mat khau moi: ";
+    getline(cin, newPassword);
+    newPasswordHash = HashUtils::generateHash(newPassword, passwordSalt);
+    if(newPasswordHash == passwordHash) {
+      console.notify("Mat khau moi trung voi mat khau hien tai!");
+      isDuplicatePassword = true;
+    }
+
+    if(isDuplicatePassword == false) {
+      isValidPassword = checkIsValidPassword(newPassword);
+    }
+  } while (isDuplicatePassword == true || isValidPassword == false);
+
+  //Xac thuc OTP truoc khi cap nhat thong tin
+  OTPManager otpMgr;
+  bool isValidOTP = otpMgr.verifyOTP(userId, "changePassword");
+  if(isValidOTP == false) {    
+    return false;
+  }
+
+  bool resultChangePassword = changePasswordHash(newPasswordHash);
+  return resultChangePassword;
+}
+
+bool User::changePasswordHash(string newPasswordHash){
+  UserManager userMgr;
+  bool resultUpdate = userMgr.updateUser(userId, "", "", newPasswordHash);
+  return resultUpdate;
+}
 	
 bool User::requirePasswordChange(){
   //TODO
@@ -192,11 +219,11 @@ bool User::checkIsValidPassword(string password) {
   }
 
   if(hasUpper == false) {
-    console.notify("Mat khau phai co it nhat 1 ky tu hoa");
+    console.notify("Mat khau phai co it nhat 1 ky tu in hoa");
     return false;
   }
   if(hasUpper == false) {
-    console.notify("Mat khau phai co it nhat 1 ky tu thuong");
+    console.notify("Mat khau phai co it nhat 1 ky tu in thuong");
     return false;
   }
   if(hasNumber == false) {

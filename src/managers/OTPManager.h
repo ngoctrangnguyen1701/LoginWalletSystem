@@ -2,11 +2,35 @@
 #define OTP_H //Dinh nghia no
 //tranh include nhieu lan trong cac file .cpp khi su dung chung file header
 
+//include thu vien
+#include <iostream>
+#include <string>
+#include <ctime>
+#include <sstream>
+
+//include file header noi bo khac
+#include "../utils/ConsoleUtils.h"
+
+using namespace std;
+
 class OTPManager
 {
-	private:		
+	private:
+		string code;
+		int userId; //user yeu cau OTP;
+		string type; //OTP su dung cho muc dich gi ("changePassword", "changeInfo", "deposit", "withdraw", "transfer")
+		time_t createdTime;
+		int expiredTime = 60; //Thoi gian het han, mac dinh la 60 giay
+		ConsoleUtils console;
 	protected:
-	public:		
+	public:
+		//Getters
+		int getExpiredTime();
+
+		//Methods
+		string generateOTP(int userId, string type);
+		bool checkIsValid(int userId, string type, string OTPCode); //-> check correct and expired
+		bool verifyOTP(int userId, string type); 
 };
 
 #endif

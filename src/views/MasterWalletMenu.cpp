@@ -22,9 +22,7 @@ MasterWalletMenu::MasterWalletMenu() : Menu("Menu thao tac vi tien") {
 //Methods
 void MasterWalletMenu::display() {
   cout << endl;
-  cout << "+--------------------------------+" << endl;
-  cout << "       " << title << endl;
-  cout << "+--------------------------------+" << endl;
+  printHeader();
   
   for (int i = 0; i < options.size(); i++) {
     cout << "   " << options[i] << endl;
@@ -55,6 +53,7 @@ void MasterWalletMenu::handleInput() {
     return;
   } else {
     cout << "Lua chon khong hop le! Vui long chon lai" << endl;
+    return;
   }
   
   // cout << endl;
