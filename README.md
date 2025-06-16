@@ -3,8 +3,11 @@ Dự án Hệ thống đăng nhập và đăng ký chủ yếu liên quan đến
 Ví điểm thưởng là cơ chế quản lý các lượng (đơn vị : điểm) được dùng để quy đổi ra hàng hóa (còn gọi là hoạt động mua - bán). Giữa các ví có giao dịch chuyển điểm.
 
 
-🔹 Công nghệ sử dụng: **C++**  
+🔹 Ngôn ngữ: **C++**  
 🔹 Hỗ trợ trên: **Windows / Mac / Linux**  
+🔹 Giao diện: **Dòng lệnh văn bản**
+🔹 Lưu trữ: **File văn bản (không sử dụng CSDL)**
+
 
 ---
 
@@ -76,6 +79,7 @@ _Nếu dùng hệ điều hành Windows chọn `Command Prompt`, macOS hoặc Li
 
 ### Tài liệu tham khảo
 - [C++ SHA256 hash generator](https://github.com/B-Con/crypto-algorithms)
+- [TOTP (Time-based One-Time Password)](https://chatgpt.com/share/685046f1-8e78-8001-8c04-f237c59a9347)
 
 ---
 
