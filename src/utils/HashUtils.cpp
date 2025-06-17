@@ -3,6 +3,7 @@
 
 //Methods
 string HashUtils::generateSalt() {
+  //Tao 16 byte ngay nhien thanh 2 ky tu hex -> ket qua la chuoi 32 ky tu hex
   stringstream ss;
   
   for (int i = 0; i < 16; i++) {

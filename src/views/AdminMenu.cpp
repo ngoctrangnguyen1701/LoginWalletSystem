@@ -165,9 +165,17 @@ void AdminMenu::handleUpdateUser() {
   }
 
   //Xac thuc OTP truoc khi cap nhat thong tin
+  // OTPManager otpMgr;
+  // bool isValidOTP = otpMgr.verifyOTP(userId, "changeInfo");
+  // if(isValidOTP == false) {
+  //   console.notify("Thay doi thong tin nguoi dung that bai!");
+  //   return;
+  // }
+
+  //Xac thuc TOTP truoc khi cap nhat thong tin
   OTPManager otpMgr;
-  bool isValidOTP = otpMgr.verifyOTP(userId, "changeInfo");
-  if(isValidOTP == false) {
+  bool isValidTOTP = otpMgr.verifyTOTP(userId, "changeInfo");
+  if(isValidTOTP == false) {
     console.notify("Thay doi thong tin nguoi dung that bai!");
     return;
   }
