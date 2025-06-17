@@ -201,49 +201,53 @@ int verify_totp(const uint8_t *key, int key_len, uint32_t input_otp, time_t curr
   return 0; // không h?p l?
 }
 
-void generate_user_secret(const uint8_t* master_secret, const std::string &user_id, uint8_t out[20]) {
-//  hmac_sha1((const uint8_t*)master_secret.c_str(), master_secret.size(),
-//            (const uint8_t*)user_id.c_str(), user_id.size(), out);
-hmac_sha1(master_secret, master_secret.size(),
-            (const uint8_t*)user_id.c_str(), user_id.size(), out);
+
+void generate_user_secret(const uint8_t* master_secret, uint32_t master_len, const std::string &user_id, uint8_t out[20]) {
+    hmac_sha1(master_secret, master_len,
+              (const uint8_t*)user_id.c_str(), user_id.size(), out);
 }
 
 /* ==== MAIN ==== */
 
 int main() {    
   uint8_t secretKey[] = "SECRETKEY";
+  uint32_t secretKeyLen = strlen((char*)secretKey);
   uint8_t userSecret[20];
-  int userId;
-	std::cout << "Nhap userId: ";
-	std::cin >> userId; // Không c?n cin.ignore() ? dây
-	
-	// Chuy?n userId thành string
-	std::ostringstream oss;
-	oss << userId;
-	std::string userIdStr = oss.str();
-  generate_user_secret(secretKey, userIdStr, userSecret);
-
-  time_t now = time(NULL);
-  uint32_t interval = 60; //thay doi 60 giay 1 lan
-  uint32_t code = generate_totp(userSecret, strlen((char*)userSecret), now, interval);
-
-  // printf("TOTP: %06u\n", code);  
-
-  // In ma TOTP
-  printf("TOTP: %06u\n", code);
-
-  std::string otpStr;
-	std::cout << "Nhap ma: ";
-	std::cin >> otpStr;
-	int otpInput = atoi(otpStr.c_str());
-
-  int result = verify_totp(secretKey, strlen((char*)secretKey), otpInput, now, interval);
-  if(result == 1) {
-  	std::cout << "Hop le\n";
-	}
-	else {
-		std::cout << "Khong hop le\n";
-	}
+  while (true)
+  {
+    int userId;
+    std::cout << "Nhap userId: ";
+    std::cin >> userId;
+    
+    // Chuyen userId thành string
+    std::ostringstream oss;
+    oss << userId;
+    std::string userIdStr = oss.str();
+    // Tao user secret, master secret + user ID
+    generate_user_secret(secretKey, secretKeyLen, userIdStr, userSecret);
+  
+    time_t now = time(NULL);
+    uint32_t interval = 60; //thay doi 60 giay 1 lan
+    uint32_t code = generate_totp(userSecret, strlen((char*)userSecret), now, interval);
+  
+    // In ma TOTP
+    printf("TOTP: %06u\n", code);
+  
+    std::string otpStr;
+    std::cout << "Nhap ma: ";
+    std::cin >> otpStr;
+    int otpInput = atoi(otpStr.c_str());
+  
+    int result = verify_totp(userSecret, strlen((char*)userSecret), otpInput, now, interval);
+    if(result == 1) {
+      std::cout << "Hop le\n";
+    }
+    else {
+      std::cout << "Khong hop le\n";
+    }
+    /* code */
+  }
+  
 
   return 0;
 }
