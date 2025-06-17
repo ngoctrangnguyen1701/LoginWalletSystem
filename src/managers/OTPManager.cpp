@@ -157,7 +157,8 @@ bool OTPManager::generateTOTP(int userId, string type){
   
   // Thử với độ dài cố định 20 để so sánh
   // uint32_t code1 = generate_totp(totpKey, strlen((char*)totpKey), now, interval);
-  uint32_t code2 = generate_totp(totpKey, 20, now, interval);
+  // uint32_t code2 = generate_totp(totpKey, 20, now, interval);
+  uint32_t code2 = generate_totp_with_counter(totpKey, 20, now / interval);
   
   // cout << "[DEBUG generateTOTP] Code with strlen: " << code1 << endl;
   cout << "[DEBUG generateTOTP] Code with fixed 20: " << code2 << endl;

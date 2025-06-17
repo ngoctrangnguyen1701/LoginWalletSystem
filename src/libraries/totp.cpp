@@ -152,6 +152,37 @@ uint32_t generate_totp(const uint8_t *key, uint32_t key_len, uint64_t time, uint
   uint8_t hash[20];
   int i;
 
+  std::cout << "[DEBUG] generate_totp -> counter (" << counter << ")" << std::endl;
+
+
+  // Chuyen doi counter thanh mang byte
+  for (i = 7; i >= 0; i--) {
+    msg[i] = counter & 0xFF;
+    counter >>= 8;
+  }
+
+  // Tinh HMAC-SHA1
+  hmac_sha1(key, key_len, msg, 8, hash);
+
+  // Lay ma OTP tu hash
+  int offset = hash[19] & 0x0F;
+  uint32_t bin_code = (hash[offset] & 0x7F) << 24 |
+                      (hash[offset+1] & 0xFF) << 16 |
+                      (hash[offset+2] & 0xFF) << 8 |
+                      (hash[offset+3] & 0xFF);
+
+  return bin_code % 1000000; //Lay 6 chu so
+}
+
+uint32_t generate_totp_with_counter(const uint8_t *key, uint32_t key_len, uint64_t counter) {
+  // uint64_t counter = time / interval;
+  uint8_t msg[8];
+  uint8_t hash[20];
+  int i;
+
+  std::cout << "[DEBUG] generate_totp_with_counter -> counter (" << counter << ")" << std::endl;
+
+
   // Chuyen doi counter thanh mang byte
   for (i = 7; i >= 0; i--) {
     msg[i] = counter & 0xFF;
@@ -173,11 +204,13 @@ uint32_t generate_totp(const uint8_t *key, uint32_t key_len, uint64_t time, uint
 
 int verify_totp(const uint8_t *key, int key_len, uint32_t input_otp, time_t current_time, uint32_t interval) {
   // chap nhan trong khoang t-1, t, t+1 (tuc ±30 giay)
+  uint64_t current_counter = current_time / interval;
   for (int i = -1; i <= 1; ++i) {
       // current_time + i * interval  // Cong ±60 giay (±1 time window)
-      uint32_t otp = generate_totp(key, key_len, current_time + i, interval);
+      // uint32_t otp = generate_totp(key, key_len, current_time + i, interval);
       // uint32_t otp = generate_totp(key, key_len, current_time + i * interval, interval);
-      std::cout << "[DEBUG] Generated OTP (" << i << "): " << otp << std::endl;
+      uint32_t otp = generate_totp_with_counter(key, key_len, current_counter + i);
+      std::cout << "[DEBUG] verify_totp (" << i << "): " << otp << std::endl;
       if (otp == input_otp)
           return 1; // hop le
   }
