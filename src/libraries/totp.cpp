@@ -175,8 +175,8 @@ int verify_totp(const uint8_t *key, int key_len, uint32_t input_otp, time_t curr
   // chap nhan trong khoang t-1, t, t+1 (tuc ±30 giay)
   for (int i = -1; i <= 1; ++i) {
       // current_time + i * interval  // Cong ±60 giay (±1 time window)
-      // uint32_t otp = generate_totp(key, key_len, current_time + i, interval);
-      uint32_t otp = generate_totp(key, key_len, current_time + i * interval, interval);
+      uint32_t otp = generate_totp(key, key_len, current_time + i, interval);
+      // uint32_t otp = generate_totp(key, key_len, current_time + i * interval, interval);
       std::cout << "[DEBUG] Generated OTP (" << i << "): " << otp << std::endl;
       if (otp == input_otp)
           return 1; // hop le
