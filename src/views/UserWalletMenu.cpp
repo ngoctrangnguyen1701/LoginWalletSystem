@@ -228,20 +228,19 @@ void UserWalletMenu::handleTransfer() {
   }
 
   //Xac thuc OTP truoc khi thao tac
-  int userId = app.getCurrentUser()->getUserId();
-  OTPManager otpMgr;
-  bool isValidOTP = otpMgr.verifyOTP(userId, "transfer");
-  if(isValidOTP == false) {
-    console.notify("Chuyen diem that bai!");
-    return;
-  }
+  // int userId = app.getCurrentUser()->getUserId();
+  // OTPManager otpMgr;
+  // bool isValidOTP = otpMgr.verifyOTP(userId, "transfer");
+  // if(isValidOTP == false) {
+  //   console.notify("Chuyen diem that bai!");
+  //   return;
+  // }
 
   //Xac thuc TOTP truoc khi thao tac
   int userId = app.getCurrentUser()->getUserId();
   OTPManager otpMgr;
   bool isValidOTP = otpMgr.verifyTOTP(userId, "transfer");
   if(isValidOTP == false) {
-    
     console.notify("Chuyen diem that bai!");
     return;
   }

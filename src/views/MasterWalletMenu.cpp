@@ -156,7 +156,6 @@ void MasterWalletMenu::handleWithdraw() {
   OTPManager otpMgr;
   bool isValidOTP = otpMgr.verifyTOTP(userId, "withdraw");
   if(isValidOTP == false) {
-    
     console.notify("Rut diem that bai!");
     return;
   }
