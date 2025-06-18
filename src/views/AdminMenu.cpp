@@ -193,11 +193,11 @@ void AdminMenu::handleUpdateUser() {
   bool resultUpdate = app.getUserMgr().updateUser(userId, fullName, email);
   string text = "";
   if(resultUpdate == true) {
-    if(choice == 1 || choice == 3) {
+    if(choice_2 == 1 || choice_2 == 3) {
       text = userExist->getFullName() + " -> " + fullName;
       console.notify("Thay doi ho va ten: " + text);
     }
-    if(choice == 2 || choice == 3) {
+    if(choice_2 == 2 || choice_2 == 3) {
       text = userExist->getEmail() + " -> " + email;
       console.notify("Thay doi thong tin email: " + text);
     }

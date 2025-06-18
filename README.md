@@ -47,8 +47,8 @@ cd LoginWalletSystem
 2. Chọn File → Open → Vào folder tải chương trình → Chọn folder `src` → Chọn file `LoginWalletSystem.dev`
 3. Chọn Execute → Rebuild All
 4. Sau khi build thành công, vào lại folder tải chương trình → Chọn folder `src` → Mở file `LoginWalletSystem.exe` với quyền admin (Click chuột phải chọn `Run as administrator`)<br>
-*Lưu ý: nếu dùng Execute → Run của DevC++ để chạy chương trình, một số tính năng sẽ không hoạt động đúng do phân quyền của hệ điều hành*
-<br>
+*_Lưu ý 1: Nếu dùng Execute → Run của DevC++ để chạy chương trình, một số tính năng sẽ không hoạt động đúng do phân quyền của hệ điều hành*<br>
+*_Lưu ý 2: Trường hợp chạy lệnh `Execute → Rebuild All` bị lỗi, vào folder tải chương trình → Chọn folder `src` → Xóa file `LoginWalletSystem.exe`, rồi chạy lại lệnh*
 
 **🔹 Biên dịch chương trình bằng Visual Studio Code**
 1. Mở Visual Studio Code với quyền admin (Click chuột phải chọn `Run as administrator`)
@@ -62,9 +62,9 @@ _Trên thanh công cụ, chọn `View` -> `Command Palette...` -> gõ `Terminal:
 _Nếu dùng hệ điều hành Windows chọn `Command Prompt`, macOS hoặc Linux chọn `bash`<br>
 6. Trên thanh công cụ, chọn `Terminal` -> `Run Build Task...`
 7. Chọn `Build and run the program LoginWalletSystem`<br>
-*Nếu chương trình build bằng Visual Studio Code thành công nhưng chạy bị lỗi do khác môi trường đường dẫn(path),*<br>
-*vào lại folder tải chương trình → Chọn folder `src` → Mở file `LoginWalletSystem.exe` với quyền admin (Click chuột phải chọn `Run as administrator` đối với hệ điều hành Windows, hệ điều hành khác chỉ cần mở file bình thường)*
-
+*_Lưu ý 1: Nếu chương trình build bằng Visual Studio Code thành công nhưng chạy bị lỗi do khác môi trường đường dẫn(path),*<br>
+*vào folder tải chương trình → Chọn folder `src` → Mở file `LoginWalletSystem.exe` với quyền admin (Click chuột phải chọn `Run as administrator` đối với hệ điều hành Windows, hệ điều hành khác chỉ cần mở file bình thường)*<br>
+*_Lưu ý 2: Trường hợp chạy lệnh `Run Build Task...` bị lỗi, vào folder tải chương trình → Chọn folder `src` → Xóa file `LoginWalletSystem.exe`, rồi chạy lại lệnh*
 ---
 
 ### Dữ liệu cho sẵn trong chương trình

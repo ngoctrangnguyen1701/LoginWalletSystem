@@ -35,6 +35,7 @@
         "views/BackupRestoreMenu.cpp",
         "views/BackupMenu.cpp",
         "libraries/sha256.cpp",
+        "libraries/sha1.cpp",
         "libraries/totp.cpp",
         "-o",
         "LoginWalletSystem",
