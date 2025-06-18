@@ -85,7 +85,7 @@
 |   |-- nextTransactionId.txt         # File ID kế tiếp cho giao dịch
 |
 |-- /backup                           # Thư mục sao lưu
-|   |-- /20250101_12:00:00
+|   |-- /20250101_120000
 |   |   |-- backup_userData.csv
 |   |   |-- backup_nextUserId.txt
 |   |   |-- backup_walletData.csv

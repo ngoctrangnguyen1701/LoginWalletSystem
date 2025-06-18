@@ -98,6 +98,7 @@ _Xác thực OTP (mã OTP sẽ được đến email đăng ký)
 _Thay đổi thông tin thành công -> Nhập `y` để quay trở về menu
 
 **2. Thay đổi mật khẩu**<br>
+_Nhập mật khẩu hiện tại
 _Nhập mật khẩu mới *(không được trùng với mật khẩu hiện tại và theo định dạng độ dài tối thiểu 7 ký tự bao gồm chứ hoa, chữ thường, số và ký tự đặc biệt)*
 _Xác thực OTP (mã OTP sẽ được đến email đăng ký)
 _Thay đổi thông tin thành công -> Quay trở về `Màn hình đăng nhập` để đăng nhập lại

@@ -5,6 +5,9 @@
 **Dương Tất Trường**
 - Thiết kế giao diện menu và các tính năng
 - Tính năng nạp điểm ở ví người dùng
+- Tính năng hiển thị menu dành cho admin
+- Tính năng hiển thị menu người dùng
+- Tính năng hiển thị menu đăng nhập
 
 **Thái Thị Thanh Hòa**
 - Thiết kế giao diện menu và các tính năng

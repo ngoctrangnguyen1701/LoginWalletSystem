@@ -97,31 +97,58 @@ User* User::authenticate(string username, string password){
 };
 
 bool User::changePassword(){
+  string currentPassword;
+  string currentPassowrdHash;
   string newPassword;
   string newPasswordHash;
+  bool isValidOldPassword;
   bool isDuplicatePassword;
   bool isValidPassword;
   do
   {
-    isDuplicatePassword = false;
-    isValidPassword = false;
-    cout << "> Nhap mat khau moi: ";
-    getline(cin, newPassword);
-    newPasswordHash = HashUtils::generateHash(newPassword, passwordSalt);
-    if(newPasswordHash == passwordHash) {
-      console.notify("Mat khau moi trung voi mat khau hien tai!");
-      isDuplicatePassword = true;
+    isValidOldPassword = false;
+    cout << "> Nhap mat khau hien tai: ";
+    getline(cin, currentPassword);
+    currentPassowrdHash = HashUtils::generateHash(currentPassword, passwordSalt);
+    if(currentPassowrdHash != passwordHash) {
+      isValidOldPassword = false;
+      console.notify("Mat khau hien tai khong dung!");
     }
-
-    if(isDuplicatePassword == false) {
-      isValidPassword = checkIsValidPassword(newPassword);
+    else {
+      isValidOldPassword = true;
     }
-  } while (isDuplicatePassword == true || isValidPassword == false);
+    if(isValidOldPassword == true) {
+      do
+      {
+        isDuplicatePassword = false;
+        isValidPassword = false;
+        cout << "> Nhap mat khau moi: ";
+        getline(cin, newPassword);
+        newPasswordHash = HashUtils::generateHash(newPassword, passwordSalt);
+        if(newPasswordHash == passwordHash) {
+          console.notify("Mat khau moi trung voi mat khau hien tai!");
+          isDuplicatePassword = true;
+        }
+    
+        if(isDuplicatePassword == false) {
+          isValidPassword = checkIsValidPassword(newPassword);
+        }
+      } while (isDuplicatePassword == true || isValidPassword == false);
+    }  
+  } while (isValidOldPassword == false);
+  
 
   //Xac thuc OTP truoc khi cap nhat thong tin
+  // OTPManager otpMgr;
+  // bool isValidOTP = otpMgr.verifyOTP(userId, "changePassword");
+  // if(isValidOTP == false) {    
+  //   return false;
+  // }
+
+  //Xac thuc TOTP truoc khi cap nhat thong tin
   OTPManager otpMgr;
-  bool isValidOTP = otpMgr.verifyOTP(userId, "changePassword");
-  if(isValidOTP == false) {    
+  bool isValidTOTP = otpMgr.verifyTOTP(userId, "changePassword");
+  if(isValidTOTP == false) {
     return false;
   }
 

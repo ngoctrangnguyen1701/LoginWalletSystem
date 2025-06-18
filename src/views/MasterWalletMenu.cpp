@@ -80,11 +80,21 @@ void MasterWalletMenu::handleDeposit() {
   }
 
   //Xac thuc OTP truoc khi thao tac
+  // Application& app = Application::getInstance();
+  // int userId = app.getCurrentUser()->getUserId();
+  // OTPManager otpMgr;
+  // bool isValidOTP = otpMgr.verifyOTP(userId, "deposit");
+  // if(isValidOTP == false) {
+  //   console.notify("Nap diem that bai!");
+  //   return;
+  // }
+
+  //Xac thuc TOTP truoc khi thao tac
   Application& app = Application::getInstance();
   int userId = app.getCurrentUser()->getUserId();
   OTPManager otpMgr;
-  bool isValidOTP = otpMgr.verifyOTP(userId, "deposit");
-  if(isValidOTP == false) {
+  bool isValidTOTP = otpMgr.verifyTOTP(userId, "deposit");
+  if(isValidTOTP == false) {
     console.notify("Nap diem that bai!");
     return;
   }
@@ -131,10 +141,20 @@ void MasterWalletMenu::handleWithdraw() {
   }
 
   //Xac thuc OTP truoc khi thao tac
+  // Application& app = Application::getInstance();
+  // int userId = app.getCurrentUser()->getUserId();
+  // OTPManager otpMgr;
+  // bool isValidOTP = otpMgr.verifyOTP(userId, "withdraw");
+  // if(isValidOTP == false) {
+  //   console.notify("Rut diem that bai!");
+  //   return;
+  // }
+
+  //Xac thuc TOTP truoc khi thao tac
   Application& app = Application::getInstance();
   int userId = app.getCurrentUser()->getUserId();
   OTPManager otpMgr;
-  bool isValidOTP = otpMgr.verifyOTP(userId, "withdraw");
+  bool isValidOTP = otpMgr.verifyTOTP(userId, "withdraw");
   if(isValidOTP == false) {
     console.notify("Rut diem that bai!");
     return;

@@ -81,9 +81,18 @@ void UserWalletMenu::handleDeposit() {
   }
 
   //Xac thuc OTP truoc khi thao tac
+  // int userId = app.getCurrentUser()->getUserId();
+  // OTPManager otpMgr;
+  // bool isValidOTP = otpMgr.verifyOTP(userId, "deposit");
+  // if(isValidOTP == false) {
+  //   console.notify("Nap diem that bai!");
+  //   return;
+  // }
+
+  //Xac thuc TOTP truoc khi thao tac
   int userId = app.getCurrentUser()->getUserId();
   OTPManager otpMgr;
-  bool isValidOTP = otpMgr.verifyOTP(userId, "deposit");
+  bool isValidOTP = otpMgr.verifyTOTP(userId, "deposit");
   if(isValidOTP == false) {
     console.notify("Nap diem that bai!");
     return;
@@ -131,11 +140,22 @@ void UserWalletMenu::handleWithdraw() {
   }
 
   //Xac thuc OTP truoc khi thao tac
+  // Application& app = Application::getInstance();
+  // int userId = app.getCurrentUser()->getUserId();
+  // OTPManager otpMgr;
+  // bool isValidOTP = otpMgr.verifyOTP(userId, "withdraw");
+  // if(isValidOTP == false) {
+  //   console.notify("Rut diem that bai!");
+  //   return;
+  // }
+
+  //Xac thuc TOTP truoc khi thao tac
   Application& app = Application::getInstance();
   int userId = app.getCurrentUser()->getUserId();
   OTPManager otpMgr;
-  bool isValidOTP = otpMgr.verifyOTP(userId, "withdraw");
+  bool isValidOTP = otpMgr.verifyTOTP(userId, "withdraw");
   if(isValidOTP == false) {
+    
     console.notify("Rut diem that bai!");
     return;
   }
@@ -208,9 +228,18 @@ void UserWalletMenu::handleTransfer() {
   }
 
   //Xac thuc OTP truoc khi thao tac
+  // int userId = app.getCurrentUser()->getUserId();
+  // OTPManager otpMgr;
+  // bool isValidOTP = otpMgr.verifyOTP(userId, "transfer");
+  // if(isValidOTP == false) {
+  //   console.notify("Chuyen diem that bai!");
+  //   return;
+  // }
+
+  //Xac thuc TOTP truoc khi thao tac
   int userId = app.getCurrentUser()->getUserId();
   OTPManager otpMgr;
-  bool isValidOTP = otpMgr.verifyOTP(userId, "transfer");
+  bool isValidOTP = otpMgr.verifyTOTP(userId, "transfer");
   if(isValidOTP == false) {
     console.notify("Chuyen diem that bai!");
     return;
