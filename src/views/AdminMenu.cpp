@@ -137,7 +137,6 @@ void AdminMenu::handleUpdateUser() {
     }
   } while (userExist == NULL);
   
-  // cout << endl;
   int choice_2 = 0;
   do
   { 
@@ -185,7 +184,6 @@ void AdminMenu::handleUpdateUser() {
   OTPManager otpMgr;
   bool isValidTOTP = otpMgr.verifyTOTP(userId, "changeInfo");
   if(isValidTOTP == false) {
-    console.notify("Xac thuc OTP that bai!");
     console.notify("Thay doi thong tin nguoi dung that bai!");
     return;
   }

@@ -36,13 +36,12 @@ void Menu::printHeader() {
 }
 
 void Menu::backToMenu(string menuName) {
-  char choice;
+  string choice;
   do
   {    
     cout << "> Quay tro ve menu? (y): ";
-    cin >> choice;
-    cin.ignore();
-  } while (choice != 'y');
+    getline(cin, choice);
+  } while (choice != "y");
   Application& app = Application::getInstance();
   app.setCurrentMenu(menuName);
 }

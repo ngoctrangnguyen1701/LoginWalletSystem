@@ -119,9 +119,16 @@ bool User::changePassword(){
   } while (isDuplicatePassword == true || isValidPassword == false);
 
   //Xac thuc OTP truoc khi cap nhat thong tin
+  // OTPManager otpMgr;
+  // bool isValidOTP = otpMgr.verifyOTP(userId, "changePassword");
+  // if(isValidOTP == false) {    
+  //   return false;
+  // }
+
+  //Xac thuc TOTP truoc khi cap nhat thong tin
   OTPManager otpMgr;
-  bool isValidOTP = otpMgr.verifyOTP(userId, "changePassword");
-  if(isValidOTP == false) {    
+  bool isValidTOTP = otpMgr.verifyTOTP(userId, "changePassword");
+  if(isValidTOTP == false) {
     return false;
   }
 

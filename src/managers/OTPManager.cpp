@@ -156,5 +156,9 @@ bool OTPManager::verifyTOTP(int userId, string type) {
   // cout << "[DEBUG verifyTOTP] Time counter: " << (now / interval) << endl;
   
   bool resultVerify = verify_totp(this->totpKey, 20, otpInput, now, interval);
-  return resultVerify;
+  if(resultVerify == false) {
+    console.notify("Xac thuc OTP that bai!");
+    return false;
+  }
+  return true;
 }
