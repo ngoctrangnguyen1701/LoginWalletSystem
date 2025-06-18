@@ -51,7 +51,7 @@ cd LoginWalletSystem
 <br>
 
 **🔹 Biên dịch chương trình bằng Visual Studio Code**
-1. Mở Visual Studio Code (Mở với quyền administrator)
+1. Mở Visual Studio Code với quyền admin (Click chuột phải chọn `Run as administrator`)
 2. Cài đặt C++ compiler (MinGW cho Windows, GCC cho Linux, hoặc Clang cho macOS)<br>
 *Sau khi cài đặt compiler thành công dùng lệnh `g++ --version` ở terminal để kiểm tra*
 3. Cài đặt C/C++ extension trong VSCode

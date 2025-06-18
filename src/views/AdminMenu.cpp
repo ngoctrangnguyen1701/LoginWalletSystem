@@ -124,11 +124,20 @@ void AdminMenu::handleUpdateUser() {
   if(choice == 'y') {
     app.getUserMgr().displayList();
   }
-  cout << "> Nhap ID nguoi dung muon thay doi: ";
-  cin >> userId;
-  cin.ignore();
+
+  User* userExist = NULL;
+  do
+  {
+    cout << "> Nhap ID nguoi dung muon thay doi: ";
+    cin >> userId;
+    cin.ignore();
+    userExist = app.getUserMgr().findUserByConditionFromFile("userId", to_string(userId));
+    if(userExist == NULL) {
+      cout << "Khong ton tai userId '" << userId << "'! Vui long nhap lai!" << endl;
+    }
+  } while (userExist == NULL);
   
-  cout << endl;
+  // cout << endl;
   int choice_2 = 0;
   do
   { 
@@ -176,16 +185,27 @@ void AdminMenu::handleUpdateUser() {
   OTPManager otpMgr;
   bool isValidTOTP = otpMgr.verifyTOTP(userId, "changeInfo");
   if(isValidTOTP == false) {
+    console.notify("Xac thuc OTP that bai!");
     console.notify("Thay doi thong tin nguoi dung that bai!");
     return;
   }
 
   bool resultUpdate = app.getUserMgr().updateUser(userId, fullName, email);
+  string text = "";
   if(resultUpdate == true) {
-    console.notify("Thay doi thong tin nguoi dung thanh cong!");
+    if(choice == 1 || choice == 3) {
+      text = userExist->getFullName() + " -> " + fullName;
+      console.notify("Thay doi ho va ten: " + text);
+    }
+    if(choice == 2 || choice == 3) {
+      text = userExist->getEmail() + " -> " + email;
+      console.notify("Thay doi thong tin email: " + text);
+    }
   } else {
     console.notify("Thay doi thong tin nguoi dung that bai!");
   }
+
+  delete userExist; //Giai phong vung nho
 }
 
 void AdminMenu::handleDeleteUser() {

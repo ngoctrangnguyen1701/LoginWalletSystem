@@ -167,6 +167,7 @@ bool OTPManager::generateTOTP(int userId, string type){
   uint32_t code = code2;
   string email = userExist->getEmail();
   cout << "Ma OTP gui den email '" + email + "': " << code << endl;
+  this->createdTime = now; // Lưu thời gian tạo mã OTP
 
   delete userExist;
   return true;
@@ -194,6 +195,13 @@ bool OTPManager::verifyTOTP(int userId, string type) {
   
   time_t now = time(NULL);
   uint32_t interval = this->expiredTime;
+
+  //kiem tra het han OTP trong vong 1 phut ke tu luc tao OTP
+  cout << "[DEBUG verifyTOTP] this->createdTime : " << this->createdTime  << ", Interval: " << interval << endl;
+  if(now - this->createdTime > this->expiredTime) {
+    console.notify("Ma OTP da het han!");
+    return false;
+  }
   
   cout << "[DEBUG verifyTOTP] Time: " << now << ", Interval: " << interval << endl;
   cout << "[DEBUG verifyTOTP] Key length (strlen): " << strlen((char*)this->totpKey) << endl;
