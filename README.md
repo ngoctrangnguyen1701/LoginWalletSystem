@@ -1,6 +1,6 @@
 ### Giới thiệu dự án
-Dự án Hệ thống đăng nhập và đăng ký chủ yếu liên quan đến quá trình đăng ký người dùng. Thông tin xác thực người dùng như tên người dùng và mật khẩu được yêu cầu từ người dùng. Nếu người dùng đăng ký thành công thì với thông tin xác thực được cung cấp, một bản ghi (có thể là tập tin) của người dùng cụ thể sẽ được tạo trong cơ sở dữ liệu (CSDL).
-Ví điểm thưởng là cơ chế quản lý các lượng (đơn vị : điểm) được dùng để quy đổi ra hàng hóa (còn gọi là hoạt động mua - bán). Giữa các ví có giao dịch chuyển điểm.
+Dự án Hệ thống đăng nhập và đăng ký chủ yếu liên quan đến quá trình đăng ký người dùng. Thông tin xác thực người dùng như tên người dùng và mật khẩu được yêu cầu từ người dùng. Nếu người dùng đăng ký thành công thì với thông tin xác thực được cung cấp, một bản ghi của người dùng cụ thể sẽ được tạo trong cơ sở dữ liệu (ở đây là file văn bản).
+Ví điểm thưởng là cơ chế quản lý điểm được dùng để trao đổi giữa các ví.
 
 
 🔹 Ngôn ngữ: **C++**  
@@ -83,11 +83,6 @@ _Nếu dùng hệ điều hành Windows chọn `Command Prompt`, macOS hoặc Li
 
 ---
 
-### Sơ đồ
-[Chi tiết](https://docs.google.com/spreadsheets/d/15pDtCsO1byHXWuiSaONQUGUSVJRMGmBcl1brPSEpmDE/edit?gid=1628233281#gid=1628233281)
-
----
-
 ### Tài liệu đề xuất giải pháp
 [Chi tiết](https://docs.google.com/document/d/1xMLW7Kc3PsWiafz0cpkj4xGTv_zypUjc/edit?usp=sharing&ouid=104113783284477848584&rtpof=true&sd=true)
 
@@ -95,3 +90,10 @@ _Nếu dùng hệ điều hành Windows chọn `Command Prompt`, macOS hoặc Li
 
 ### Cấu trúc thư mục
 [Chi tiết](./docs/Cau_truc_thu_muc.md)
+
+---
+
+### Tài liệu thực thi (chỉ dành cho thành viên)
+[Chi tiết](https://docs.google.com/spreadsheets/d/15pDtCsO1byHXWuiSaONQUGUSVJRMGmBcl1brPSEpmDE/edit?gid=1628233281#gid=1628233281)
+
+
