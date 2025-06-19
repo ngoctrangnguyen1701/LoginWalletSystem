@@ -5,7 +5,7 @@ Ví điểm thưởng là cơ chế quản lý điểm được dùng để trao
 
 🔹 Ngôn ngữ: **C++**  
 🔹 Hỗ trợ trên: **Windows / Mac / Linux**  
-🔹 Giao diện: **Dòng lệnh văn bản**
+🔹 Giao diện: **Dòng lệnh văn bản**  
 🔹 Lưu trữ: **File văn bản (không sử dụng CSDL)**
 
 
