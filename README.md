@@ -86,8 +86,11 @@ _Nếu dùng hệ điều hành Windows chọn `Command Prompt`, macOS hoặc Li
 ### Sơ đồ
 [Chi tiết](https://docs.google.com/spreadsheets/d/15pDtCsO1byHXWuiSaONQUGUSVJRMGmBcl1brPSEpmDE/edit?gid=1628233281#gid=1628233281)
 
+---
+
 ### Tài liệu đề xuất giải pháp
-[Chi tiết](https://docs.google.com/document/d/1xMLW7Kc3PsWiafz0cpkj4xGTv_zypUjc/edit)
+[Chi tiết]([https://docs.google.com/document/d/1xMLW7Kc3PsWiafz0cpkj4xGTv_zypUjc/edit](https://docs.google.com/document/d/1xMLW7Kc3PsWiafz0cpkj4xGTv_zypUjc/edit?usp=sharing&ouid=104113783284477848584&rtpof=true&sd=true))
+
 ---
 
 ### Cấu trúc thư mục
