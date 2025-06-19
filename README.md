@@ -89,7 +89,7 @@ _Nếu dùng hệ điều hành Windows chọn `Command Prompt`, macOS hoặc Li
 ---
 
 ### Tài liệu đề xuất giải pháp
-[Chi tiết]([https://docs.google.com/document/d/1xMLW7Kc3PsWiafz0cpkj4xGTv_zypUjc/edit](https://docs.google.com/document/d/1xMLW7Kc3PsWiafz0cpkj4xGTv_zypUjc/edit?usp=sharing&ouid=104113783284477848584&rtpof=true&sd=true))
+[Chi tiết](https://docs.google.com/document/d/1xMLW7Kc3PsWiafz0cpkj4xGTv_zypUjc/edit?usp=sharing&ouid=104113783284477848584&rtpof=true&sd=true)
 
 ---
 
