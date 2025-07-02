@@ -38,6 +38,7 @@ class UserManager
 		bool deleteUser(int userId); // -> then deleteWallet;
 		User* findUserFromFile(string username, string password);
 		User* findUserById(int userId);
+		User* findUserByUsername(string username);
 		User* findUserByConditionFromFile(string key, string value);
 		bool createSampleData();
 		User readItemFromFile(stringstream& ss); //Doc user tu file

@@ -9,21 +9,21 @@ bool UserManager::createUser(User newUser){
     return false;
   }
 
-  //kiem tra xem user_id  va username da ton tai
+  //kiem tra xem user_id va username da ton tai
   int userId = nextUserId;
   User* userExist = findUserById(userId); 
   if(userExist != NULL) {
-    if(userExist->getUserId() == userId) {
-      string text = "Da ton tai userId '" + to_string(userId) + " '";
-      console.notify(text);
-      return false;
-    }
-    if(userExist->getUsername() == newUser.getUsername()) {
-      string text = "Da ton tai ten dang nhap '" + newUser.getUsername() + " '";
-      console.notify(text);
-      return false;
-    }
+    string text = "Da ton tai userId '" + to_string(userId) + "'";
+    console.notify(text);
+    return false;
+  }  
+  User* usernameExist = findUserByUsername(newUser.getUsername());
+  if(usernameExist != NULL) {
+    string text = "Da ton tai ten dang nhap '" + newUser.getUsername() + "'";
+    console.notify(text);
+    return false;
   }
+
   newUser.setUserId(userId); //gan id cho user
   nextUserId++; //tang nexUserId len 1
 
@@ -212,6 +212,20 @@ User* UserManager::findUserById(int userId){
   }
   //Neu khong tim thay user thi tra ve NULL
   string text = "Khong tim thay user_id '" + to_string(userId) + "'";
+  console.log(text);
+  return NULL;
+}
+
+User* UserManager::findUserByUsername(string username){
+  for (int i = 0; i < userList.size(); i++) {
+    if (userList[i].getUsername() == username) {
+      string text = "Tim thay username '" + username + "'";
+      console.log(text);
+      return &userList[i]; //tra ve con tro den user      
+    }
+  }
+  //Neu khong tim thay user thi tra ve NULL
+  string text = "Khong tim thay username '" + username + "'";
   console.log(text);
   return NULL;
 }
