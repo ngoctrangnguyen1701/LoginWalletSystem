@@ -63,9 +63,11 @@ void LoginMenu::handleLogin() {
             return;
           } else {
             console.notify("Cap nhat mat khau that bai!");
+            return;
           }
         } else {
           console.notify("Thay doi mat khau that bai!");
+          return;
         }
       }
       cout << endl;

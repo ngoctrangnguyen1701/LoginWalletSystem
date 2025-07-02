@@ -113,7 +113,6 @@ void UserWalletMenu::handleWithdraw() {
   cout << endl;
   console.task("Rut diem o vi");
   int amount;
-  int isValid;
   do
   {
     cout << "> Nhap so diem can rut: ";
@@ -122,10 +121,12 @@ void UserWalletMenu::handleWithdraw() {
     if (amount <= 0) {
       console.notify("So diem rut phai lon hon 0!");
     }
-    else {
-      isValid = checkValidDecrement(amount);
-    }
-  } while (amount <= 0 || isValid == false);
+  } while (amount <= 0);
+
+  bool isValid = checkValidDecrement(amount);
+  if(isValid == false) {
+    return;
+  }
 
   char choice;
   do
@@ -191,7 +192,6 @@ void UserWalletMenu::handleTransfer() {
   } while (destinationWallet == NULL);
 
   int amount;
-  bool isValid;
   do
   {
     cout << "> Nhap so diem can chuyen: ";
@@ -201,9 +201,13 @@ void UserWalletMenu::handleTransfer() {
       console.notify("So diem chuyen phai lon hon 0!");
     }
     else {
-      isValid = checkValidDecrement(amount);
     }
-  } while (amount <= 0 || isValid == false);
+  } while (amount <= 0);
+  
+  bool isValid = checkValidDecrement(amount);
+  if(isValid == false) {
+    return;
+  }
 
   //hien thi ten nguoi so huu vi nhan diem
   cout << endl;

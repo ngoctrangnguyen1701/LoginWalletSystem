@@ -114,7 +114,7 @@ void MasterWalletMenu::handleWithdraw() {
   cout << endl;
   console.task("Rut diem o vi tong");
   int amount;
-  bool isValid;
+  
   do
   {
     cout << "> Nhap so diem can rut: ";
@@ -123,10 +123,12 @@ void MasterWalletMenu::handleWithdraw() {
     if (amount <= 0) {
       console.notify("So diem rut phai lon hon 0!");
     }
-    else {
-      isValid = checkValidDecrement(amount);
-    }
-  } while (amount <= 0 || isValid == false);
+  } while (amount <= 0);
+
+  bool isValid = checkValidDecrement(amount);
+  if(isValid == false) {
+    return;
+  }
 
   char choice;
   do
